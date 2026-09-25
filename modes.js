@@ -167,6 +167,10 @@ const SCOUT_EQUIPMENT = [
     ['sc-mapa', 'Mapa, itinerario y contactos', 'Esencial', 'patrulla', 'Mantienen al grupo orientado y permiten dar aviso si cambia el plan.', 'Incluye ubicación, ruta, responsables, horarios y contacto de emergencia.', 'Comparte una copia con la persona responsable antes de partir.'],
     ['sc-lista', 'Lista de participantes y permisos', 'Esencial', 'patrulla', 'Permite verificar asistencia e información indispensable del grupo.', 'Lleva el formato que use el grupo y resguárdalo de humedad.', 'Comprueba participantes al salir, al llegar y antes de regresar.']
   ]],
+  ['Documentos de salida Scout', [
+    ['sc-ficha-salud', 'Ficha de salud actualizada', 'Esencial', 'persona', 'Reúne el historial médico y los datos necesarios para que los responsables actúen ante una emergencia.', 'Es un formato oficial entregado por la dirigencia del grupo. Debe estar vigente, completo y entregarse conforme al protocolo del Grupo Scout.', 'Comprueba que madre, padre o tutor la actualizó y que la jefatura confirmó su recepción y resguardo.'],
+    ['sc-autorizacion', 'Ficha de autorización de salida Scout', 'Esencial', 'persona', 'Deja constancia de que madre, padre o tutor autoriza la participación en la salida.', 'Usa el formato oficial entregado por la dirigencia del grupo; completa los datos de la salida y las firmas que solicite.', 'Entrégala dentro del plazo indicado y confirma con la jefatura que fue recibida antes de partir.']
+  ]],
   ['Equipo personal', [
     ['sc-mochila-campamento', 'Mochila de campamento y bolsa interior', 'Esencial', 'persona', 'Transporta el equipo personal y lo protege de humedad durante el campamento.', 'Elige una capacidad adecuada a la duración, sin llevar una mochila demasiado grande que invite a cargar de más. Protege ropa, calzado y descanso en bolsas internas.', 'Ajústala y camina con la carga real antes de salir.'],
     ['sc-bazar', 'Bazar personal antes y después del campamento', 'Esencial', 'persona', 'Permite comprobar que cada Scout lleva su equipo completo y adecuado.', 'Extiende, revisa y organiza el equipo antes de empacar; repite la revisión al regresar.', 'Usa el bazar para detectar faltantes, daños y artículos fuera del plan.'],
@@ -204,8 +208,11 @@ const MANADA_EQUIPMENT = [
     ['mn-impermeable', 'Impermeable reutilizable', 'Esencial', 'persona', 'Protege durante lluvia o viento.', 'Revisa talla, capucha y que pueda ponérselo sin ayuda.', 'No uses uno desechable como protección principal.'],
     ['mn-sueter', 'Suéter o capa de abrigo', 'Esencial', 'persona', 'Permite responder a cambios de temperatura.', 'Usa una prenda que ya conozca y pueda guardar en su mochila.', 'Comprueba que quede seca al iniciar.'],
     ['mn-frontal', 'Linterna frontal en bolsa resellable', 'Esencial', 'persona', 'Permite desplazarse con manos libres cuando baja la luz.', 'Revisa batería, ajuste y uso antes de salir.', 'No la sustituyas por una luz de mano.'],
-    ['mn-silbato', 'Silbato de emergencia', 'Según indicación de jefatura', 'persona', 'Permite realizar una señal audible sin depender de voz o teléfono.', 'Confirma con la jefatura cuándo se usa y qué señales reconoce la Manada.', 'No se usa como juguete; el lobato debe conocer la señal acordada.'],
-    ['mn-salud', 'Ficha de salud actualizada', 'Esencial', 'persona', 'Entrega a responsables la información necesaria para la salida.', 'Protégela en una bolsa resellable y sigue el proceso de resguardo de la jefatura.', 'Confirma que la familia entregó la versión vigente.']
+    ['mn-silbato', 'Silbato de emergencia', 'Según indicación de jefatura', 'persona', 'Permite realizar una señal audible sin depender de voz o teléfono.', 'Confirma con la jefatura cuándo se usa y qué señales reconoce la Manada.', 'No se usa como juguete; el lobato debe conocer la señal acordada.']
+  ]],
+  ['Documentos de salida Scout', [
+    ['mn-salud', 'Ficha de salud actualizada', 'Esencial', 'persona', 'Reúne el historial médico y los datos necesarios para que los responsables actúen ante una emergencia.', 'Es un formato oficial entregado por la dirigencia del grupo. Debe estar vigente, completo y entregarse conforme al protocolo del Grupo Scout.', 'Comprueba que madre, padre o tutor la actualizó y que la jefatura confirmó su recepción y resguardo.'],
+    ['mn-autorizacion', 'Ficha de autorización de salida Scout', 'Esencial', 'persona', 'Deja constancia de que madre, padre o tutor autoriza la participación en la salida.', 'Usa el formato oficial entregado por la dirigencia del grupo; completa los datos de la salida y las firmas que solicite.', 'Entrégala dentro del plazo indicado y confirma con la jefatura que fue recibida antes de partir.']
   ]],
   ['Mochila de campamento', [
     ['mn-ropa', 'Cambio de ropa completo', 'Esencial', 'persona', 'Incluye playera, pantalón o leggins, ropa interior, calcetines y calzado cómodo.', 'Empácalo en una bolsa resellable y añade botas si ya son adecuadas y están probadas.', 'Guarda un cambio separado para que no se mezcle con la ropa húmeda.'],
@@ -237,12 +244,12 @@ const MODE_CHECKS = {
     'Al regresar': ['Avisar al contacto que el grupo concluyó la salida.', 'Secar, limpiar y reparar refugio, aislante, calzado y tratamiento de agua.', 'Registrar peso, comida, agua, combustible y equipo que faltó, sobró o no se usó para mejorar la siguiente salida.']
   },
   tropa: {
-    'Antes de salir': ['Confirmar lugar, transporte, pronóstico, sanitarios y reglas del campamento.', 'Verificar lista de participantes, responsables, permisos y contactos del grupo.', 'Revisar menú, alergias, agua, combustible y responsables de cocina.', 'Realizar bazar personal y probar mochila, estufa, tiendas, lonas, estacas y material de actividades.', 'Asignar responsables para cocina, campamento, botiquín, residuos y cierre.', 'Compartir horario de salida, regreso y punto de encuentro.'],
+    'Antes de salir': ['Confirmar lugar, transporte, pronóstico, sanitarios y reglas del campamento.', 'Verificar lista de participantes, responsables, contactos, fichas de salud actualizadas y autorizaciones de salida Scout recibidas por la jefatura.', 'Revisar menú, alergias, agua, combustible y responsables de cocina.', 'Realizar bazar personal y probar mochila, estufa, tiendas, lonas, estacas y material de actividades.', 'Asignar responsables para cocina, campamento, botiquín, residuos y cierre.', 'Compartir horario de salida, regreso y punto de encuentro.'],
     'Al instalarse': ['Contar participantes y delimitar cocina, descanso, actividades, residuos y sanitarios.', 'Montar refugios y tensar lonas antes de organizar la cocina.', 'Explicar rutas de paso, uso de herramientas, higiene y protocolo de atención.', 'Guardar alimentos, combustible y botiquín en lugares definidos y accesibles para responsables.'],
     'Al cerrar el campamento': ['Contar participantes, equipo y estacas antes de dejar el sitio.', 'Apagar, enfriar y guardar la estufa conforme a sus instrucciones.', 'Airear, sacudir y revisar tiendas antes de empacarlas; confirmar varillas, cierres, estacas y fundas.', 'Retirar residuos, cordajes y material de actividades; revisar que el lugar quede limpio.', 'Registrar faltantes, daños, consumos y aprendizajes para la siguiente salida.']
   },
   manada: {
-    'Antes de salir': ['Practicar que cada lobato arme, cargue y reconozca su mochila, mochila de ataque y cangurera.', 'Hacer un bazar personal: verificar equipo completo, nombre visible y artículos adecuados para la salida.', 'Confirmar uniforme, ficha de salud y datos de contacto.', 'Revisar pronóstico, agua, sanitarios, alimentación, hora de salida y regreso.', 'Comprobar que el equipo de dormir, impermeable y calzado estén secos, completos y ya probados.', 'Acordar con familias y responsables qué debe llevar cada participante y qué lleva el equipo adulto.'],
+    'Antes de salir': ['Practicar que cada lobato arme, cargue y reconozca su mochila, mochila de ataque y cangurera.', 'Hacer un bazar personal: verificar equipo completo, nombre visible y artículos adecuados para la salida.', 'Confirmar uniforme, ficha de salud actualizada, autorización de salida Scout y datos de contacto.', 'Revisar pronóstico, agua, sanitarios, alimentación, hora de salida y regreso.', 'Comprobar que el equipo de dormir, impermeable y calzado estén secos, completos y ya probados.', 'Acordar con familias y responsables qué debe llevar cada participante y qué lleva el equipo adulto.'],
     'Durante el campamento': ['Contar a los lobatos al salir, llegar, cambiar de actividad y regresar.', 'Revisar agua, abrigo, gorra, bloqueador, higiene y estado general de cada lobato.', 'Mantener libres las rutas de paso y explicar dónde se ubican responsables, sanitarios y punto de encuentro.', 'Practicar el cuidado de la tienda: mantenerla limpia, sacudir residuos y no forzar cierres, varillas ni estacas.', 'Pedir que cada lobato guarde sus artículos después de usarlos y mantenga sus residuos en la bolsa indicada.'],
     'Al regresar': ['Hacer un bazar final para verificar que cada lobato regrese con su equipo, ropa marcada y objetos de bolsillo.', 'Secar sleeping bag, aislante, impermeable, calzado y bolsas antes de guardarlos.', 'Airear y limpiar la tienda antes de guardarla si el equipo se utilizó.', 'Registrar artículos perdidos, equipo que faltó y aprendizajes para la siguiente salida.']
   }
@@ -252,44 +259,44 @@ const MODE_CONFIGS = {
   coche: {
     key: 'coche', hash: 'coche', storageKey: KEY, title: 'Camping con coche', eyebrow: 'Car camping · Frontcountry',
     description: 'Descansa, cocina y convive con tu campamento cerca del vehículo. Prepara lo que tu familia necesita para disfrutar la estancia.',
-    pills: ['Acceso en vehículo', 'Confort alto', 'Habilidad inicial'], art: 'assets/interior-camping-coche.png', equipment,
+    pills: ['Acceso en vehículo', 'Confort alto', 'Habilidad inicial'], art: 'assets/interior-camping-coche.jpeg', equipment,
     services: [['water', 'Agua potable'], ['toilets', 'Sanitarios'], ['electricity', 'Electricidad']],
     footerChecks: '□ Reserva y acceso  □ Pronóstico  □ Agua y alimentos  □ Avisar regreso  □ Vehículo'
   },
   senderismo: {
     key: 'senderismo', hash: 'senderismo', storageKey: 'aef-backpacking-trips-v1', title: 'Mochilero o Backpacking', eyebrow: 'Mochilero · Backpacking',
     description: 'El backpacking, o viajar como mochilero, recorre rutas de larga distancia llevando equipo, refugio y alimento en una mochila, priorizando movilidad, autonomía y ligereza.',
-    pills: ['Autonomía itinerante', 'Equipo técnico ligero', 'Movilidad alta'], art: 'assets/interior-mochilero.png', equipment: BACKPACKING_EQUIPMENT,
+    pills: ['Autonomía itinerante', 'Equipo técnico ligero', 'Movilidad alta'], art: 'assets/interior-mochilero.jpeg', equipment: BACKPACKING_EQUIPMENT,
     services: [['water', 'Fuentes de agua confirmadas'], ['permit', 'Permisos o reservas'], ['coverage', 'Cobertura móvil prevista']],
     footerChecks: '□ Permisos  □ Pronóstico  □ Agua  □ Mapa sin conexión  □ Avisar itinerario'
   },
   bushcraft: {
     key: 'bushcraft', hash: 'bushcraft', storageKey: 'aef-bushcraft-trips-v1', title: 'Bushcraft', eyebrow: 'Bushcraft · Habilidades de campo',
     description: 'El bushcraft es el arte de prosperar en la naturaleza con autosuficiencia, usando habilidades tradicionales de fuego, refugio y trabajo de madera.',
-    pills: ['Habilidades tradicionales', 'Habilidad alta', 'Práctica responsable'], art: 'assets/interior-bushcraft.png', equipment: BUSHCRAFT_EQUIPMENT,
+    pills: ['Habilidades tradicionales', 'Habilidad alta', 'Práctica responsable'], art: 'assets/interior-bushcraft.jpeg', equipment: BUSHCRAFT_EQUIPMENT,
     services: [['permit', 'Reglas del terreno confirmadas'], ['fire', 'Fuego posible según reglas vigentes'], ['wood', 'Uso o recolección de madera']],
     footerChecks: '□ Reglas del sitio  □ Restricción de fuego  □ Clima  □ Plan de emergencia  □ Retirar residuos'
   },
   ultraligera: {
     key: 'ultraligera', hash: 'ultraligera', storageKey: 'aef-ultralight-trips-v1', title: 'Acampada ultraligera', eyebrow: 'Senderismo ultraligero · Ultralight',
     description: 'Diseña un sistema ligero, completo y probado para caminar con más libertad, sin recortar seguridad, descanso, agua ni alimentación.',
-    pills: ['Sistema ligero y completo', 'Cada artículo tiene función', 'Habilidad intermedia'], art: 'assets/interior-ultraligera.png', equipment: ULTRALIGHT_EQUIPMENT,
+    pills: ['Sistema ligero y completo', 'Cada artículo tiene función', 'Habilidad intermedia'], art: 'assets/interior-ultraligera.jpeg', equipment: ULTRALIGHT_EQUIPMENT,
     services: [['water', 'Fuentes de agua confirmadas'], ['permit', 'Pernocta y reglas confirmadas'], ['coverage', 'Navegación y comunicación previstas']],
     footerChecks: '□ Ruta y reglas  □ Pronóstico  □ Peso total  □ Agua y tratamiento  □ Avisar itinerario'
   },
   tropa: {
     key: 'tropa', hash: 'scout/tropa', storageKey: 'aef-scout-tropa-trips-v1', title: 'Campamento Scout', eyebrow: 'Zona Scout · Campamento de Tropa',
     description: 'Organiza el equipo de patrulla, las responsabilidades y la seguridad del campamento en una sola salida editable.',
-    pills: ['Equipo de patrulla', 'Responsables definidos', 'Plan de campamento'], art: 'assets/zona-scout.png', equipment: SCOUT_EQUIPMENT,
+    pills: ['Equipo de patrulla', 'Responsables definidos', 'Plan de campamento'], art: 'assets/interior-tropa.jpeg', equipment: SCOUT_EQUIPMENT,
     services: [['water', 'Agua potable'], ['toilets', 'Sanitarios'], ['permit', 'Permiso o reglas confirmadas']],
-    footerChecks: '□ Participantes y permisos  □ Menú y agua  □ Botiquín  □ Equipo de patrulla  □ Avisar regreso', identityLabel: 'Grupo / tropa', numberLabel: 'Número de grupo / tropa'
+    footerChecks: '□ Salud y autorizaciones  □ Menú y agua  □ Botiquín  □ Equipo de patrulla  □ Avisar regreso', identityLabel: 'Grupo / tropa', numberLabel: 'Número de grupo / tropa'
   },
   manada: {
     key: 'manada', hash: 'scout/manada', storageKey: 'aef-scout-manada-trips-v1', title: 'Campamento de Manada', eyebrow: 'Zona Scout · Lobatos',
     description: 'Prepara un campamento donde cada lobato conoce, arma y cuida su propio equipo con acompañamiento adulto.',
-    pills: ['Autonomía progresiva', 'Mochila propia', 'Acompañamiento adulto'], art: 'assets/zona-scout.png', equipment: MANADA_EQUIPMENT,
+    pills: ['Autonomía progresiva', 'Mochila propia', 'Acompañamiento adulto'], art: 'assets/interior-manada.jpeg', equipment: MANADA_EQUIPMENT,
     services: [['water', 'Agua potable'], ['toilets', 'Sanitarios'], ['permit', 'Permiso o reglas confirmadas']],
-    footerChecks: '□ Ficha de salud  □ Agua y alimentación  □ Equipo de descanso  □ Ropa marcada  □ Avisar regreso', identityLabel: 'Nombre de la manada', numberLabel: 'Número de grupo'
+    footerChecks: '□ Salud y autorización  □ Agua y alimentación  □ Equipo de descanso  □ Ropa marcada  □ Avisar regreso', identityLabel: 'Nombre de la manada', numberLabel: 'Número de grupo'
   }
 };
 
@@ -334,6 +341,7 @@ const MODE_VIDEOS = {
 const RESOURCE_SECTIONS = {
   tecnicas: {
     title: 'Técnicas de campismo',
+    art: 'assets/interior-tecnicas.jpeg',
     eyebrow: 'Biblioteca práctica · Acampando en Familia',
     description: 'Aprende a cuidar, reparar y elegir el refugio y el sistema de descanso a partir de los videos que ya publicamos.',
     pills: ['Aprendizaje en video', 'Refugio y descanso', 'Práctica en familia'],
@@ -354,6 +362,7 @@ const RESOURCE_SECTIONS = {
   },
   reviews: {
     title: 'Review de equipo',
+    art: 'assets/interior-review-equipo.jpeg',
     eyebrow: 'Experiencia en video · Acampando en Familia',
     description: 'Compara el equipo que ya hemos mostrado en el canal y descubre qué video responde a cada decisión de compra o mantenimiento.',
     pills: ['Experiencia familiar', 'Videos publicados', 'Comparar antes de elegir'],
@@ -524,7 +533,10 @@ groups = function () {
 };
 
 function contactFooter() {
-  return `<footer class="site-contact" aria-label="Contacto de Acampando en Familia"><img src="assets/logo.png" alt=""><div><strong>Acampando en Familia</strong><span>Campismo práctico para compartir y aprender en familia.</span></div><nav><a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="mailto:lobatos.acampando@gmail.com">lobatos.acampando@gmail.com</a><a href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">YouTube ↗</a></nav></footer>`;
+  const instagram = `<a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer"><svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.35" cy="6.65" r="1.2" fill="currentColor"/></svg><span>Instagram</span></a>`;
+  const mail = `<a href="mailto:lobatos.acampando@gmail.com"><svg class="social-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.8 6 8.2 6.4L20.2 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correo</span></a>`;
+  const youtube = `<a href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer"><svg class="social-icon youtube-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8Z"/><path fill="#fff" d="m9.6 15.8 6.2-3.8-6.2-3.8v7.6Z"/></svg><span>YouTube</span></a>`;
+  return `<footer class="site-contact" aria-label="Contacto de Lobatos Acampando"><a class="contact-crest" href="#inicio" aria-label="Lobatos Acampando, ir al inicio"><img src="assets/logo.png" alt="Logo de Lobatos Acampando"></a><div class="contact-identity"><p class="contact-kicker">Familia al aire libre</p><strong>Lobatos Acampando</strong><p>Entre senderos, fogatas y noches de tienda, la familia Lobato comparte la aventura de aprender a vivir al aire libre en familia.</p></div><aside class="contact-invitation"><p class="contact-kicker">Tu historia nos inspira</p><p>¿Tienes una duda, una sugerencia o una experiencia que quieras compartir? Mándanos un mensaje con tu nombre para nombrarte en nuestro próximo video.</p><nav class="contact-links contact-invitation-links" aria-label="Redes y contacto">${instagram}${mail}${youtube}</nav></aside></footer>`;
 }
 
 menu = function (scout = false) {
@@ -532,15 +544,8 @@ menu = function (scout = false) {
   const ids = [0, 1, 2, 3, 4, 5];
   const xs = [16, 270, 521, 772, 1023, 1275];
   const widths = [247, 246, 245, 244, 244, 246];
-  app.innerHTML = `<main id="main" class="image-menu"><h1 class="sr-only">Elige tu forma de acampar</h1><div class="image-scroll" tabindex="0" aria-label="Menú ilustrado; en pantallas pequeñas puedes desplazarlo horizontalmente"><div class="image-stage"><img src="assets/menu-principal-v2.png" alt="Elige tu forma de acampar · Acampando en Familia" width="1536" height="1024">${ids.map((n, i) => `<button class="hotspot menu-card-hotspot" data-camp="${n}" style="left:${xs[i] / 1536 * 100}%;top:20.8%;width:${widths[i] / 1536 * 100}%;height:62.2%" aria-label="${names[n]}: ${descriptions[n]}"><span class="menu-card-copy"><strong>${names[n]}</strong><small>${descriptions[n]}</small><b aria-hidden="true">→</b></span></button>`).join('')}<a class="hotspot footer-spot" href="#scout" style="left:24.5%;top:85.1%;width:51.2%;height:9.9%" aria-label="Abrir Zona Scout"><span class="footer-label"><i class="fleur" aria-hidden="true">⚜</i> Zona Scout <b aria-hidden="true">→</b></span></a></div></div><button class="secondary mobile-hint" id="zoom-menu">Ampliar menú</button><p class="menu-note">Disponibles: las seis secciones principales y Zona Scout.</p></main>`;
+  app.innerHTML = `<main id="main" class="image-menu"><h1 class="sr-only">Elige tu forma de acampar</h1><div class="image-scroll" tabindex="0" aria-label="Menú ilustrado; en pantallas pequeñas puedes desplazarlo horizontalmente"><div class="image-stage"><img src="assets/menu-principal-v2.png" alt="Elige tu forma de acampar · Acampando en Familia" width="1536" height="1024">${ids.map((n, i) => `<button class="hotspot menu-card-hotspot" data-camp="${n}" style="left:${xs[i] / 1536 * 100}%;top:20.8%;width:${widths[i] / 1536 * 100}%;height:62.2%" aria-label="${names[n]}: ${descriptions[n]}"><span class="menu-card-copy"><strong>${names[n]}</strong><small>${descriptions[n]}</small><b aria-hidden="true">→</b></span></button>`).join('')}<a class="hotspot footer-spot" href="#scout" style="left:24.5%;top:85.1%;width:51.2%;height:9.9%" aria-label="Abrir Zona Scout"><span class="footer-label"><i class="fleur" aria-hidden="true">⚜</i> Zona Scout <b aria-hidden="true">→</b></span></a></div></div><button class="secondary mobile-hint" id="zoom-menu">Ampliar menú</button></main>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
-  const channel = document.createElement('a');
-  channel.className = 'youtube-brand menu-youtube';
-  channel.href = 'https://www.youtube.com/@acampandoenfamilia';
-  channel.target = '_blank';
-  channel.rel = 'noopener noreferrer';
-  channel.textContent = '▶ YouTube · Acampando en Familia ↗';
-  document.querySelector('.image-menu').insertBefore(channel, document.querySelector('.mobile-hint'));
   const zoom = document.querySelector('#zoom-menu');
   zoom.onclick = () => { const stage = document.querySelector('.image-stage'); stage.classList.toggle('zoomed'); zoom.textContent = stage.classList.contains('zoomed') ? 'Ver menú completo' : 'Ampliar menú'; };
   document.querySelectorAll('[data-camp]').forEach(b => b.onclick = () => {
@@ -551,7 +556,7 @@ menu = function (scout = false) {
 };
 
 function scoutMenu() {
-  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160a99,#1c160aaa),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Acampando en Familia"><span>Guía de campismo</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content"><div class="scout-symbol" aria-hidden="true">⚜</div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1><p>Dos espacios iniciales para preparar y documentar campamentos Scout.</p><div class="scout-cards"><button class="scout-card" data-scout="manada"><span>⚜ &nbsp; Primeras aventuras</span><strong>Campamento de Manada</strong><small>Actividades, equipo y organización para niñas y niños.</small><b aria-hidden="true">→</b></button><button class="scout-card" data-scout="scout"><span>⚜ &nbsp; Vida de patrulla</span><strong>Campamento Scout</strong><small>Planificación, técnica, equipo y convivencia de la tropa.</small><b aria-hidden="true">→</b></button></div></section><a class="youtube-brand scout-youtube" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ YouTube · Acampando en Familia ↗</a></main>`;
+  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160a99,#1c160aaa),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content"><div class="scout-symbol" aria-hidden="true">⚜</div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1><p>Dos espacios iniciales para preparar y documentar campamentos Scout.</p><div class="scout-cards"><button class="scout-card" data-scout="manada"><span>⚜ &nbsp; Primeras aventuras</span><strong>Campamento de Manada</strong><small>Actividades, equipo y organización para niñas y niños.</small><b aria-hidden="true">→</b></button><button class="scout-card" data-scout="scout"><span>⚜ &nbsp; Vida de patrulla</span><strong>Campamento Scout</strong><small>Planificación, técnica, equipo y convivencia de la tropa.</small><b aria-hidden="true">→</b></button></div></section><a class="youtube-brand scout-youtube" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ YouTube · Acampando en Familia ↗</a></main>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   document.querySelectorAll('[data-scout]').forEach(button => button.onclick = () => {
     if (button.dataset.scout === 'scout') { location.hash = 'scout/tropa'; return; }
@@ -584,7 +589,7 @@ function stylePage(mode) {
   const requestedTab = isScoutMode ? parts[2] || 'guia' : parts[1] || 'guia';
   const tab = requestedTab === 'verificar' ? 'guia' : requestedTab;
   const backHref = isScoutMode ? '#scout' : '#inicio', backLabel = isScoutMode ? '← Volver a Zona Scout' : '← Volver a las formas de acampar';
-  app.innerHTML = `<div class="shell mode-${mode}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Acampando en Familia"><span>Guía de campismo</span></a><span class="save-state">Tus salidas se guardan en este navegador</span><button class="secondary" id="compare-top">⇄ Comparar modalidades</button></header><main id="main" class="container"><section class="intro"><div><a href="${backHref}">${backLabel}</a><p class="eyebrow">${cfg.eyebrow}</p><h1>${cfg.title}</h1><p>${cfg.description}</p><div class="pills">${cfg.pills.map(x => `<span class="pill">${x}</span>`).join('')}</div></div><div class="intro-art" style="background-image:url('${cfg.art}');background-position:center;background-size:cover" role="img" aria-label="Ilustración de ${cfg.title}"></div></section><nav class="tabbar" aria-label="Secciones de ${cfg.title}">${[['guia', 'Conocer esta modalidad'], ['salida', 'Preparar mi salida'], ['verificar', 'Antes, durante y después']].map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div id="trip-context"></div><div id="content"></div><p class="muted">Los datos se guardan solo en este navegador y por modalidad. Exporta un respaldo si quieres conservar o trasladar una salida.</p><p class="offline-state" id="offline-state"></p></main></div>`;
+  app.innerHTML = `<div class="shell mode-${mode}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><span class="save-state">Tus salidas se guardan en este navegador</span><button class="secondary" id="compare-top">⇄ Comparar modalidades</button></header><main id="main" class="container"><section class="intro"><div><a href="${backHref}">${backLabel}</a><p class="eyebrow">${cfg.eyebrow}</p><h1>${cfg.title}</h1><p>${cfg.description}</p><div class="pills">${cfg.pills.map(x => `<span class="pill">${x}</span>`).join('')}</div></div><div class="intro-art" style="background-image:url('${cfg.art}');background-position:center;background-size:cover" role="img" aria-label="Ilustración de ${cfg.title}"></div></section><nav class="tabbar" aria-label="Secciones de ${cfg.title}">${[['guia', 'Conocer esta modalidad'], ['salida', 'Preparar mi salida'], ['verificar', 'Antes, durante y después']].map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div id="trip-context"></div><div id="content"></div><p class="muted">Los datos se guardan solo en este navegador y por modalidad. Exporta un respaldo si quieres conservar o trasladar una salida.</p><p class="offline-state" id="offline-state"></p></main></div>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   const channel = document.createElement('a');
   channel.className = 'youtube-brand section-youtube';
@@ -807,20 +812,20 @@ if (typeof PROFESSIONAL_RESOURCE_TOPICS !== 'undefined') {
   }
 }
 
-function appendProfessionalCarGuide() {
-  const sections = typeof PROFESSIONAL_GUIDE_TOPICS === 'undefined' ? [] : PROFESSIONAL_GUIDE_TOPICS.coche || [];
-  if (!sections.length) return;
-  const content = document.querySelector('#content');
-  sections.forEach(([title, body], index) => {
-    const block = document.createElement('section');
-    block.className = 'panel guide-section technical-depth';
-    block.innerHTML = `<p class="eyebrow">Profundización técnica ${String(index + 1).padStart(2, '0')}</p><h2>${title}</h2>${body}`;
-    content.appendChild(block);
-  });
+function renderProfessionalCarGuide() {
+  const cfg = MODE_CONFIGS.coche;
+  const content = typeof PROFESSIONAL_CAR_GUIDE === 'undefined' ? null : PROFESSIONAL_CAR_GUIDE;
+  if (!content) { originalCarGuide(); appendModeVideos(); return; }
+  const cleanTitle = title => title.replace(/^\d+\.\s*/, '');
+  document.querySelector('#content').innerHTML = `<section class="panel technical-guide-overview"><p class="eyebrow">Guía técnica y práctica</p><h2>${content.heading}</h2>${content.intro}<div class="toolbar"><a class="primary" href="#${cfg.hash}/salida">Preparar mi salida →</a><button class="secondary" id="compare-inline">Comparar modalidades</button><button class="secondary" id="print-guide-checklist">Imprimir checklist</button></div><nav class="guide-index" aria-label="Temas de la guía">${content.sections.map(([title], i) => `<a href="#topic-${i}" data-topic="topic-${i}">${String(i + 1).padStart(2, '0')} · ${cleanTitle(title)}</a>`).join('')}</nav></section>${content.sections.map(([title, body], i) => `<section class="panel guide-section technical-depth technical-guide" id="topic-${i}"><p class="eyebrow">Tema técnico ${String(i + 1).padStart(2, '0')}</p><h2>${cleanTitle(title)}</h2>${body}</section>`).join('')}<section class="panel technical-guide-sources"><h2>Fuentes y alcance</h2>${content.sources}<p class="muted">Las cifras permiten comparar y planear. Confirma siempre las condiciones del destino, las normas locales y las instrucciones del fabricante antes de depender del equipo.</p></section>`;
+  document.querySelector('#compare-inline').onclick = compare;
+  document.querySelector('#print-guide-checklist').onclick = previewPrint;
+  document.querySelectorAll('[data-topic]').forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.topic).scrollIntoView({ behavior: 'smooth' }); });
+  appendModeVideos();
 }
 
 guide = function () {
-  if (currentMode === 'coche') { originalCarGuide(); appendProfessionalCarGuide(); appendModeVideos(); return; }
+  if (currentMode === 'coche') { renderProfessionalCarGuide(); return; }
   const cfg = MODE_CONFIGS[currentMode], content = MODE_GUIDES[currentMode];
   const source = currentMode === 'ultraligera' ? '<p>Base principal: <em>¡Aligera! Guía completa de senderismo ultraligero</em>, de Don Ladigin, adaptada a una preparación familiar actual. Como apoyo se conserva la <em>Guía analítica de estilos de camping, equipo y perfiles de uso</em>.</p><a href="assets/guia-analitica.pdf" target="_blank" rel="noopener">Consultar la guía analítica de apoyo (PDF) ↗</a>' : currentMode === 'tropa' ? '<p>Base: <em>Checklist Campamento Tropa</em> proporcionado por Acampando en Familia y ampliado para organizar equipo, responsabilidades y el cierre de una salida de patrulla.</p>' : currentMode === 'manada' ? '<p>Base: <em>Checklist de Campamento para Lobatos</em> proporcionado por Acampando en Familia y adaptado a una organización editable por mochila.</p>' : '<p>Base principal: <em>Guía analítica de estilos de camping, equipo y perfiles de uso</em>, con adaptación práctica para planear salidas familiares y organizar el checklist.</p><a href="assets/guia-analitica.pdf" target="_blank" rel="noopener">Consultar la guía principal (PDF) ↗</a>';
   document.querySelector('#content').innerHTML = `<section class="panel"><p class="eyebrow">Guía práctica</p><h2>${content.heading}</h2>${content.intro}<div class="toolbar"><a class="primary" href="#${cfg.hash}/salida">Preparar mi salida →</a><button class="secondary" id="compare-inline">Comparar modalidades</button><button class="secondary" id="print-guide-checklist">Imprimir checklist</button></div><nav class="guide-index" aria-label="Temas de la guía">${content.sections.map(([title], i) => `<a href="#topic-${i}" data-topic="topic-${i}">${String(i + 1).padStart(2, '0')} · ${title}</a>`).join('')}</nav></section>${content.sections.map(([title, body], i) => `<section class="panel guide-section" id="topic-${i}"><p class="eyebrow">${String(i + 1).padStart(2, '0')}</p><h2>${title}</h2>${body}</section>`).join('')}<section class="panel"><h2>Fuentes y alcance</h2>${source}<p class="muted">Cumple las reglas del destino, revisa clima y agua antes de salir. La guía no reemplaza formación presencial ni instrucciones del equipo.</p></section>`;
@@ -846,7 +851,7 @@ function resourcePage(kind) {
   if (!resource) { location.hash = '#inicio'; return; }
   const sections = resource.sections.map(([title, body, videos], i) => `<section class="panel guide-section resource-section" id="resource-topic-${i}"><p class="eyebrow">${String(i + 1).padStart(2, '0')}</p><h2>${title}</h2>${body}${videos.length ? `<div class="resource-videos"><p class="resource-video-label">Videos de esta sección</p>${resourceVideoGrid(videos)}</div>` : ''}</section>`).join('');
   const catalogLink = '', catalogSection = '';
-  app.innerHTML = `<div class="shell resource-shell resource-${kind}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Acampando en Familia"><span>Guía de campismo</span></a><a class="youtube-brand section-youtube" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ Ver nuestro canal ↗</a></header><main id="main" class="container"><section class="intro resource-intro"><div><a href="#inicio">← Volver a las formas de acampar</a><p class="eyebrow">${resource.eyebrow}</p><h1>${resource.title}</h1><p>${resource.description}</p><div class="pills">${resource.pills.map(p => `<span class="pill">${p}</span>`).join('')}</div></div><div class="resource-mark" aria-hidden="true"><img src="assets/logo.png" alt=""></div></section><section class="panel resource-overview"><p class="eyebrow">Cómo usar esta sección</p>${resource.intro}<nav class="guide-index" aria-label="Temas de ${resource.title}">${resource.sections.map(([title], i) => `<a href="#resource-topic-${i}" data-resource-topic="resource-topic-${i}">${String(i + 1).padStart(2, '0')} · ${title}</a>`).join('')}${catalogLink}</nav></section>${sections}${catalogSection}<section class="panel resource-footer"><h2>Biblioteca en crecimiento</h2><p>Agregaremos una nueva ficha solo cuando exista un video publicado en el canal. Cada ficha conservará su video, tema y contexto para que las recomendaciones sigan ligadas a experiencias que se puedan ver.</p><a class="youtube-brand" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ YouTube · Acampando en Familia ↗</a></section></main></div>`;
+  app.innerHTML = `<div class="shell resource-shell resource-${kind}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="youtube-brand section-youtube" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ Ver nuestro canal ↗</a></header><main id="main" class="container"><section class="intro resource-intro"><div><a href="#inicio">← Volver a las formas de acampar</a><p class="eyebrow">${resource.eyebrow}</p><h1>${resource.title}</h1><p>${resource.description}</p><div class="pills">${resource.pills.map(p => `<span class="pill">${p}</span>`).join('')}</div></div><div class="resource-mark photo-mark" aria-hidden="true"><img src="${resource.art}" alt=""></div></section><section class="panel resource-overview"><p class="eyebrow">Cómo usar esta sección</p>${resource.intro}<nav class="guide-index" aria-label="Temas de ${resource.title}">${resource.sections.map(([title], i) => `<a href="#resource-topic-${i}" data-resource-topic="resource-topic-${i}">${String(i + 1).padStart(2, '0')} · ${title}</a>`).join('')}${catalogLink}</nav></section>${sections}${catalogSection}<section class="panel resource-footer"><div><p class="eyebrow">La comunidad también enseña</p><h2>Tu experiencia también deja huella</h2><p>¿Tienes una sugerencia, una duda o una experiencia que quieras compartir? Mándanos un mensaje con tu nombre; queremos nombrarte en nuestro próximo video y seguir aprendiendo juntos al aire libre.</p></div><div class="resource-footer-actions"><a class="primary" href="mailto:lobatos.acampando@gmail.com">✉ Compartir mi experiencia</a><a class="youtube-brand" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ Acampando en Familia ↗</a></div></section></main></div>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   const root = document.querySelector('#app');
   root.querySelectorAll('[data-resource-topic]').forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.resourceTopic).scrollIntoView({ behavior: 'smooth' }); });

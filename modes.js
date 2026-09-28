@@ -187,7 +187,7 @@ const MANADA_EQUIPMENT = [
     ['mn-mochila-propia', 'Mochila armada por el lobato', 'Esencial', 'persona', 'Ayuda a que cada lobato reconozca, empaque y cuide sus propias cosas.', 'Practiquen en casa empacar, desempacar y enrollar el saco de dormir. El adulto acompaña y revisa, sin armar la mochila por completo.', 'Al terminar, pídele que ubique por sí mismo agua, impermeable, frontal y ropa para dormir.'],
     ['mn-carga', 'Práctica de carga con manos libres', 'Esencial', 'persona', 'Comprueba que puede llevar mochila de campamento, mochila de ataque y cangurera con seguridad.', 'Ajusta tallas y peso a la edad, condición y recorrido. No añadas una carga fija por cumplir una lista.', 'Caminen unos minutos en casa y corrijan tirantes, bultos sueltos y objetos que golpeen.'],
     ['mn-uniforme', 'Uniforme completo', 'Según el programa', 'persona', 'Permite llegar con la indumentaria que solicita la actividad Scout.', 'Confirma con la jefatura qué piezas se usarán y cuándo se cambia de ropa.', 'Marca No aplica si el programa no lo requiere.'],
-    ['mn-marcado', 'Nombre completo marcado', 'Esencial', 'persona', 'Reduce pérdidas de ropa, calzado y equipo.', 'Marca en un lugar visible el calzado, ambas mochilas, cangurera, vajilla y equipo de descanso.', 'Revísalo antes de salir, especialmente en artículos del mismo color.'],
+    ['mn-marcado', 'Todo el equipo marcado con el nombre de la Manada', 'Esencial', 'persona', 'Permite reconocer el equipo de la Manada y reduce pérdidas o confusiones durante la salida.', 'Madres, padres o tutores deben marcar ropa, calzado, cangurera, ambas mochilas, vajilla y equipo de descanso con plumón indeleble o con una etiqueta resistente y bien fijada.', 'Comprueba que el nombre de la Manada sea legible, que la marca no se desprenda y que aparezca también en los artículos del mismo color.'],
     ['mn-bazar', 'Bazar personal antes y después del campamento', 'Esencial', 'persona', 'Permite comprobar que el equipo está completo y que nada inadecuado viaja en la mochila.', 'Extiendan el equipo con calma antes de empacar y repitan la revisión antes de regresar.', 'El lobato nombra sus artículos mientras los guarda; así aprende a reconocerlos y cuidarlos.'],
     ['mn-fondo', 'Bolsa de basura como fondo de mochila', 'Esencial', 'persona', 'Aporta una barrera sencilla contra humedad dentro de la mochila de campamento.', 'Colócala abierta antes de organizar el equipo; no reemplaza bolsas individuales estancas.', 'Incluye una bolsa extra para residuos o ropa húmeda.'],
     ['mn-bolsas', 'Bolsas resellables o estancas', 'Esencial', 'persona', 'Protegen de humedad y ayudan a ordenar ropa y artículos pequeños.', 'Agrupa por función: dormir, aseo, cambio de ropa y documentos.', 'Saca el aire, cierra y etiqueta cada bolsa para que el lobato la reconozca.']
@@ -478,6 +478,7 @@ function applyChannelReviewVideos() {
 }
 
 applyDriveContent();
+if (typeof applyCarExperienceContent === 'function') applyCarExperienceContent();
 
 let currentMode = location.hash.startsWith('#senderismo') ? 'senderismo' : location.hash.startsWith('#bushcraft') ? 'bushcraft' : location.hash.startsWith('#ultraligera') ? 'ultraligera' : location.hash.startsWith('#scout/tropa') ? 'tropa' : location.hash.startsWith('#scout/manada') ? 'manada' : 'coche';
 const modeStates = { coche: storeState };
@@ -502,7 +503,7 @@ function loadModeState(mode) {
     state = { active: t.id, trips: [t] };
   }
   for (const t of state.trips) {
-    for (const key of ['familyName', 'groupNumber', 'address', 'mapsUrl', 'departureTime', 'returnTime']) if (typeof t[key] !== 'string') t[key] = '';
+    for (const key of ['childName', 'familyName', 'groupNumber', 'address', 'mapsUrl', 'departureTime', 'returnTime']) if (typeof t[key] !== 'string') t[key] = '';
     for (const key of ['water', 'toilets', 'electricity', 'permit', 'coverage', 'fire', 'wood']) if (typeof t[key] !== 'string') t[key] = 'Por confirmar';
     t.mode = mode;
   }
@@ -532,46 +533,92 @@ groups = function () {
   return [...MODE_CONFIGS[currentMode].equipment, ...(trip().custom.length ? [['Mi equipo adicional', trip().custom]] : [])];
 };
 
-function contactFooter() {
+function contactFooter(menuVariant = false) {
   const instagram = `<a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer"><svg class="social-icon instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.35" cy="6.65" r="1.2" fill="currentColor"/></svg><span>Instagram</span></a>`;
   const mail = `<a href="mailto:lobatos.acampando@gmail.com"><svg class="social-icon mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.8 6 8.2 6.4L20.2 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correo</span></a>`;
   const youtube = `<a href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer"><svg class="social-icon youtube-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8Z"/><path fill="#fff" d="m9.6 15.8 6.2-3.8-6.2-3.8v7.6Z"/></svg><span>YouTube</span></a>`;
-  return `<footer class="site-contact" aria-label="Contacto de Lobatos Acampando"><a class="contact-crest" href="#inicio" aria-label="Lobatos Acampando, ir al inicio"><img src="assets/logo.png" alt="Logo de Lobatos Acampando"></a><div class="contact-identity"><p class="contact-kicker">Familia al aire libre</p><strong>Lobatos Acampando</strong><p>Entre senderos, fogatas y noches de tienda, la familia Lobato comparte la aventura de aprender a vivir al aire libre en familia.</p></div><aside class="contact-invitation"><p class="contact-kicker">Tu historia nos inspira</p><p>¿Tienes una duda, una sugerencia o una experiencia que quieras compartir? Mándanos un mensaje con tu nombre para nombrarte en nuestro próximo video.</p><nav class="contact-links contact-invitation-links" aria-label="Redes y contacto">${instagram}${mail}${youtube}</nav></aside></footer>`;
+  return `<footer class="site-contact${menuVariant ? ' menu-contact' : ''}" aria-label="Contacto de Lobatos Acampando"><a class="contact-crest" href="#inicio" aria-label="Lobatos Acampando, ir al inicio"><img src="assets/logo.png" alt="Logo de Lobatos Acampando"></a><div class="contact-identity"><p class="contact-kicker">Familia al aire libre</p><strong>Lobatos Acampando</strong><p>Entre senderos, fogatas y noches de tienda, la familia Lobato comparte la aventura de aprender a vivir al aire libre en familia.</p></div><aside class="contact-invitation"><a class="contact-kicker contact-story-link" href="mailto:lobatos.acampando@gmail.com">Tu historia nos inspira</a><p><a class="contact-story-link" href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer">¿Tienes una duda, una sugerencia o una experiencia que quieras compartir? Mándanos un mensaje con tu nombre para nombrarte en nuestro próximo video.</a></p>${menuVariant ? '' : `<nav class="contact-links contact-invitation-links" aria-label="Redes y contacto">${instagram}${mail}${youtube}</nav>`}</aside></footer>`;
 }
 
 menu = function (scout = false) {
   if (scout) { scoutMenu(); return; }
-  const ids = [0, 1, 2, 3, 4, 5];
-  const xs = [16, 270, 521, 772, 1023, 1275];
-  const widths = [247, 246, 245, 244, 244, 246];
-  app.innerHTML = `<main id="main" class="image-menu"><h1 class="sr-only">Elige tu forma de acampar</h1><div class="image-scroll" tabindex="0" aria-label="Menú ilustrado; en pantallas pequeñas puedes desplazarlo horizontalmente"><div class="image-stage"><img src="assets/menu-principal-v2.png" alt="Elige tu forma de acampar · Acampando en Familia" width="1536" height="1024">${ids.map((n, i) => `<button class="hotspot menu-card-hotspot" data-camp="${n}" style="left:${xs[i] / 1536 * 100}%;top:20.8%;width:${widths[i] / 1536 * 100}%;height:62.2%" aria-label="${names[n]}: ${descriptions[n]}"><span class="menu-card-copy"><strong>${names[n]}</strong><small>${descriptions[n]}</small><b aria-hidden="true">→</b></span></button>`).join('')}<a class="hotspot footer-spot" href="#scout" style="left:24.5%;top:85.1%;width:51.2%;height:9.9%" aria-label="Abrir Zona Scout"><span class="footer-label"><i class="fleur" aria-hidden="true">⚜</i> Zona Scout <b aria-hidden="true">→</b></span></a></div></div><button class="secondary mobile-hint" id="zoom-menu">Ampliar menú</button></main>`;
-  app.insertAdjacentHTML('beforeend', contactFooter());
-  const zoom = document.querySelector('#zoom-menu');
-  zoom.onclick = () => { const stage = document.querySelector('.image-stage'); stage.classList.toggle('zoomed'); zoom.textContent = stage.classList.contains('zoomed') ? 'Ver menú completo' : 'Ampliar menú'; };
+  const illustrations = ['camping-coche.png', 'mochilero.png', 'bushcraft.png', 'ultraligera.png', 'tecnicas.png', 'reviews.png'];
+  const card = (n, resource = false) => `<button class="camp-menu-card${resource ? ' camp-resource-card' : ''}" data-camp="${n}" aria-label="${names[n]}: ${descriptions[n]}"><span class="camp-menu-art"><img src="assets/menu-icons/${illustrations[n]}" alt="" loading="eager"></span><span class="camp-menu-copy"><strong>${names[n]}</strong><small>${descriptions[n]}</small></span><b class="camp-menu-arrow" aria-hidden="true">→</b><i class="camp-click-ring" aria-hidden="true"></i></button>`;
+  app.innerHTML = `<main id="main" class="camp-menu-page"><audio id="approved-click-sound" src="assets/click-madera.wav" preload="auto" aria-hidden="true"></audio><header class="camp-menu-header"><img src="assets/logo.png" alt="Logotipo de Acampando en Familia"><h1>Elige tu forma de acampar</h1></header><div class="camp-menu-layout"><nav class="camp-social-sign" aria-label="Redes y contacto"><a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.35" cy="6.65" r="1.2" fill="currentColor"/></svg><span>Instagram</span></a><a href="mailto:lobatos.acampando@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m3.8 6 8.2 6.4L20.2 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correo</span></a><a href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f00" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8Z"/><path fill="#fff" d="m9.6 15.8 6.2-3.8-6.2-3.8v7.6Z"/></svg><span>YouTube</span></a></nav><div class="camp-menu-content"><section class="camp-primary-grid" aria-label="Formas de acampar">${[0,1,2,3].map(n => card(n)).join('')}</section><div class="camp-menu-secondary"><section class="camp-resource-grid" aria-label="Técnicas y reseñas">${[4,5].map(n => card(n, true)).join('')}</section><a class="camp-scout-plank" href="#scout"><span aria-hidden="true">⚜</span><strong>Zona Scout</strong><b aria-hidden="true">→</b><i class="camp-click-ring" aria-hidden="true"></i></a></div></div></div></main>`;
+  app.insertAdjacentHTML('beforeend', contactFooter(true));
   document.querySelectorAll('[data-camp]').forEach(b => b.onclick = () => {
+    playApprovedClick();
+    b.classList.remove('is-clicked');
+    void b.offsetWidth;
+    b.classList.add('is-clicked');
     const routes = { '0': 'coche', '1': 'senderismo', '2': 'bushcraft', '3': 'ultraligera', '4': 'tecnicas', '5': 'reviews' };
-    if (routes[b.dataset.camp]) location.hash = routes[b.dataset.camp];
+    if (routes[b.dataset.camp]) setTimeout(() => { location.hash = routes[b.dataset.camp]; }, 300);
     else modal(`<h2>${names[b.dataset.camp]}</h2><p>Esta sección ya tiene su espacio e ilustración en el menú. Desarrollaremos su contenido en una siguiente etapa.</p><a class="primary" href="#inicio" onclick="document.querySelector('dialog').close()">Volver al menú</a>`);
   });
+  document.querySelectorAll('.camp-social-sign a,.camp-scout-plank').forEach(link => link.addEventListener('click', event => {
+    playApprovedClick();
+    link.classList.remove('is-clicked');
+    void link.offsetWidth;
+    link.classList.add('is-clicked');
+    if (link.classList.contains('camp-scout-plank')) { event.preventDefault(); setTimeout(() => { location.hash = 'scout'; }, 300); }
+  }));
+};
+
+/* Portada aprobada: la composición visual vive en una sola imagen y las zonas siguen siendo accesibles. */
+function playApprovedClick() {
+  try {
+    const sound = document.querySelector('#approved-click-sound');
+    if (!sound) return;
+    sound.currentTime = 0;
+    sound.volume = .28;
+    const playback = sound.play();
+    if (playback?.catch) playback.catch(() => {});
+  } catch { /* El menú sigue funcionando si el dispositivo bloquea el audio. */ }
+}
+menu = function (scout = false) {
+  if (scout) { scoutMenu(); return; }
+  const routes = { '0': 'coche/salida', '1': 'senderismo', '2': 'bushcraft', '3': 'ultraligera', '4': 'tecnicas', '5': 'reviews' };
+  const menuDescriptions = [
+    'Acampa cerca del auto, con espacio y comodidad.',
+    'Recorre rutas largas con total autonomía llevando todo tu equipo técnico en una sola mochila.',
+    'Prospera en el bosque usando habilidades tradicionales para crear refugio, fuego y herramientas con los recursos del entorno.',
+    'Reduce tu equipo a menos de 5 kg para caminar más lejos, más rápido y con la máxima libertad de movimiento.',
+    'Aprende a cuidar, reparar y elegir refugio y descanso desde los videos del canal.',
+    'Compara el equipo que ya mostramos en el canal y decide con información documentada.'
+  ];
+  const illustrations = ['camping-coche.png', 'mochilero.png', 'bushcraft.png', 'ultraligera.png', 'tecnicas.png', 'reviews.png'];
+  const card = (n, compact = false) => `<button class="layered-card${compact ? ' layered-card-compact' : ''} layered-route" data-camp="${n}" aria-label="${names[n]}: ${menuDescriptions[n]}"><span class="layered-card-art"><img src="assets/menu-icons/${illustrations[n]}" alt="" loading="eager"></span><span class="layered-card-copy"><strong>${names[n]}</strong><small>${menuDescriptions[n]}</small></span><span class="layered-arrow" aria-hidden="true">→</span></button>`;
+  app.innerHTML = `<main id="main" class="layered-menu"><audio id="approved-click-sound" src="assets/click-madera.wav" preload="auto" aria-hidden="true"></audio><div class="layered-menu-stage"><header class="layered-header"><img src="assets/logo.png" alt="Logotipo de Acampando en Familia"><h1>Elige tu forma de acampar</h1></header><nav class="layered-social" aria-label="Redes y contacto"><a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="instagram-gradient" cx="30%" cy="105%" r="125%"><stop offset="0" stop-color="#ffd600"/><stop offset=".32" stop-color="#ff7a00"/><stop offset=".62" stop-color="#ff0169"/><stop offset="1" stop-color="#7638fa"/></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#instagram-gradient)"/><rect x="5.3" y="5.3" width="13.4" height="13.4" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="7" r="1.1" fill="#fff"/></svg><span>Instagram</span></a><a href="mailto:lobatos.acampando@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5" fill="#fff" stroke="#43230f" stroke-width="1.6"/><path d="m3.8 6 8.2 6.4L20.2 6" fill="none" stroke="#43230f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Correo</span></a><a href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f00" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.1 31.1 0 0 0 0 12a31.1 31.1 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.1 31.1 0 0 0 24 12a31.1 31.1 0 0 0-.5-5.8Z"/><path fill="#fff" d="m9.6 15.8 6.2-3.8-6.2-3.8v7.6Z"/></svg><span>YouTube</span></a></nav><div class="layered-content"><section class="layered-primary" aria-label="Formas de acampar">${[0,1,2,3].map(n => card(n)).join('')}</section><div class="layered-lower"><section class="layered-resources" aria-label="Técnicas y reseñas">${[4,5].map(n => card(n, true)).join('')}</section><a class="layered-scout" href="#scout"><span aria-hidden="true">⚜</span><strong>Zona Scout</strong><b aria-hidden="true">→</b></a></div></div><footer class="layered-footer"><div class="layered-footer-brand"><strong>Lobatos Acampando</strong></div><p>Entre senderos, fogatas y noches de tienda, la familia Lobato comparte la aventura de aprender a vivir al aire libre en familia.</p><a class="layered-footer-title" href="mailto:lobatos.acampando@gmail.com">Tu historia nos inspira</a><p><a href="https://www.instagram.com/acampando_en_familia" target="_blank" rel="noopener noreferrer">¿Tienes una duda, una sugerencia o una experiencia que quieras compartir? Mándanos un mensaje con tu nombre para nombrarte en nuestro próximo video.</a></p></footer></div></main>`;
+  document.querySelectorAll('.layered-social a,.layered-scout').forEach(sign => sign.insertAdjacentHTML('beforeend', '<i class="wood-detail" aria-hidden="true"></i>'));
+  document.querySelectorAll('.layered-route,.layered-social a,.layered-scout,.layered-footer a').forEach(link => link.addEventListener('click', event => {
+    playApprovedClick();
+    link.classList.remove('is-clicked');
+    void link.offsetWidth;
+    link.classList.add('is-clicked');
+    if (link.dataset.camp && routes[link.dataset.camp]) { event.preventDefault(); setTimeout(() => { location.hash = routes[link.dataset.camp]; }, 340); }
+    else if (link.classList.contains('layered-scout')) { event.preventDefault(); setTimeout(() => { location.hash = 'scout'; }, 340); }
+  }));
 };
 
 function scoutMenu() {
-  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160a99,#1c160aaa),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content"><div class="scout-symbol" aria-hidden="true">⚜</div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1><p>Dos espacios iniciales para preparar y documentar campamentos Scout.</p><div class="scout-cards"><button class="scout-card" data-scout="manada"><span>⚜ &nbsp; Primeras aventuras</span><strong>Campamento de Manada</strong><small>Actividades, equipo y organización para niñas y niños.</small><b aria-hidden="true">→</b></button><button class="scout-card" data-scout="scout"><span>⚜ &nbsp; Vida de patrulla</span><strong>Campamento Scout</strong><small>Planificación, técnica, equipo y convivencia de la tropa.</small><b aria-hidden="true">→</b></button></div></section><a class="youtube-brand scout-youtube" href="https://www.youtube.com/@acampandoenfamilia" target="_blank" rel="noopener noreferrer">▶ YouTube · Acampando en Familia ↗</a></main>`;
+  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160aa6,#1c160ab8),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content scout-home"><div class="scout-home-intro"><div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1></div><p>La selva abre sus caminos: prepara tu equipo, acepta nuevos retos y elige la ruta que te llevará a tu próxima aventura Scout.</p></div><div class="scout-branches"><section class="scout-branch scout-branch-manada"><figure class="scout-branch-visual"><img src="assets/insignias-aventuras-naturaleza.png" alt="Insignias completas de las cuatro Aventuras en la Naturaleza de Manada"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Manada</p><h2>Lobatos y Lobeznas</h2><p>Listas sencillas para cada salida, preparación de campamento y seguimiento de progresiones.</p><nav class="scout-branch-actions" aria-label="Abrir Manada"><a href="#scout/manada"><span>Equipo, hábitos y aprendizaje</span><strong>Abrir herramientas de Manada</strong><b aria-hidden="true">→</b></a></nav></div></section><section class="scout-branch scout-branch-tropa"><figure class="scout-branch-visual"><img src="assets/interior-tropa.jpeg" alt="Dos jóvenes Scouts con sus mochilas listas para una salida"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Scout · Tropa</p><h2>Vida de patrulla</h2><p>Planificación, equipo personal y material de patrulla para vivir el campamento con mayor autonomía.</p><nav class="scout-branch-actions" aria-label="Opciones de Tropa"><a href="#scout/tropa"><span>Equipo y organización</span><strong>Prepárate para el campamento Scout</strong><b aria-hidden="true">→</b></a></nav></div></section></div></section></main>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
-  document.querySelectorAll('[data-scout]').forEach(button => button.onclick = () => {
-    if (button.dataset.scout === 'scout') { location.hash = 'scout/tropa'; return; }
-    if (button.dataset.scout === 'manada') { location.hash = 'scout/manada'; return; }
-    const title = button.dataset.scout === 'manada' ? 'Campamento de Manada' : 'Campamento Scout';
-    modal(`<h2>${title}</h2><p>Esta sección ya está creada en la Zona Scout. Prepararemos su guía, checklist y recursos en una siguiente etapa.</p><a class="primary" href="#scout" onclick="document.querySelector('dialog').close()">Volver a Zona Scout</a>`);
-  });
+  const scoutBack = document.querySelector('.scout-head .secondary');
+  if (scoutBack) { scoutBack.classList.add('menu-back'); scoutBack.textContent = 'Menú principal'; }
 }
 
 route = function () {
-  if (location.hash.startsWith('#senderismo')) stylePage('senderismo');
+  if (location.hash.startsWith('#scout/aventuras')) manadaProgressPage();
+  else if (location.hash === '#scout/manada' || location.hash === '#scout/manada/') manadaHomePage();
+  else if (location.hash.startsWith('#scout/manada/bolsillo')) manadaQuickPage('bolsillo');
+  else if (location.hash.startsWith('#scout/manada/ataque')) manadaQuickPage('ataque');
+  else if (location.hash.startsWith('#scout/manada/salida')) manadaCampPage();
+  else if (location.hash.startsWith('#senderismo')) stylePage('senderismo');
   else if (location.hash.startsWith('#bushcraft')) stylePage('bushcraft');
   else if (location.hash.startsWith('#ultraligera')) stylePage('ultraligera');
   else if (location.hash.startsWith('#scout/tropa')) stylePage('tropa');
   else if (location.hash.startsWith('#scout/manada')) stylePage('manada');
+  else if (location.hash === '#coche' || location.hash === '#coche/' || location.hash.startsWith('#coche/guia') || location.hash.startsWith('#coche/videos') || location.hash.startsWith('#coche/verificar')) { history.replaceState(null, '', '#coche/salida'); stylePage('coche'); }
   else if (location.hash.startsWith('#coche')) stylePage('coche');
   else if (location.hash.startsWith('#tecnicas')) resourcePage('tecnicas');
   else if (location.hash.startsWith('#reviews')) resourcePage('reviews');
@@ -587,9 +634,11 @@ function stylePage(mode) {
   const parts = location.hash.slice(1).split('/');
   const isScoutMode = ['tropa', 'manada'].includes(mode);
   const requestedTab = isScoutMode ? parts[2] || 'guia' : parts[1] || 'guia';
-  const tab = requestedTab === 'verificar' ? 'guia' : requestedTab;
+  const tab = mode === 'coche' ? 'salida' : requestedTab;
   const backHref = isScoutMode ? '#scout' : '#inicio', backLabel = isScoutMode ? '← Volver a Zona Scout' : '← Volver a las formas de acampar';
-  app.innerHTML = `<div class="shell mode-${mode}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><span class="save-state">Tus salidas se guardan en este navegador</span><button class="secondary" id="compare-top">⇄ Comparar modalidades</button></header><main id="main" class="container"><section class="intro"><div><a href="${backHref}">${backLabel}</a><p class="eyebrow">${cfg.eyebrow}</p><h1>${cfg.title}</h1><p>${cfg.description}</p><div class="pills">${cfg.pills.map(x => `<span class="pill">${x}</span>`).join('')}</div></div><div class="intro-art" style="background-image:url('${cfg.art}');background-position:center;background-size:cover" role="img" aria-label="Ilustración de ${cfg.title}"></div></section><nav class="tabbar" aria-label="Secciones de ${cfg.title}">${[['guia', 'Conocer esta modalidad'], ['salida', 'Preparar mi salida'], ['verificar', 'Antes, durante y después']].map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}</nav><div id="trip-context"></div><div id="content"></div><p class="muted">Los datos se guardan solo en este navegador y por modalidad. Exporta un respaldo si quieres conservar o trasladar una salida.</p><p class="offline-state" id="offline-state"></p></main></div>`;
+  const tabs = [['guia', 'Conocer esta modalidad'], ['salida', 'Preparar mi salida'], ['verificar', 'Antes, durante y después']];
+  const tabbar = mode === 'coche' ? '' : `<nav class="tabbar" aria-label="Secciones de ${cfg.title}">${tabs.map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}${mode === 'manada' ? '<a href="#scout/aventuras">Mi Camino de Aventuras</a>' : ''}</nav>`;
+  app.innerHTML = `<div class="shell mode-${mode}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><span class="save-state">Tus salidas se guardan en este navegador</span><button class="secondary" id="compare-top">⇄ Comparar modalidades</button></header><main id="main" class="container"><section class="intro"><div><a href="${backHref}">${backLabel}</a><p class="eyebrow">${cfg.eyebrow}</p><h1>${cfg.title}</h1><p>${cfg.description}</p><div class="pills">${cfg.pills.map(x => `<span class="pill">${x}</span>`).join('')}</div></div><div class="intro-art" style="background-image:url('${cfg.art}');background-position:center;background-size:cover" role="img" aria-label="Fotografía de ${cfg.title}"></div></section>${tabbar}<div id="trip-context"></div><div id="content"></div><p class="muted">Los datos se guardan solo en este navegador y por modalidad. Exporta un respaldo si quieres conservar o trasladar una salida.</p><p class="offline-state" id="offline-state"></p></main></div>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   const channel = document.createElement('a');
   channel.className = 'youtube-brand section-youtube';
@@ -658,6 +707,98 @@ preparation = function () {
   renderAdvice(); renderChecklist();
 };
 
+const prepareModeChecklist = preparation;
+preparation = function () {
+  prepareModeChecklist();
+  if (currentMode !== 'coche') return;
+  const intro = document.createElement('section');
+  intro.className = 'panel car-checklist-intro';
+  intro.innerHTML = `<p class="eyebrow">Una sola guía · nueve módulos</p><h2>Prepara tu campamento con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, la explicación para elegirlo y el video que lo acompaña. Busca la llamada <strong>“Consulta la guía y el video”</strong>; cuando el tutorial todavía no esté publicado verás claramente <strong>“Video próximamente”</strong>.</p><nav class="car-module-index" aria-label="Módulos de preparación">${CAR_EXPERIENCE_GROUPS.map(group => `<a href="#car-prep-${group.id}" data-car-module="car-prep-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`;
+  const toolbar = document.querySelector('#content > .toolbar');
+  document.querySelector('#content').insertBefore(intro, toolbar?.nextSibling || document.querySelector('#content').firstChild);
+  document.querySelector('#equipment-title').textContent = 'Prepara tu campamento';
+  intro.querySelectorAll('[data-car-module]').forEach(link => link.onclick = event => { event.preventDefault(); document.getElementById(link.dataset.carModule)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+};
+
+function carVideosForItem(i) {
+  const videos = typeof CAR_ITEM_VIDEOS === 'undefined' ? null : CAR_ITEM_VIDEOS[i[0]];
+  return videos?.length ? videos : [[null, `Cómo elegir y comprobar ${i[1].toLocaleLowerCase('es')}`, 'Próximamente']];
+}
+
+function carChecklistItem(i) {
+  const state = itemState(i[0]);
+  const videos = carVideosForItem(i), published = videos.filter(video => video[0]).length;
+  const videoLabel = published ? `▶ ${published === 1 ? 'Video disponible' : `${published} videos disponibles`}` : '▶ Video próximamente';
+  return `<div class="item ${state.status === 'packed' ? 'done' : ''} ${state.status === 'na' ? 'na' : ''}"><input type="checkbox" data-check="${i[0]}" aria-label="Empacado: ${esc(i[1])}" ${state.status === 'packed' ? 'checked' : ''} ${state.status === 'na' ? 'disabled' : ''}><button class="item-button" data-detail="${i[0]}"><strong>${esc(i[1])}</strong><small>${i[2]} · Cantidad: ${qty(i)}${state.owner ? ' · ' + esc(state.owner) : ''}${state.status === 'na' ? ' · No aplica' : ''}${state.note ? ' · ' + esc(state.note) : ''}</small><span class="item-guidance-cta"><b class="item-video-status ${published ? 'is-published' : 'is-coming'}">${videoLabel}</b><span>ⓘ Consulta la guía y el video</span></span></button><select data-status="${i[0]}" aria-label="Estado de ${esc(i[1])}">${[['pending', 'Pendiente'], ['packed', 'Empacado'], ['na', 'No aplica']].map(([v, l]) => `<option value="${v}" ${state.status === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
+}
+
+function renderCarUnifiedChecklist() {
+  const equipmentGroups = groups();
+  let count = 0;
+  const modules = CAR_EXPERIENCE_GROUPS.map((group, index) => {
+    const [category, items = []] = equipmentGroups[index] || [group.title, []];
+    const visible = items.filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
+    if (!visible.length && (search || filterPending)) return '';
+    count += visible.length;
+    const moduleStats = stats(items);
+    const details = group.sections.map(([title, body], sectionIndex) => `<details class="car-learning-details" ${sectionIndex === 0 ? 'open' : ''}><summary><span>${String(sectionIndex + 1).padStart(2, '0')}</span>${title}</summary><div class="car-learning-body">${body}</div></details>`).join('');
+    const assigned = new Set(items.flatMap(item => carVideosForItem(item)).map(video => video[0] || video[1]));
+    const complementary = group.videos.filter(video => !assigned.has(video[0] || video[1]));
+    const complementaryBlock = complementary.length ? `<details class="car-module-videos"><summary><span>Videos complementarios</span><small>Contenido adicional del módulo</small></summary><div class="car-video-grid">${complementary.map(carVideoCard).join('')}</div></details>` : '';
+    return `<section class="panel car-prep-module" id="car-prep-${group.id}"><header class="car-prep-head"><span class="car-prep-number">${group.number}</span><span class="car-learning-icon" aria-hidden="true">${group.icon}</span><div><p class="eyebrow">Módulo ${group.number}</p><h2>${group.title}</h2><p>${group.summary}</p></div><div class="car-module-progress"><strong>${moduleStats.done}/${moduleStats.total}</strong><small>empacados</small><progress value="${moduleStats.done}" max="${moduleStats.total || 1}" aria-label="Progreso de ${esc(group.title)}"></progress></div></header><div class="car-decision"><strong>Decisión práctica</strong><p>${group.decision}</p></div><section class="car-module-checklist" aria-labelledby="car-check-${group.id}"><div class="car-module-title"><h3 id="car-check-${group.id}">Checklist del módulo</h3><small>Abre cada artículo para consultar su guía y su video.</small></div>${visible.length ? visible.map(carChecklistItem).join('') : '<p class="muted">No hay artículos que coincidan con este filtro.</p>'}</section><details class="car-module-learning"><summary><span>Guía general del módulo</span><small>Criterios técnicos complementarios</small></summary><div class="car-learning-sections">${details}</div></details>${complementaryBlock}</section>`;
+  }).join('');
+  const customGroup = equipmentGroups.find(([category]) => category === 'Mi equipo adicional');
+  const customItems = customGroup ? customGroup[1].filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) : [];
+  count += customItems.length;
+  const custom = customItems.length ? `<section class="panel car-custom-module"><h2>Mi equipo adicional</h2><p class="muted">Artículos que agregaste para esta salida.</p>${customItems.map(carChecklistItem).join('')}</section>` : '';
+  const stories = `<section class="panel car-family-stories"><div><p class="eyebrow">Experiencias en familia</p><h2>El campamento también se aprende viviéndolo</h2><p>Estas historias muestran el contexto familiar de la modalidad. Complementan la guía técnica y ayudan a imaginar la experiencia completa.</p></div><div class="car-video-grid">${CAR_FAMILY_STORIES.map(carVideoCard).join('')}</div></section>`;
+  document.querySelector('#equipment-list').innerHTML = (modules + custom) || '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  if (!search && !filterPending) document.querySelector('#equipment-list').insertAdjacentHTML('beforeend', stories);
+  if (!count && (search || filterPending)) document.querySelector('#equipment-list').innerHTML = '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  bindCarVideos(document.querySelector('#equipment-list'));
+}
+
+renderChecklist = function () {
+  if (!document.querySelector('#equipment-list')) return;
+  const st = stats();
+  const complete = currentMode === 'coche' && st.total > 0 && st.done === st.total;
+  document.querySelector('#progress').innerHTML = `<div class="summary-strip"><div class="progress-copy"><strong>${st.done} de ${st.total} empacados</strong><div class="muted">${st.na} no aplican</div></div><div class="progress-track"><progress value="${st.done}" max="${st.total || 1}" aria-label="Progreso de equipo"></progress></div></div>${complete ? `<section class="car-ready-message"><img src="assets/interior-camping-coche.jpeg" alt="Campamento familiar junto al vehículo"><div><p class="eyebrow">Campamento preparado</p><h3>¡El equipo de esta salida está listo!</h3><p>Revisaron refugio, descanso, cocina, iluminación y equipo personal. Antes de cargar, confirmen clima, acceso, reserva y reglas vigentes del destino.</p></div></section>` : ''}`;
+  if (currentMode === 'coche') {
+    renderCarUnifiedChecklist();
+  } else {
+    let count = 0;
+    document.querySelector('#equipment-list').innerHTML = groups().map(([cat, items]) => {
+    const visible = items.filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
+    if (!visible.length) return '';
+    count += visible.length;
+    const s = stats(items);
+    return `<details class="category" data-category="${esc(cat)}" ${opened.has(cat) || search || filterPending ? 'open' : ''}><summary>${cat}<span class="cat-count">${s.done}/${s.total}</span></summary><div>${visible.map(i => {
+      const state = itemState(i[0]);
+      return `<div class="item ${state.status === 'packed' ? 'done' : ''} ${state.status === 'na' ? 'na' : ''}"><input type="checkbox" data-check="${i[0]}" aria-label="Empacado: ${esc(i[1])}" ${state.status === 'packed' ? 'checked' : ''} ${state.status === 'na' ? 'disabled' : ''}><button class="item-button" data-detail="${i[0]}"><strong>${esc(i[1])}</strong><span class="info">ⓘ</span><small>${i[2]} · Cantidad: ${qty(i)}${state.owner ? ' · ' + esc(state.owner) : ''}${state.status === 'na' ? ' · No aplica' : ''}${state.note ? ' · ' + esc(state.note) : ''}</small></button><select data-status="${i[0]}" aria-label="Estado de ${esc(i[1])}">${[['pending', 'Pendiente'], ['packed', 'Empacado'], ['na', 'No aplica']].map(([v, l]) => `<option value="${v}" ${state.status === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
+    }).join('')}</div></details>`;
+    }).join('');
+    if (!count) document.querySelector('#equipment-list').innerHTML = '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  }
+  document.querySelectorAll('[data-category]').forEach(d => d.ontoggle = () => { d.open ? opened.add(d.dataset.category) : opened.delete(d.dataset.category); });
+  document.querySelectorAll('[data-check]').forEach(e => e.onchange = () => setItemStatus(e.dataset.check, e.checked ? 'packed' : 'pending'));
+  document.querySelectorAll('[data-status]').forEach(e => e.onchange = () => setItemStatus(e.dataset.status, e.value));
+  document.querySelectorAll('[data-detail]').forEach(e => e.onclick = () => itemDetail(e.dataset.detail));
+};
+
+itemDetail = function (id) {
+  const i = allItems().find(x => x[0] === id), st = itemState(id);
+  const videos = currentMode === 'coche' ? carVideosForItem(i) : [];
+  const videoBlock = videos.length ? `<section class="item-detail-videos"><p class="eyebrow">Apréndelo en video</p><h3>${videos.some(video => video[0]) ? 'Mira el tutorial antes de elegir o empacar' : 'Tutorial considerado para este artículo'}</h3><div class="car-video-grid">${videos.map(carVideoCard).join('')}</div></section>` : '';
+  modal(`<p class="eyebrow">${i[2]}</p><h2>${esc(i[1])}</h2>${videoBlock}<div class="item-criteria"><section><h3>Para qué sirve</h3><p>${esc(i[4])}</p></section><section><h3>Cómo elegirlo</h3><p>${esc(i[5])}</p></section><section><h3>Cómo comprobarlo antes de salir</h3><p>${esc(i[6])}</p></section></div><div class="grid2"><label class="field">Cantidad<input id="item-qty" type="number" min="1" max="999" value="${qty(i)}"></label><label class="field">Responsable<input id="item-owner" maxlength="80" value="${esc(st.owner || '')}" placeholder="¿Quién lo lleva?"></label></div><label class="field">Notas<textarea id="item-note">${esc(st.note || '')}</textarea></label><button class="primary" id="save-item">Guardar detalles</button>`);
+  if (videos.length) bindCarVideos(dialog);
+  document.querySelector('#save-item').onclick = () => {
+    const q = document.querySelector('#item-qty');
+    if (!q.reportValidity()) return;
+    trip().items[id] = { ...itemState(id), qty: Number(q.value), owner: document.querySelector('#item-owner').value, note: document.querySelector('#item-note').value };
+    save(); dialog.close(); renderChecklist(); toast('Detalles guardados');
+  };
+};
+
 renderAdvice = function () {
   const t = trip();
   let text;
@@ -666,7 +807,7 @@ renderAdvice = function () {
   else if (currentMode === 'manada') text = `${t.water !== 'Sí' ? 'Agua potable sin confirmar: define recipientes y responsables de hidratación antes de salir. ' : 'Agua potable indicada: confirma acceso y la cantidad necesaria para el grupo. '}${t.toilets !== 'Sí' ? 'Sanitarios sin confirmar: prepara higiene, papel y el sistema de residuos autorizado. ' : ''}${t.permit !== 'Sí' ? 'Permiso o reglas del campamento pendientes. ' : ''}${!t.familyName ? 'Agrega el nombre de la manada y el número de grupo antes de imprimir. ' : !t.groupNumber ? 'Agrega el número de grupo antes de imprimir. ' : ''}`;
   else if (currentMode === 'ultraligera') text = `${t.water !== 'Sí' ? 'Fuentes de agua sin confirmar: define capacidad, tratamiento y respaldo antes de reducir peso. ' : 'Fuentes indicadas: confirma acceso, caudal y tratamiento. '}${t.permit !== 'Sí' ? 'Pernocta o reglas pendientes. ' : ''}${t.coverage !== 'Sí' ? 'No dependas de cobertura móvil; descarga la ruta y comparte un plan de aviso. ' : ''}${t.children > 0 ? 'La carga de cada menor se ajusta a su condición; no uses metas de peso de adulto. ' : ''}`;
   else if (currentMode === 'bushcraft') text = `${t.permit !== 'Sí' ? 'Revisa las reglas del terreno antes de practicar. ' : ''}${t.fire !== 'Sí' ? 'Fuego no confirmado: planea cocinar sin fogata y marca No aplica en esos artículos. ' : ''}${t.wood !== 'Sí' ? 'No cortes ni recolectes madera hasta tener claridad sobre las reglas del sitio. ' : ''}${t.children > 0 ? 'Define un perímetro sin acceso a herramientas, fuego ni combustible. ' : ''}`;
-  else text = `${t.water !== 'Sí' ? 'Agua potable sin confirmar: revisa abastecimiento y tratamiento. ' : 'Confirma acceso y horarios del agua potable. '}${t.toilets !== 'Sí' ? 'Revisa Baño portátil y desechos: privacidad, excusado, consumibles y disposición autorizada. ' : ''}${t.children > 0 ? 'Revisa tallas, descanso y necesidades de los menores. ' : ''}${t.electricity !== 'Sí' ? 'Prepara iluminación y carga autónomas.' : ''}`;
+  else text = `${t.water !== 'Sí' ? 'Agua potable sin confirmar: revisa abastecimiento y tratamiento. ' : 'Confirma acceso y horarios del agua potable. '}${t.toilets !== 'Sí' ? 'Revisa baño portátil y desechos: privacidad, excusado, consumibles y disposición autorizada. ' : ''}${t.children > 0 ? 'Revisa tallas, descanso y necesidades de los menores. ' : ''}${t.electricity !== 'Sí' ? 'Prepara iluminación y carga autónomas. ' : ''}${t.fire !== 'Sí' ? 'La fogata no está confirmada: conserva la alternativa de cocina y marca ese módulo No aplica si el sitio no la permite.' : 'Confirma nuevamente las restricciones de fuego el día de la salida.'}`;
   document.querySelector('#trip-advice').innerHTML = `<div class="alert">${text}</div>`;
 };
 
@@ -812,16 +953,33 @@ if (typeof PROFESSIONAL_RESOURCE_TOPICS !== 'undefined') {
   }
 }
 
+function carVideoCard(video) {
+  const [id, title, status] = video;
+  if (!id) return `<article class="car-video-card car-video-coming"><span class="car-video-state">Próximamente</span><div class="car-coming-mark" aria-hidden="true">▶</div><strong>${esc(title)}</strong><p>Estamos preparando este tutorial práctico de la familia Lobato.</p></article>`;
+  return `<button class="car-video-card car-video-play" type="button" data-car-video-id="${esc(id)}" data-car-video-title="${esc(title)}"><span class="car-video-state">${esc(status || 'Video publicado')}</span><img src="https://i.ytimg.com/vi/${esc(id)}/hqdefault.jpg" alt="Miniatura del video: ${esc(title)}"><strong>${esc(title)}</strong><b>Reproducir aquí ▶</b></button>`;
+}
+
+function bindCarVideos(scope = document) {
+  scope.querySelectorAll('[data-car-video-id]').forEach(button => button.onclick = () => {
+    const id = button.dataset.carVideoId, title = button.dataset.carVideoTitle;
+    modal(`<p class="eyebrow">Acampando en Familia · Video</p><h2>${esc(title)}</h2><div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/${esc(id)}?autoplay=1" title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div><p><a class="secondary" href="https://youtu.be/${esc(id)}" target="_blank" rel="noopener noreferrer">Abrir en YouTube ↗</a></p>`);
+  });
+}
+
 function renderProfessionalCarGuide() {
-  const cfg = MODE_CONFIGS.coche;
   const content = typeof PROFESSIONAL_CAR_GUIDE === 'undefined' ? null : PROFESSIONAL_CAR_GUIDE;
-  if (!content) { originalCarGuide(); appendModeVideos(); return; }
-  const cleanTitle = title => title.replace(/^\d+\.\s*/, '');
-  document.querySelector('#content').innerHTML = `<section class="panel technical-guide-overview"><p class="eyebrow">Guía técnica y práctica</p><h2>${content.heading}</h2>${content.intro}<div class="toolbar"><a class="primary" href="#${cfg.hash}/salida">Preparar mi salida →</a><button class="secondary" id="compare-inline">Comparar modalidades</button><button class="secondary" id="print-guide-checklist">Imprimir checklist</button></div><nav class="guide-index" aria-label="Temas de la guía">${content.sections.map(([title], i) => `<a href="#topic-${i}" data-topic="topic-${i}">${String(i + 1).padStart(2, '0')} · ${cleanTitle(title)}</a>`).join('')}</nav></section>${content.sections.map(([title, body], i) => `<section class="panel guide-section technical-depth technical-guide" id="topic-${i}"><p class="eyebrow">Tema técnico ${String(i + 1).padStart(2, '0')}</p><h2>${cleanTitle(title)}</h2>${body}</section>`).join('')}<section class="panel technical-guide-sources"><h2>Fuentes y alcance</h2>${content.sources}<p class="muted">Las cifras permiten comparar y planear. Confirma siempre las condiciones del destino, las normas locales y las instrucciones del fabricante antes de depender del equipo.</p></section>`;
-  document.querySelector('#compare-inline').onclick = compare;
+  const groups = typeof CAR_EXPERIENCE_GROUPS === 'undefined' ? null : CAR_EXPERIENCE_GROUPS;
+  if (!content || !groups) { originalCarGuide(); appendModeVideos(); return; }
+  const groupCards = groups.map(group => `<a class="car-path-card" href="#car-${group.id}" data-car-topic="car-${group.id}"><span class="car-path-number">${group.number}</span><span class="car-path-icon" aria-hidden="true">${group.icon}</span><strong>${group.title}</strong><small>${group.summary}</small><b aria-hidden="true">→</b></a>`).join('');
+  const groupSections = groups.map((group, groupIndex) => {
+    const details = group.sections.map(([title, body], sectionIndex) => `<details class="car-learning-details" ${sectionIndex === 0 ? 'open' : ''}><summary><span>${String(sectionIndex + 1).padStart(2, '0')}</span>${title}</summary><div class="car-learning-body">${body}</div></details>`).join('');
+    const videos = group.videos.length ? group.videos.map(carVideoCard).join('') : carVideoCard([null, `Tutoriales de ${group.title.toLocaleLowerCase('es')}`, 'Próximamente']);
+    return `<section class="panel car-learning-block" id="car-${group.id}"><header class="car-learning-head"><span class="car-learning-icon" aria-hidden="true">${group.icon}</span><div><p class="eyebrow">Ruta ${group.number}</p><h2>${group.title}</h2><p>${group.summary}</p></div></header><div class="car-decision"><strong>Decisión práctica</strong><p>${group.decision}</p></div><div class="car-learning-sections">${details}</div><div class="car-topic-videos"><div><p class="eyebrow">Apréndelo en video</p><h3>Videos de este bloque</h3></div><div class="car-video-grid">${videos}</div></div></section>`;
+  }).join('');
+  document.querySelector('#content').innerHTML = `<section class="panel car-guide-overview"><div class="car-guide-lead"><div><p class="eyebrow">Guía técnica y práctica</p><h2>Construye tu campamento base paso a paso</h2><p>Empieza por el lugar y las necesidades reales de tu familia. Después revisa refugio, descanso, cocina, iluminación, organización y preparación personal. Cada ruta relaciona una decisión con la forma de comprobarla.</p></div><aside><strong>Cómo usar esta guía</strong><ol><li>Abre una ruta.</li><li>Revisa la decisión práctica.</li><li>Despliega solo el detalle que necesites.</li><li>Mira el video publicado o identifica el próximo tutorial.</li></ol></aside></div><div class="car-guide-actions"><button class="secondary" id="print-guide-checklist">Imprimir checklist</button></div><nav class="car-path-grid" aria-label="Rutas de aprendizaje de Camping con coche">${groupCards}</nav></section>${groupSections}<section class="panel technical-guide-sources"><h2>Fuentes y alcance</h2>${content.sources}<p class="muted">Las cifras permiten comparar y planear. Confirma siempre las condiciones del destino, las normas locales y las instrucciones del fabricante antes de depender del equipo.</p></section>`;
   document.querySelector('#print-guide-checklist').onclick = previewPrint;
-  document.querySelectorAll('[data-topic]').forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.topic).scrollIntoView({ behavior: 'smooth' }); });
-  appendModeVideos();
+  document.querySelectorAll('[data-car-topic]').forEach(a => a.onclick = e => { e.preventDefault(); document.getElementById(a.dataset.carTopic).scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  bindCarVideos(document.querySelector('#content'));
 }
 
 guide = function () {

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Equipo de bolsillo en una cangurera</title>
+  <desc id="desc">Cangurera verde con paliacates, piola, libreta, lápiz y un pequeño costurero.</desc>
+  <defs>
+    <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#667b45"/><stop offset="1" stop-color="#35462c"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd85b"/><stop offset="1" stop-color="#d59622"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="13" flood-color="#38250e" flood-opacity=".23"/></filter>
+  </defs>
+  <g filter="url(#shadow)" stroke="#392814" stroke-width="8" stroke-linejoin="round">
+    <path d="M98 213C47 223 28 257 31 309c4 61 45 82 114 77l25-71-10-100c-22-5-41-5-62-2Z" fill="#263526"/>
+    <path d="M542 213c51 10 70 44 67 96-4 61-45 82-114 77l-25-71 10-100c22-5 41-5 62-2Z" fill="#263526"/>
+    <path d="M147 182c65-36 281-36 346 0 25 74 20 161-16 219-95 30-219 30-314 0-36-58-41-145-16-219Z" fill="url(#bag)"/>
+    <path d="M184 255c75-24 197-24 272 0l-7 105c-77 26-181 26-258 0Z" fill="#4c6238"/>
+    <path d="M187 296h266" fill="none" stroke="#c6a153" stroke-width="6"/>
+    <path d="M286 360h68v27h-68z" fill="#273023"/>
+    <path d="M303 369h34" fill="none" stroke="#e5c565" stroke-width="5"/>
+    <path d="M198 176c-4-43 25-74 60-67 17 3 33 16 42 32-28 3-66 16-102 35Z" fill="#b73731"/>
+    <path d="M246 172c4-41 34-66 67-55 20 7 34 22 39 41-35-2-72 3-106 14Z" fill="#e3b32f"/>
+    <path d="M351 159c9-43 43-65 75-48 19 10 29 29 29 49-34-8-70-8-104-1Z" fill="#b73731"/>
+    <rect x="221" y="202" width="82" height="74" rx="10" fill="#fff6d9"/>
+    <path d="M238 220h48M238 238h48M238 256h34" fill="none" stroke="#9d7a37" stroke-width="5"/>
+    <path d="M321 204v75" stroke="#d99b24" stroke-width="13" stroke-linecap="round"/>
+    <path d="M329 201v78" stroke="#efe5c2" stroke-width="4"/>
+    <rect x="356" y="204" width="72" height="64" rx="14" fill="url(#gold)"/>
+    <path d="M370 222h44M370 240h28" fill="none" stroke="#785019" stroke-width="5"/>
+    <path d="M166 218c-16-20-8-53 19-61 26-8 51 13 51 39" fill="none" stroke="#8f5523" stroke-width="16" stroke-linecap="round"/>
+  </g>
+</svg>

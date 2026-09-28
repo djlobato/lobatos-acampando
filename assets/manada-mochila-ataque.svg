@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+  <title id="title">Mochila de ataque pequeña</title>
+  <desc id="desc">Mochila de día de aproximadamente quince litros con agua, impermeable, gorra, snack y linterna frontal.</desc>
+  <defs><linearGradient id="pack" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9a126"/><stop offset="1" stop-color="#8b5a18"/></linearGradient><filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="13" flood-color="#38250e" flood-opacity=".23"/></filter></defs>
+  <g filter="url(#shadow)" stroke="#352719" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M236 98c24-31 144-31 168 0l-9 52H245Z" fill="#4d6237"/>
+    <path d="M205 139c39-45 191-45 230 0 27 67 36 183 4 269-77 27-161 27-238 0-32-86-23-202 4-269Z" fill="url(#pack)"/>
+    <path d="M227 205c58-22 128-22 186 0l-8 134c-56 19-114 19-170 0Z" fill="#bd7e1f"/>
+    <path d="M254 222h132M248 276h144" fill="none" stroke="#f2c95d" stroke-width="6"/>
+    <path d="M224 365c59 18 133 18 192 0" fill="none" stroke="#594124" stroke-width="10"/>
+    <path d="M205 180c-41 17-48 86-31 150l43-13" fill="#4d6237"/>
+    <path d="M435 180c41 17 48 86 31 150l-43-13" fill="#4d6237"/>
+    <path d="M171 245h44v98h-44c-22-32-22-66 0-98Z" fill="#5ea5a6"/>
+    <path d="M181 229h25v20h-25z" fill="#d9e8de"/>
+    <path d="M424 236h40c21 35 21 71 0 106h-48Z" fill="#ce533c"/>
+    <path d="M422 252c18 9 31 30 32 52" fill="none" stroke="#f3b65b" stroke-width="5"/>
+    <path d="M258 144c11-41 41-64 71-55 23 7 41 30 42 57" fill="#f6e073"/>
+    <path d="M281 128c31-12 68-7 89 18" fill="none" stroke="#456139" stroke-width="7"/>
+    <rect x="264" y="227" width="112" height="83" rx="16" fill="#465c36"/>
+    <path d="M283 249h74M283 270h50" fill="none" stroke="#dce7b9" stroke-width="5"/>
+    <path d="M290 321c10-34 50-49 78-27 13 10 19 28 14 45" fill="#26362c"/>
+    <circle cx="334" cy="310" r="14" fill="#ffe27a"/>
+  </g>
+</svg>

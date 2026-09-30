@@ -1210,17 +1210,17 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
-      "Mochila armada por el lobato",
+      "Mochila y organización",
+      "Mochila de campismo de aproximadamente 40 litros",
       "Esencial",
       "persona",
-      "Desarrollar autonomía y asegurar que el Lobato conozca dónde se encuentra cada elemento de su equipo.",
-      "El Lobato debe participar directamente en doblar, clasificar y empacar sus pertenencias; si un adulto arma completamente la mochila, el niño puede desconocer su contenido y tener dificultad para localizarlo durante el campamento.",
-      "Que el Lobato arme la mochila siguiendo una lista y que el adulto solo supervise al final; coloquen saco y ropa al fondo, equipo frecuente accesible y nada suelto en el exterior."
+      "Transportar todo el equipo de campamento dejando las manos libres.",
+      "Elige una mochila de talla chica o extra chica, preferentemente diseñada para niña o niño, de aproximadamente 40 litros y con cinturón lumbar. Debe ajustarse al torso sin quedar demasiado grande.",
+      "Guarda todo dentro: nada debe ir colgando. Comprueba que cierre sin quedar apretada y que el Lobato o Lobezna pueda sacar sus cosas sin vaciarla por completo."
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
+      "Revisión antes de salir",
       "Práctica de carga con manos libres",
       "Esencial",
       "persona",
@@ -1230,7 +1230,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
+      "Revisión antes de salir",
       "Uniforme completo",
       "Según el programa",
       "persona",
@@ -1240,17 +1240,17 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
-      "Nombre completo marcado",
+      "Revisión antes de salir",
+      "Todo el equipo marcado con el nombre de Manada",
       "Esencial",
       "persona",
       "Evitar pérdidas y permitir identificar rápidamente las pertenencias de cada integrante de la Manada.",
-      "El material de Manada recomienda marcar las pertenencias con nombre real, no nombre de selva, además de Grupo y Provincia; esto es especialmente importante en artículos visualmente idénticos.",
-      "Marca mochila, saco, aislante, botella, ropa exterior y bolsas interiores con etiqueta resistente al agua; evita poner datos personales adicionales visibles innecesariamente."
+      "Cada Lobato o Lobezna adopta un nombre de Manada. Madres, padres o tutores deben usar ese nombre para marcar ropa, calzado, cangurera, ambas mochilas, vajilla y equipo de descanso.",
+      "Comprueba que el nombre de Manada individual sea legible y esté escrito con plumón indeleble o en una etiqueta resistente y bien fijada."
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
+      "Revisión antes de salir",
       "Bazar personal antes y después del campamento",
       "Esencial",
       "persona",
@@ -1260,7 +1260,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
+      "Mochila y organización",
       "Bolsa de basura como fondo de mochila",
       "Esencial",
       "persona",
@@ -1270,7 +1270,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Autonomía y preparación",
+      "Mochila y organización",
       "Bolsas resellables o estancas",
       "Esencial",
       "persona",
@@ -1351,6 +1351,16 @@ const DRIVE_SITE_CONTENT = {
     [
       "Campamento Scout · Manada",
       "Mochila de ataque",
+      "Mochila de ataque de 15 a 20 litros",
+      "Esencial",
+      "persona",
+      "Transportar el equipo necesario para una actividad, excursión o recorrido corto dejando las manos libres.",
+      "Elige una mochila de capacidad adecuada, aproximadamente de 15 a 20 litros, que ajuste bien al cuerpo del Lobato o Lobezna y permita guardar todo el equipo dentro.",
+      "Carga los artículos reales y comprueba que nada quede colgado por fuera; debe cerrar sin quedar apretada y permitir sacar agua, impermeable o abrigo sin vaciarla por completo."
+    ],
+    [
+      "Campamento Scout · Manada",
+      "Mochila de ataque",
       "Almuerzo o snack nutritivo",
       "Esencial",
       "persona",
@@ -1371,12 +1381,22 @@ const DRIVE_SITE_CONTENT = {
     [
       "Campamento Scout · Manada",
       "Mochila de ataque",
-      "Repelente, bloqueador y gorra",
-      "Esencial",
+      "Repelente y bloqueador solar",
+      "Según las condiciones",
       "persona",
       "Reducir exposición a radiación UV y picaduras durante actividades exteriores.",
       "Utiliza protector solar de amplio espectro SPF 30 o superior y resistente al agua; para insectos, repelentes registrados con ingredientes como DEET o picaridina son opciones eficaces cuando se usan conforme a su etiqueta.",
-      "Un adulto debe verificar la aplicación antes de salir; evita repelente en manos, ojos y boca, reaplica el protector según indicaciones y complementa con gorra, sombra y ropa que cubra la piel."
+      "Un adulto debe verificar la aplicación antes de salir; evita repelente en manos, ojos y boca, reaplica el protector según indicaciones y guarda ambos productos cerrados en una bolsa resellable."
+    ],
+    [
+      "Campamento Scout · Manada",
+      "Mochila de ataque",
+      "Gorra o sombrero",
+      "Esencial",
+      "persona",
+      "Aportar sombra y proteger cabeza, rostro y parte del cuello durante actividades al aire libre.",
+      "Elige una pieza ventilada, de talla correcta y que permanezca puesta al caminar; un sombrero de ala ofrece mayor cobertura que una gorra.",
+      "Márcala con el nombre de Manada individual y colócala antes de iniciar la actividad, no al fondo de la mochila."
     ],
     [
       "Campamento Scout · Manada",
@@ -1400,7 +1420,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de ataque",
+      "Iluminación, comida y orden",
       "Linterna frontal en bolsa resellable",
       "Esencial",
       "persona",
@@ -1410,18 +1430,8 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de ataque",
-      "Silbato de emergencia",
-      "Según indicación de jefatura",
-      "persona",
-      "Permitir que el Lobato pueda llamar la atención rápidamente si se separa o necesita ayuda.",
-      "El silbato funciona sin batería y su sonido alcanza más distancia que la voz; debe permanecer accesible y sujeto a la mochila o ropa, sin cordones largos alrededor del cuello.",
-      "Practiquen previamente la señal de emergencia adoptada por la Manada y expliquen que no es un juguete; si queda separado del grupo debe permanecer en un lugar seguro y usarlo para hacerse localizar."
-    ],
-    [
-      "Campamento Scout · Manada",
-      "Mochila de ataque",
-      "Ficha de salud actualizada",
+      "Documentos de salida Scout",
+      "Ficha de salud Scout actualizada",
       "Esencial",
       "persona",
       "Proporcionar al adulto responsable información médica relevante durante una emergencia.",
@@ -1430,7 +1440,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Ropa y calzado",
       "Cambio de ropa completo",
       "Esencial",
       "persona",
@@ -1440,17 +1450,17 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
-      "Calzado de repuesto o plan para mantener los pies secos",
-      "Según el clima",
+      "Ropa y calzado",
+      "Calzado extra",
+      "Esencial",
       "persona",
       "Evitar enfriamiento, ampollas y pérdida de comodidad por calzado mojado.",
-      "Los pies requieren calcetines secos y calzado correctamente ajustado; un segundo par puede ser útil en campamentos húmedos, mientras que en condiciones más secas puede bastar proteger el calzado principal y disponer de calcetines de recambio.",
-      "No lleves zapatos pesados solo por duplicar: evalúa clima y terreno; guarda calzado o calcetines de respaldo en bolsa impermeable y nunca permitas que el Lobato duerma con calcetines húmedos."
+      "Incluye un par ligero, cerrado, de talla correcta y previamente usado. Guárdalo limpio dentro de una bolsa para que no ensucie la ropa.",
+      "No estrenes botas o tenis en el campamento y comprueba que el par extra quede completamente dentro de la mochila."
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Ropa y calzado",
       "Chamarra, gorro y guantes",
       "Según el clima",
       "persona",
@@ -1460,17 +1470,37 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
-      "Pijama, calcetines de dormir, aislante y sleeping bag",
+      "Sistema de descanso",
+      "Aislante térmico",
       "Esencial",
       "persona",
-      "Proporcionar un sistema completo de descanso térmico y confortable.",
-      "La pijama seca funciona como capa nocturna; calcetines exclusivos para dormir evitan introducir humedad al saco. El aislante reduce pérdida de calor hacia el suelo y el sleeping debe seleccionarse por temperatura de confort, no solo por grosor.",
-      "Mantén pijama, calcetines y sleeping completamente secos dentro de la bolsa interior; enseña al Lobato a extender el aislante y acomodar su saco antes de que anochezca."
+      "Aislar el cuerpo del frío y la humedad del suelo durante la noche.",
+      "Prefiere un aislante de espuma de celda cerrada. También puede utilizarse una colchoneta de yoga resistente; evita modelos inflables o delicados que puedan perforarse o que el niño no pueda manejar.",
+      "Pruébenlo extendido en casa y comprueben que cubra el cuerpo, sea fácil de enrollar y pueda guardarse dentro de la mochila."
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Sistema de descanso",
+      "Sleeping bag o bolsa de dormir",
+      "Esencial",
+      "persona",
+      "Conservar el calor corporal y permitir descansar durante el campamento.",
+      "Elige talla chica o infantil, con temperatura de confort adecuada a la noche prevista. Una bolsa demasiado grande deja espacio que el cuerpo debe calentar y ocupa volumen innecesario.",
+      "Practiquen abrirlo, acomodarlo y guardarlo. Debe viajar seco y completamente dentro de la mochila."
+    ],
+    [
+      "Campamento Scout · Manada",
+      "Sistema de descanso",
+      "Pijama calientita y calcetines para dormir",
+      "Esencial",
+      "persona",
+      "Mantener una capa limpia, seca y abrigadora reservada exclusivamente para la noche.",
+      "Empaca una pijama cómoda y calientita junto con un par de calcetines limpios que no se utilicen durante las actividades del día.",
+      "Guárdalos juntos en una bolsa resellable y comprueba que permanezcan secos hasta la hora de dormir."
+    ],
+    [
+      "Campamento Scout · Manada",
+      "Sistema de descanso",
       "Cobija pequeña",
       "Según el clima",
       "persona",
@@ -1480,17 +1510,17 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Aseo personal",
       "Kit de aseo personal",
       "Esencial",
       "persona",
       "Mantener higiene personal y fomentar autonomía en rutinas básicas de campamento.",
-      "El kit debe contener cepillo y pasta dental, jabón, peine o cepillo, toalla compacta y los artículos personales necesarios; los envases deben ser pequeños, resistentes a fugas y fáciles de reconocer.",
-      "Coloca todo en una sola bolsa identificada y practica previamente la rutina; evita envases grandes y productos innecesarios, pero no reduzcas artículos esenciales de higiene por ahorrar espacio."
+      "Incluye cepillo dental, pasta dental, cepillo para cabello, ligas para el cabello si las usa, crema facial, desodorante en caso de ya usarlo y un paquete pequeño de toallas húmedas.",
+      "Guarda todo en una bolsa identificada, con envases pequeños y bien cerrados. Practica que saque, use y vuelva a guardar cada artículo."
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Iluminación, comida y orden",
       "Plato, vaso y cuchara reutilizables",
       "Esencial",
       "persona",
@@ -1500,7 +1530,7 @@ const DRIVE_SITE_CONTENT = {
     ],
     [
       "Campamento Scout · Manada",
-      "Mochila de campamento",
+      "Iluminación, comida y orden",
       "Bolsa de basura extra",
       "Esencial",
       "persona",
@@ -2116,4 +2146,3 @@ const DRIVE_SITE_CONTENT = {
     ]
   ]
 };
-

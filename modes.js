@@ -183,12 +183,14 @@ const SCOUT_EQUIPMENT = [
 ];
 
 const MANADA_EQUIPMENT = [
-  ['Autonomía y preparación', [
-    ['mn-mochila-propia', 'Mochila armada por el lobato', 'Esencial', 'persona', 'Ayuda a que cada lobato reconozca, empaque y cuide sus propias cosas.', 'Practiquen en casa empacar, desempacar y enrollar el saco de dormir. El adulto acompaña y revisa, sin armar la mochila por completo.', 'Al terminar, pídele que ubique por sí mismo agua, impermeable, frontal y ropa para dormir.'],
+  ['Revisión antes de salir', [
     ['mn-carga', 'Práctica de carga con manos libres', 'Esencial', 'persona', 'Comprueba que puede llevar mochila de campamento, mochila de ataque y cangurera con seguridad.', 'Ajusta tallas y peso a la edad, condición y recorrido. No añadas una carga fija por cumplir una lista.', 'Caminen unos minutos en casa y corrijan tirantes, bultos sueltos y objetos que golpeen.'],
     ['mn-uniforme', 'Uniforme completo', 'Según el programa', 'persona', 'Permite llegar con la indumentaria que solicita la actividad Scout.', 'Confirma con la jefatura qué piezas se usarán y cuándo se cambia de ropa.', 'Marca No aplica si el programa no lo requiere.'],
-    ['mn-marcado', 'Todo el equipo marcado con el nombre de la Manada', 'Esencial', 'persona', 'Permite reconocer el equipo de la Manada y reduce pérdidas o confusiones durante la salida.', 'Madres, padres o tutores deben marcar ropa, calzado, cangurera, ambas mochilas, vajilla y equipo de descanso con plumón indeleble o con una etiqueta resistente y bien fijada.', 'Comprueba que el nombre de la Manada sea legible, que la marca no se desprenda y que aparezca también en los artículos del mismo color.'],
+    ['mn-marcado', 'Todo el equipo marcado con el nombre de Manada', 'Esencial', 'persona', 'Permite reconocer a quién pertenece cada artículo y reduce pérdidas o confusiones durante la salida.', 'Cada Lobato o Lobezna adopta un nombre de Manada. Madres, padres o tutores deben usar ese nombre para marcar ropa, calzado, cangurera, ambas mochilas, vajilla y equipo de descanso con plumón indeleble o con una etiqueta resistente y bien fijada.', 'Comprueba que el nombre de Manada individual sea legible, que la marca no se desprenda y que aparezca también en artículos similares a los de otros integrantes.'],
     ['mn-bazar', 'Bazar personal antes y después del campamento', 'Esencial', 'persona', 'Permite comprobar que el equipo está completo y que nada inadecuado viaja en la mochila.', 'Extiendan el equipo con calma antes de empacar y repitan la revisión antes de regresar.', 'El lobato nombra sus artículos mientras los guarda; así aprende a reconocerlos y cuidarlos.'],
+  ]],
+  ['Mochila y organización', [
+    ['mn-mochila-propia', 'Mochila de campismo de aproximadamente 40 litros', 'Esencial', 'persona', 'Transporta todo el equipo de campamento dejando las manos libres.', 'Elige una mochila de talla chica o extra chica, preferentemente diseñada para niña o niño, de aproximadamente 40 litros y con cinturón lumbar. Debe ajustarse al torso sin quedar demasiado grande.', 'Guarda todo dentro: nada debe ir colgando. Comprueba que cierre sin quedar apretada y que el Lobato o Lobezna pueda sacar sus cosas sin vaciarla por completo.'],
     ['mn-fondo', 'Bolsa de basura como fondo de mochila', 'Esencial', 'persona', 'Aporta una barrera sencilla contra humedad dentro de la mochila de campamento.', 'Colócala abierta antes de organizar el equipo; no reemplaza bolsas individuales estancas.', 'Incluye una bolsa extra para residuos o ropa húmeda.'],
     ['mn-bolsas', 'Bolsas resellables o estancas', 'Esencial', 'persona', 'Protegen de humedad y ayudan a ordenar ropa y artículos pequeños.', 'Agrupa por función: dormir, aseo, cambio de ropa y documentos.', 'Saca el aire, cierra y etiqueta cada bolsa para que el lobato la reconozca.']
   ]],
@@ -202,27 +204,36 @@ const MANADA_EQUIPMENT = [
     ['mn-agenda', 'Agenda Scout', 'Según el programa', 'persona', 'Conserva información de actividades y progresión.', 'Protégela en una bolsa resellable.', 'Llévala solo si está solicitada para la salida.']
   ]],
   ['Mochila de ataque', [
+    ['mn-mochila-ataque', 'Mochila de ataque de 15 a 20 litros', 'Esencial', 'persona', 'Transporta el equipo necesario para una actividad, excursión o recorrido corto dejando las manos libres.', 'Elige una mochila de capacidad adecuada, aproximadamente de 15 a 20 litros, que ajuste bien al cuerpo del Lobato o Lobezna y permita guardar todo el equipo dentro.', 'Carga los artículos reales y comprueba que nada quede colgado por fuera. La mochila debe cerrar sin quedar apretada y permitir sacar agua, impermeable o abrigo sin vaciarla por completo.'],
     ['mn-snack', 'Almuerzo o snack nutritivo', 'Esencial', 'persona', 'Aporta energía durante actividades de día.', 'Elige alimentos que pueda abrir, comer y guardar sin ayuda, considerando alergias y residuos.', 'Evita depender de productos que requieran refrigeración si no está disponible.'],
     ['mn-agua', 'Botella de agua reutilizable', 'Esencial', 'persona', 'Mantiene hidratación durante el programa.', 'Debe cerrar bien, tener capacidad adecuada y estar marcada con nombre.', 'Llénala antes de salir y comprueba que no gotee.'],
-    ['mn-sol', 'Repelente, bloqueador y gorra', 'Esencial', 'persona', 'Ayudan a gestionar sol e insectos según las condiciones.', 'Sigue las indicaciones de cada producto y las pautas de la familia o jefatura.', 'Deja estos artículos accesibles, no al fondo.'],
+    ['mn-sol', 'Repelente y bloqueador solar', 'Según las condiciones', 'persona', 'Ayudan a reducir picaduras y exposición solar cuando la actividad lo requiere.', 'Un adulto elige productos apropiados para la edad y verifica su uso conforme a la etiqueta y las indicaciones de la familia o jefatura.', 'Llévalos cerrados en una bolsa resellable y accesibles para que un adulto supervise la aplicación.'],
+    ['mn-gorra', 'Gorra o sombrero', 'Esencial', 'persona', 'Aporta sombra y protege cabeza, rostro y parte del cuello durante actividades al aire libre.', 'Elige una pieza ventilada, de talla correcta y que permanezca puesta al caminar; un sombrero de ala ofrece mayor cobertura que una gorra.', 'Márcala con el nombre de Manada individual y colócala antes de iniciar la actividad, no al fondo de la mochila.'],
     ['mn-impermeable', 'Impermeable reutilizable', 'Esencial', 'persona', 'Protege durante lluvia o viento.', 'Revisa talla, capucha y que pueda ponérselo sin ayuda.', 'No uses uno desechable como protección principal.'],
-    ['mn-sueter', 'Suéter o capa de abrigo', 'Esencial', 'persona', 'Permite responder a cambios de temperatura.', 'Usa una prenda que ya conozca y pueda guardar en su mochila.', 'Comprueba que quede seca al iniciar.'],
-    ['mn-frontal', 'Linterna frontal en bolsa resellable', 'Esencial', 'persona', 'Permite desplazarse con manos libres cuando baja la luz.', 'Revisa batería, ajuste y uso antes de salir.', 'No la sustituyas por una luz de mano.'],
-    ['mn-silbato', 'Silbato de emergencia', 'Según indicación de jefatura', 'persona', 'Permite realizar una señal audible sin depender de voz o teléfono.', 'Confirma con la jefatura cuándo se usa y qué señales reconoce la Manada.', 'No se usa como juguete; el lobato debe conocer la señal acordada.']
+    ['mn-sueter', 'Suéter o capa de abrigo', 'Esencial', 'persona', 'Permite responder a cambios de temperatura.', 'Usa una prenda que ya conozca y pueda guardar en su mochila.', 'Comprueba que quede seca al iniciar.']
   ]],
-  ['Documentos de salida Scout', [
-    ['mn-salud', 'Ficha de salud actualizada', 'Esencial', 'persona', 'Reúne el historial médico y los datos necesarios para que los responsables actúen ante una emergencia.', 'Es un formato oficial entregado por la dirigencia del grupo. Debe estar vigente, completo y entregarse conforme al protocolo del Grupo Scout.', 'Comprueba que madre, padre o tutor la actualizó y que la jefatura confirmó su recepción y resguardo.'],
-    ['mn-autorizacion', 'Ficha de autorización de salida Scout', 'Esencial', 'persona', 'Deja constancia de que madre, padre o tutor autoriza la participación en la salida.', 'Usa el formato oficial entregado por la dirigencia del grupo; completa los datos de la salida y las firmas que solicite.', 'Entrégala dentro del plazo indicado y confirma con la jefatura que fue recibida antes de partir.']
+  ['Sistema de descanso', [
+    ['mn-aislante', 'Aislante térmico', 'Esencial', 'persona', 'Aísla el cuerpo del frío y la humedad del suelo durante la noche.', 'Prefiere un aislante de espuma de celda cerrada. También puede utilizarse una colchoneta de yoga resistente; evita modelos inflables o delicados que puedan perforarse o que el niño no pueda manejar.', 'Pruébenlo extendido en casa y comprueben que cubra el cuerpo, sea fácil de enrollar y pueda guardarse dentro de la mochila.'],
+    ['mn-dormir', 'Sleeping bag o bolsa de dormir', 'Esencial', 'persona', 'Conserva el calor corporal y permite descansar durante el campamento.', 'Elige talla chica o infantil, con temperatura de confort adecuada a la noche prevista. Una bolsa demasiado grande deja espacio que el cuerpo debe calentar y ocupa volumen innecesario.', 'Practiquen abrirlo, acomodarlo y guardarlo. Debe viajar seco y completamente dentro de la mochila.'],
+    ['mn-pijama', 'Pijama calientita y calcetines para dormir', 'Esencial', 'persona', 'Mantiene una capa limpia, seca y abrigadora reservada exclusivamente para la noche.', 'Empaca una pijama cómoda y calientita junto con un par de calcetines limpios que no se utilicen durante las actividades del día.', 'Guárdalos juntos en una bolsa resellable y comprueba que permanezcan secos hasta la hora de dormir.'],
+    ['mn-cobija', 'Cobija pequeña', 'Según el clima', 'persona', 'Aporta abrigo adicional cuando las condiciones y el sistema de descanso lo requieren.', 'Elige una cobija compacta de fleece o material sintético que seque rápido; no debe sustituir una bolsa de dormir adecuada.', 'Inclúyela solo si cabe dentro de la mochila sin comprimir excesivamente el resto del equipo.']
   ]],
-  ['Mochila de campamento', [
-    ['mn-ropa', 'Cambio de ropa completo', 'Esencial', 'persona', 'Incluye playera, pantalón o leggins, ropa interior, calcetines y calzado cómodo.', 'Empácalo en una bolsa resellable y añade botas si ya son adecuadas y están probadas.', 'Guarda un cambio separado para que no se mezcle con la ropa húmeda.'],
-    ['mn-calzado-seco', 'Calzado de repuesto o plan para mantener los pies secos', 'Según el clima', 'persona', 'Ayuda a conservar comodidad y prevenir molestias después de lluvia o actividad intensa.', 'Incluye calzado de repuesto solo si cabe y es adecuado; en cualquier caso lleva calcetines secos.', 'No estrenes botas o tenis en el campamento.'],
-    ['mn-frio', 'Chamarra, gorro y guantes', 'Según el clima', 'persona', 'Aportan abrigo para noches frías.', 'Ajusta el sistema al pronóstico y a la comodidad del lobato.', 'Marca No aplica solo si las condiciones previstas no lo requieren.'],
-    ['mn-dormir', 'Pijama, calcetines de dormir, aislante y sleeping bag', 'Esencial', 'persona', 'Forma el sistema de descanso del lobato.', 'El saco de dormir va protegido en bolsa plástica; los calcetines de dormir deben permanecer secos.', 'Practiquen enrollar y guardar el sleeping bag sin ayuda.'],
-    ['mn-cobija', 'Cobija pequeña', 'Según el clima', 'persona', 'Aporta abrigo adicional cuando cabe en el sistema de descanso.', 'Enróllala dentro del sleeping bag si no aumenta demasiado el volumen.', 'Prueben todo el conjunto en casa antes de depender de él.'],
-    ['mn-aseo', 'Kit de aseo personal', 'Esencial', 'persona', 'Incluye cepillo y pasta dental, peine o cepillo, ligas si aplican, crema, desodorante y toallas húmedas.', 'Guarda líquidos y artículos pequeños en una bolsa resellable.', 'Lleva solo cantidades necesarias y vuelve a guardar cada pieza tras usarla.'],
+  ['Ropa y calzado', [
+    ['mn-ropa', 'Cambio de ropa completo', 'Esencial', 'persona', 'Permite cambiar prendas húmedas o sucias y conservar un conjunto seco.', 'Incluye playera, pantalón o leggins, ropa interior y calcetines adecuados al clima. Organiza cada cambio en una bolsa resellable.', 'Comprueba talla y cantidad según la duración; separa siempre la ropa limpia de la usada o húmeda.'],
+    ['mn-calzado-seco', 'Calzado extra', 'Esencial', 'persona', 'Permite cambiarse si el calzado principal se moja y mantener los pies secos.', 'Incluye un par ligero, cerrado, de talla correcta y previamente usado. Guárdalo limpio dentro de una bolsa para que no ensucie la ropa.', 'No estrenes botas o tenis en el campamento y comprueba que el par extra quede completamente dentro de la mochila.'],
+    ['mn-frio', 'Chamarra, gorro y guantes', 'Según el clima', 'persona', 'Aportan abrigo durante noches frías, viento o periodos de poca actividad.', 'Ajusta el sistema a la temperatura mínima prevista y prefiere materiales que conserven aislamiento y sequen con rapidez.', 'Comprueba la talla y guarda las piezas juntas en una bolsa que el Lobato o Lobezna pueda reconocer.']
+  ]],
+  ['Aseo personal', [
+    ['mn-aseo', 'Kit de aseo personal', 'Esencial', 'persona', 'Reúne en un solo lugar lo necesario para la higiene diaria del Lobato o Lobezna.', 'Incluye cepillo dental, pasta dental, cepillo para cabello, ligas para el cabello si las usa, crema facial, desodorante en caso de ya usarlo y un paquete pequeño de toallas húmedas.', 'Guarda todo en una bolsa identificada, con envases pequeños y bien cerrados. Practica que saque, use y vuelva a guardar cada artículo.']
+  ]],
+  ['Iluminación, comida y orden', [
+    ['mn-frontal', 'Linterna frontal en bolsa resellable', 'Esencial', 'persona', 'Permite desplazarse con manos libres cuando baja la luz durante el campamento.', 'Elige una frontal sencilla, de ajuste adecuado y autonomía suficiente. Revisa batería, operación y resistencia a humedad antes de salir.', 'Guárdala protegida en una bolsa resellable, bloquea el encendido accidental si el modelo lo permite y no la sustituyas por una luz de mano.'],
     ['mn-vajilla', 'Plato, vaso y cuchara reutilizables', 'Esencial', 'persona', 'Permiten comer sin usar desechables.', 'Deben estar marcados con nombre y ser fáciles de lavar.', 'Guárdalos limpios tras cada comida y en una bolsa propia.'],
     ['mn-bolsa-extra', 'Bolsa de basura extra', 'Esencial', 'persona', 'Separa residuos, ropa húmeda o artículos sucios.', 'Es adicional a la bolsa que protege el fondo de la mochila.', 'No dejes residuos en el campamento.']
+  ]],
+  ['Documentos de salida Scout', [
+    ['mn-salud', 'Ficha de salud Scout actualizada', 'Esencial', 'persona', 'Reúne el historial médico y los datos necesarios para que los responsables actúen ante una emergencia.', 'Es un formato oficial entregado por la dirigencia del grupo. Debe estar vigente, completo y entregarse conforme al protocolo del Grupo Scout.', 'Comprueba que madre, padre o tutor la actualizó y que la jefatura confirmó su recepción y resguardo.'],
+    ['mn-autorizacion', 'Ficha de autorización de salida Scout', 'Esencial', 'persona', 'Deja constancia de que madre, padre o tutor autoriza la participación en la salida.', 'Usa el formato oficial entregado por la dirigencia del grupo; completa los datos de la salida y las firmas que solicite.', 'Entrégala dentro del plazo indicado y confirma con la jefatura que fue recibida antes de partir.']
   ]]
 ];
 
@@ -296,7 +307,7 @@ const MODE_CONFIGS = {
     description: 'Prepara un campamento donde cada lobato conoce, arma y cuida su propio equipo con acompañamiento adulto.',
     pills: ['Autonomía progresiva', 'Mochila propia', 'Acompañamiento adulto'], art: 'assets/interior-manada.jpeg', equipment: MANADA_EQUIPMENT,
     services: [['water', 'Agua potable'], ['toilets', 'Sanitarios'], ['permit', 'Permiso o reglas confirmadas']],
-    footerChecks: '□ Salud y autorización  □ Agua y alimentación  □ Equipo de descanso  □ Ropa marcada  □ Avisar regreso', identityLabel: 'Nombre de la manada', numberLabel: 'Número de grupo'
+    footerChecks: '□ Salud y autorización  □ Agua y alimentación  □ Equipo de descanso  □ Ropa marcada  □ Avisar regreso', identityLabel: 'Nombre de Manada', numberLabel: 'Número de grupo'
   }
 };
 
@@ -601,7 +612,7 @@ menu = function (scout = false) {
 };
 
 function scoutMenu() {
-  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160aa6,#1c160ab8),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content scout-home"><div class="scout-home-intro"><div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1></div><p>La selva abre sus caminos: prepara tu equipo, acepta nuevos retos y elige la ruta que te llevará a tu próxima aventura Scout.</p></div><div class="scout-branches"><section class="scout-branch scout-branch-manada"><figure class="scout-branch-visual"><img src="assets/insignias-aventuras-naturaleza.png" alt="Insignias completas de las cuatro Aventuras en la Naturaleza de Manada"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Manada</p><h2>Lobatos y Lobeznas</h2><p>Listas sencillas para cada salida, preparación de campamento y seguimiento de progresiones.</p><nav class="scout-branch-actions" aria-label="Abrir Manada"><a href="#scout/manada"><span>Equipo, hábitos y aprendizaje</span><strong>Abrir herramientas de Manada</strong><b aria-hidden="true">→</b></a></nav></div></section><section class="scout-branch scout-branch-tropa"><figure class="scout-branch-visual"><img src="assets/interior-tropa.jpeg" alt="Dos jóvenes Scouts con sus mochilas listas para una salida"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Scout · Tropa</p><h2>Vida de patrulla</h2><p>Planificación, equipo personal y material de patrulla para vivir el campamento con mayor autonomía.</p><nav class="scout-branch-actions" aria-label="Opciones de Tropa"><a href="#scout/tropa"><span>Equipo y organización</span><strong>Prepárate para el campamento Scout</strong><b aria-hidden="true">→</b></a></nav></div></section></div></section></main>`;
+  app.innerHTML = `<main id="main" class="scout-menu" style="background-image:linear-gradient(#1c160aa6,#1c160ab8),url('assets/zona-scout.png')"><header class="scout-head"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><a class="secondary" href="#inicio">← Menú principal</a></header><section class="scout-content scout-home"><div class="scout-home-intro"><div><p class="eyebrow">Acampando en Familia</p><h1>Zona Scout</h1></div><p>La selva abre sus caminos: prepara tu equipo, acepta nuevos retos y elige la ruta que te llevará a tu próxima aventura Scout.</p></div><div class="scout-branches"><section class="scout-branch scout-branch-manada"><figure class="scout-branch-visual"><img src="assets/insignias-aventuras-naturaleza.png" alt="Insignias completas de las cuatro Aventuras en la Naturaleza de Manada"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Manada</p><h2>Lobatos y Lobeznas</h2><p>Listas sencillas para cada salida, preparación de campamento y seguimiento de progresiones.</p><nav class="scout-branch-actions" aria-label="Abrir Manada"><a href="#scout/manada"><span>Equipo, hábitos y aprendizaje</span><strong>Abrir herramientas de Manada</strong><b aria-hidden="true">→</b></a></nav></div></section><section class="scout-branch scout-branch-tropa"><figure class="scout-branch-visual"><img src="assets/tropa-aventuras-completa.png" alt="Insignias completas de las cuatro Aventuras en la Naturaleza de Tropa"></figure><div class="scout-branch-body"><p class="scout-branch-kicker">Scout · Tropa</p><h2>Vida de patrulla</h2><p>Preparación para el campamento y una bitácora personal para recorrer los territorios con mayor autonomía.</p><nav class="scout-branch-actions" aria-label="Opciones de Tropa"><a href="#scout/tropa"><span>Equipo y organización</span><strong>Prepárate para el campamento Scout</strong><b aria-hidden="true">→</b></a><a href="#scout/tropa/aventuras"><span>Aventuras en la Naturaleza</span><strong>Lleva tu proceso de insignias</strong><b aria-hidden="true">→</b></a></nav></div></section></div></section></main>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   const scoutBack = document.querySelector('.scout-head .secondary');
   if (scoutBack) { scoutBack.classList.add('menu-back'); scoutBack.textContent = 'Menú principal'; }
@@ -613,10 +624,14 @@ route = function () {
   else if (location.hash.startsWith('#scout/manada/bolsillo')) manadaQuickPage('bolsillo');
   else if (location.hash.startsWith('#scout/manada/ataque')) manadaQuickPage('ataque');
   else if (location.hash.startsWith('#scout/manada/salida')) manadaCampPage();
+  else if (location.hash === '#senderismo' || location.hash === '#senderismo/' || location.hash.startsWith('#senderismo/guia') || location.hash.startsWith('#senderismo/videos') || location.hash.startsWith('#senderismo/verificar')) { history.replaceState(null, '', '#senderismo/salida'); stylePage('senderismo'); }
   else if (location.hash.startsWith('#senderismo')) stylePage('senderismo');
+  else if (location.hash === '#bushcraft' || location.hash === '#bushcraft/' || location.hash.startsWith('#bushcraft/guia') || location.hash.startsWith('#bushcraft/videos') || location.hash.startsWith('#bushcraft/verificar')) { history.replaceState(null, '', '#bushcraft/salida'); stylePage('bushcraft'); }
   else if (location.hash.startsWith('#bushcraft')) stylePage('bushcraft');
+  else if (location.hash === '#ultraligera' || location.hash === '#ultraligera/' || location.hash.startsWith('#ultraligera/guia') || location.hash.startsWith('#ultraligera/videos') || location.hash.startsWith('#ultraligera/verificar')) { history.replaceState(null, '', '#ultraligera/salida'); stylePage('ultraligera'); }
   else if (location.hash.startsWith('#ultraligera')) stylePage('ultraligera');
-  else if (location.hash.startsWith('#scout/tropa')) stylePage('tropa');
+  else if (location.hash.startsWith('#scout/tropa/aventuras')) tropaProgressPage();
+  else if (location.hash.startsWith('#scout/tropa')) tropaCampPage();
   else if (location.hash.startsWith('#scout/manada')) stylePage('manada');
   else if (location.hash === '#coche' || location.hash === '#coche/' || location.hash.startsWith('#coche/guia') || location.hash.startsWith('#coche/videos') || location.hash.startsWith('#coche/verificar')) { history.replaceState(null, '', '#coche/salida'); stylePage('coche'); }
   else if (location.hash.startsWith('#coche')) stylePage('coche');
@@ -634,10 +649,11 @@ function stylePage(mode) {
   const parts = location.hash.slice(1).split('/');
   const isScoutMode = ['tropa', 'manada'].includes(mode);
   const requestedTab = isScoutMode ? parts[2] || 'guia' : parts[1] || 'guia';
-  const tab = mode === 'coche' ? 'salida' : requestedTab;
+  const isUnifiedMode = ['coche', 'senderismo', 'bushcraft', 'ultraligera'].includes(mode);
+  const tab = isUnifiedMode ? 'salida' : requestedTab;
   const backHref = isScoutMode ? '#scout' : '#inicio', backLabel = isScoutMode ? '← Volver a Zona Scout' : '← Volver a las formas de acampar';
   const tabs = [['guia', 'Conocer esta modalidad'], ['salida', 'Preparar mi salida'], ['verificar', 'Antes, durante y después']];
-  const tabbar = mode === 'coche' ? '' : `<nav class="tabbar" aria-label="Secciones de ${cfg.title}">${tabs.map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}${mode === 'manada' ? '<a href="#scout/aventuras">Mi Camino de Aventuras</a>' : ''}</nav>`;
+  const tabbar = isUnifiedMode ? '' : `<nav class="tabbar" aria-label="Secciones de ${cfg.title}">${tabs.map(([id, label]) => `<a href="#${cfg.hash}/${id}" ${tab === id ? 'class="active" aria-current="page"' : ''}>${label}</a>`).join('')}${mode === 'manada' ? '<a href="#scout/aventuras">Mi Camino de Aventuras</a>' : ''}${mode === 'tropa' ? '<a href="#scout/tropa/aventuras">Mi ruta de territorios</a>' : ''}</nav>`;
   app.innerHTML = `<div class="shell mode-${mode}"><header class="topbar"><a class="brand" href="#inicio"><img src="assets/logo.png" alt="Lobatos Acampando"><span>Lobatos Acampando</span></a><span class="save-state">Tus salidas se guardan en este navegador</span><button class="secondary" id="compare-top">⇄ Comparar modalidades</button></header><main id="main" class="container"><section class="intro"><div><a href="${backHref}">${backLabel}</a><p class="eyebrow">${cfg.eyebrow}</p><h1>${cfg.title}</h1><p>${cfg.description}</p><div class="pills">${cfg.pills.map(x => `<span class="pill">${x}</span>`).join('')}</div></div><div class="intro-art" style="background-image:url('${cfg.art}');background-position:center;background-size:cover" role="img" aria-label="Fotografía de ${cfg.title}"></div></section>${tabbar}<div id="trip-context"></div><div id="content"></div><p class="muted">Los datos se guardan solo en este navegador y por modalidad. Exporta un respaldo si quieres conservar o trasladar una salida.</p><p class="offline-state" id="offline-state"></p></main></div>`;
   app.insertAdjacentHTML('beforeend', contactFooter());
   const channel = document.createElement('a');
@@ -710,13 +726,25 @@ preparation = function () {
 const prepareModeChecklist = preparation;
 preparation = function () {
   prepareModeChecklist();
-  if (currentMode !== 'coche') return;
+  const isCar = currentMode === 'coche';
+  const isBackpacking = currentMode === 'senderismo';
+  const isBushcraft = currentMode === 'bushcraft';
+  const isUltralight = currentMode === 'ultraligera';
+  if (!isCar && !isBackpacking && !isBushcraft && !isUltralight) return;
+  const experienceGroups = isBackpacking ? BACKPACKING_EXPERIENCE_GROUPS : isBushcraft ? BUSHCRAFT_EXPERIENCE_GROUPS : isUltralight ? ULTRALIGHT_EXPERIENCE_GROUPS : CAR_EXPERIENCE_GROUPS;
+  const prefix = isBackpacking ? 'backpacking-prep' : isBushcraft ? 'bushcraft-prep' : isUltralight ? 'ultralight-prep' : 'car-prep';
   const intro = document.createElement('section');
   intro.className = 'panel car-checklist-intro';
-  intro.innerHTML = `<p class="eyebrow">Una sola guía · nueve módulos</p><h2>Prepara tu campamento con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, la explicación para elegirlo y el video que lo acompaña. Busca la llamada <strong>“Consulta la guía y el video”</strong>; cuando el tutorial todavía no esté publicado verás claramente <strong>“Video próximamente”</strong>.</p><nav class="car-module-index" aria-label="Módulos de preparación">${CAR_EXPERIENCE_GROUPS.map(group => `<a href="#car-prep-${group.id}" data-car-module="car-prep-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`;
+  intro.innerHTML = isBackpacking
+    ? `<p class="eyebrow">Una sola guía · ocho módulos</p><h2>Prepara tu ruta con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, los criterios para elegirlo y el video que lo acompaña. Busca la llamada <strong>“Consulta la guía y el video”</strong>; cuando el tutorial todavía no esté publicado verás claramente <strong>“Video próximamente”</strong>.</p><nav class="car-module-index" aria-label="Módulos de preparación de Backpacking">${experienceGroups.map(group => `<a href="#${prefix}-${group.id}" data-car-module="${prefix}-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`
+    : isBushcraft
+    ? `<p class="eyebrow">Una sola guía · ocho módulos</p><h2>Prepara tu práctica Bushcraft con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, los criterios técnicos y el video que lo acompaña. Los módulos separan permiso, refugio, herramientas, fuego, agua y respuesta de emergencia para que ninguna práctica dependa de improvisaciones.</p><nav class="car-module-index" aria-label="Módulos de preparación de Bushcraft">${experienceGroups.map(group => `<a href="#${prefix}-${group.id}" data-car-module="${prefix}-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`
+    : isUltralight
+    ? `<p class="eyebrow">Una sola guía · seis módulos</p><h2>Diseña tu sistema ultraligero con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, criterios técnicos y un espacio para su tutorial. Reduce peso por función, prueba el sistema completo y conserva agua, abrigo, descanso, navegación y emergencia; cuando el video aún no exista verás <strong>“Video próximamente”</strong>.</p><nav class="car-module-index" aria-label="Módulos de preparación de Acampada ultraligera">${experienceGroups.map(group => `<a href="#${prefix}-${group.id}" data-car-module="${prefix}-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`
+    : `<p class="eyebrow">Una sola guía · nueve módulos</p><h2>Prepara tu campamento con ayuda de nuestros videos</h2><p>Cada artículo reúne su checklist, la explicación para elegirlo y el video que lo acompaña. Busca la llamada <strong>“Consulta la guía y el video”</strong>; cuando el tutorial todavía no esté publicado verás claramente <strong>“Video próximamente”</strong>.</p><nav class="car-module-index" aria-label="Módulos de preparación">${experienceGroups.map(group => `<a href="#${prefix}-${group.id}" data-car-module="${prefix}-${group.id}"><span>${group.number}</span>${group.title}</a>`).join('')}</nav>`;
   const toolbar = document.querySelector('#content > .toolbar');
   document.querySelector('#content').insertBefore(intro, toolbar?.nextSibling || document.querySelector('#content').firstChild);
-  document.querySelector('#equipment-title').textContent = 'Prepara tu campamento';
+  document.querySelector('#equipment-title').textContent = isBackpacking ? 'Prepara tu ruta' : isBushcraft ? 'Prepara tu práctica' : isUltralight ? 'Prepara tu sistema' : 'Prepara tu campamento';
   intro.querySelectorAll('[data-car-module]').forEach(link => link.onclick = event => { event.preventDefault(); document.getElementById(link.dataset.carModule)?.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
 };
 
@@ -725,12 +753,40 @@ function carVideosForItem(i) {
   return videos?.length ? videos : [[null, `Cómo elegir y comprobar ${i[1].toLocaleLowerCase('es')}`, 'Próximamente']];
 }
 
-function carChecklistItem(i) {
+function backpackingVideosForItem(i) {
+  const byName = typeof BACKPACKING_PLANNED_VIDEOS === 'undefined' ? {} : {
+    'Tienda ligera o tarp.': [BACKPACKING_PLANNED_VIDEOS.shelter],
+    'Rompeviento y protección para lluvia': [BACKPACKING_PLANNED_VIDEOS.rain]
+  };
+  const videos = typeof BACKPACKING_ITEM_VIDEOS === 'undefined' ? null : BACKPACKING_ITEM_VIDEOS[i[0]] || byName[i[1]];
+  return videos?.length ? videos : [[null, `Cómo elegir y comprobar ${i[1].toLocaleLowerCase('es')}`, 'Próximamente']];
+}
+
+function bushcraftVideosForItem(i) {
+  const byName = typeof BUSHCRAFT_PLANNED_VIDEOS === 'undefined' ? {} : {
+    'Mochila': [BUSHCRAFT_VIDEO_LIBRARY.packLoad, BUSHCRAFT_VIDEO_LIBRARY.backpack, BUSHCRAFT_PLANNED_VIDEOS.pack],
+    'Mochila de ataque': [BUSHCRAFT_VIDEO_LIBRARY.packLoad, BUSHCRAFT_PLANNED_VIDEOS.assaultPack]
+  };
+  const videos = typeof BUSHCRAFT_ITEM_VIDEOS === 'undefined' ? null : BUSHCRAFT_ITEM_VIDEOS[i[0]] || byName[i[1].trim()];
+  return videos?.length ? videos : [[null, `Cómo elegir y comprobar ${i[1].trim().toLocaleLowerCase('es')}`, 'Próximamente']];
+}
+
+function ultralightVideosForItem(i) {
+  const videos = typeof ULTRALIGHT_ITEM_VIDEOS === 'undefined' ? null : ULTRALIGHT_ITEM_VIDEOS[i[0]];
+  return videos?.length ? videos : [[null, `Cómo elegir y comprobar ${i[1].trim().toLocaleLowerCase('es')}`, 'Próximamente']];
+}
+
+function experienceChecklistItem(i, videos) {
   const state = itemState(i[0]);
-  const videos = carVideosForItem(i), published = videos.filter(video => video[0]).length;
+  const published = videos.filter(video => video[0]).length;
   const videoLabel = published ? `▶ ${published === 1 ? 'Video disponible' : `${published} videos disponibles`}` : '▶ Video próximamente';
   return `<div class="item ${state.status === 'packed' ? 'done' : ''} ${state.status === 'na' ? 'na' : ''}"><input type="checkbox" data-check="${i[0]}" aria-label="Empacado: ${esc(i[1])}" ${state.status === 'packed' ? 'checked' : ''} ${state.status === 'na' ? 'disabled' : ''}><button class="item-button" data-detail="${i[0]}"><strong>${esc(i[1])}</strong><small>${i[2]} · Cantidad: ${qty(i)}${state.owner ? ' · ' + esc(state.owner) : ''}${state.status === 'na' ? ' · No aplica' : ''}${state.note ? ' · ' + esc(state.note) : ''}</small><span class="item-guidance-cta"><b class="item-video-status ${published ? 'is-published' : 'is-coming'}">${videoLabel}</b><span>ⓘ Consulta la guía y el video</span></span></button><select data-status="${i[0]}" aria-label="Estado de ${esc(i[1])}">${[['pending', 'Pendiente'], ['packed', 'Empacado'], ['na', 'No aplica']].map(([v, l]) => `<option value="${v}" ${state.status === v ? 'selected' : ''}>${l}</option>`).join('')}</select></div>`;
 }
+
+function carChecklistItem(i) { return experienceChecklistItem(i, carVideosForItem(i)); }
+function backpackingChecklistItem(i) { return experienceChecklistItem(i, backpackingVideosForItem(i)); }
+function bushcraftChecklistItem(i) { return experienceChecklistItem(i, bushcraftVideosForItem(i)); }
+function ultralightChecklistItem(i) { return experienceChecklistItem(i, ultralightVideosForItem(i)); }
 
 function renderCarUnifiedChecklist() {
   const equipmentGroups = groups();
@@ -758,13 +814,98 @@ function renderCarUnifiedChecklist() {
   bindCarVideos(document.querySelector('#equipment-list'));
 }
 
+function renderBackpackingUnifiedChecklist() {
+  const equipmentGroups = groups();
+  let count = 0;
+  const modules = BACKPACKING_EXPERIENCE_GROUPS.map((group, index) => {
+    const [category, items = []] = equipmentGroups[index] || [group.title, []];
+    const visible = items.filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
+    if (!visible.length && (search || filterPending)) return '';
+    count += visible.length;
+    const moduleStats = stats(items);
+    const details = group.sections.map(([title, body], sectionIndex) => `<details class="car-learning-details" ${sectionIndex === 0 ? 'open' : ''}><summary><span>${String(sectionIndex + 1).padStart(2, '0')}</span>${title}</summary><div class="car-learning-body">${body}</div></details>`).join('');
+    const assigned = new Set(items.flatMap(item => backpackingVideosForItem(item)).map(video => video[0] || video[1]));
+    const complementary = group.videos.filter(video => !assigned.has(video[0] || video[1]));
+    const complementaryBlock = complementary.length ? `<details class="car-module-videos"><summary><span>Videos complementarios</span><small>Contenido adicional del módulo</small></summary><div class="car-video-grid">${complementary.map(carVideoCard).join('')}</div></details>` : '';
+    return `<section class="panel car-prep-module" id="backpacking-prep-${group.id}"><header class="car-prep-head"><span class="car-prep-number">${group.number}</span><span class="car-learning-icon" aria-hidden="true">${group.icon}</span><div><p class="eyebrow">Módulo ${group.number}</p><h2>${group.title}</h2><p>${group.summary}</p></div><div class="car-module-progress"><strong>${moduleStats.done}/${moduleStats.total}</strong><small>empacados</small><progress value="${moduleStats.done}" max="${moduleStats.total || 1}" aria-label="Progreso de ${esc(group.title)}"></progress></div></header><div class="car-decision"><strong>Decisión práctica</strong><p>${group.decision}</p></div><section class="car-module-checklist" aria-labelledby="backpacking-check-${group.id}"><div class="car-module-title"><h3 id="backpacking-check-${group.id}">Checklist del módulo</h3><small>Abre cada artículo para consultar su guía y su video.</small></div>${visible.length ? visible.map(backpackingChecklistItem).join('') : '<p class="muted">No hay artículos que coincidan con este filtro.</p>'}</section><details class="car-module-learning"><summary><span>Guía general del módulo</span><small>Criterios técnicos complementarios</small></summary><div class="car-learning-sections">${details}</div></details>${complementaryBlock}</section>`;
+  }).join('');
+  const customGroup = equipmentGroups.find(([category]) => category === 'Mi equipo adicional');
+  const customItems = customGroup ? customGroup[1].filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) : [];
+  count += customItems.length;
+  const custom = customItems.length ? `<section class="panel car-custom-module"><h2>Mi equipo adicional</h2><p class="muted">Artículos que agregaste para esta ruta.</p>${customItems.map(backpackingChecklistItem).join('')}</section>` : '';
+  document.querySelector('#equipment-list').innerHTML = (modules + custom) || '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  if (!count && (search || filterPending)) document.querySelector('#equipment-list').innerHTML = '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  bindCarVideos(document.querySelector('#equipment-list'));
+}
+
+function renderBushcraftUnifiedChecklist() {
+  const equipmentGroups = groups();
+  let count = 0;
+  const modules = BUSHCRAFT_EXPERIENCE_GROUPS.map((group, index) => {
+    const [category, items = []] = equipmentGroups[index] || [group.title, []];
+    const visible = items.filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
+    if (!visible.length && (search || filterPending)) return '';
+    count += visible.length;
+    const moduleStats = stats(items);
+    const details = group.sections.map(([title, body], sectionIndex) => `<details class="car-learning-details" ${sectionIndex === 0 ? 'open' : ''}><summary><span>${String(sectionIndex + 1).padStart(2, '0')}</span>${title}</summary><div class="car-learning-body">${body}</div></details>`).join('');
+    const assigned = new Set(items.flatMap(item => bushcraftVideosForItem(item)).map(video => video[0] || video[1]));
+    const complementary = group.videos.filter(video => !assigned.has(video[0] || video[1]));
+    const complementaryBlock = complementary.length ? `<details class="car-module-videos"><summary><span>Videos complementarios</span><small>Contenido adicional del módulo</small></summary><div class="car-video-grid">${complementary.map(carVideoCard).join('')}</div></details>` : '';
+    return `<section class="panel car-prep-module" id="bushcraft-prep-${group.id}"><header class="car-prep-head"><span class="car-prep-number">${group.number}</span><span class="car-learning-icon" aria-hidden="true">${group.icon}</span><div><p class="eyebrow">Módulo ${group.number}</p><h2>${group.title}</h2><p>${group.summary}</p></div><div class="car-module-progress"><strong>${moduleStats.done}/${moduleStats.total}</strong><small>empacados</small><progress value="${moduleStats.done}" max="${moduleStats.total || 1}" aria-label="Progreso de ${esc(group.title)}"></progress></div></header><div class="car-decision"><strong>Decisión práctica</strong><p>${group.decision}</p></div><section class="car-module-checklist" aria-labelledby="bushcraft-check-${group.id}"><div class="car-module-title"><h3 id="bushcraft-check-${group.id}">Checklist del módulo</h3><small>Abre cada artículo para consultar su guía y su video.</small></div>${visible.length ? visible.map(bushcraftChecklistItem).join('') : '<p class="muted">No hay artículos que coincidan con este filtro.</p>'}</section><details class="car-module-learning"><summary><span>Guía general del módulo</span><small>Criterios técnicos complementarios</small></summary><div class="car-learning-sections">${details}</div></details>${complementaryBlock}</section>`;
+  }).join('');
+  const customGroup = equipmentGroups.find(([category]) => category === 'Mi equipo adicional');
+  const customItems = customGroup ? customGroup[1].filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) : [];
+  count += customItems.length;
+  const custom = customItems.length ? `<section class="panel car-custom-module"><h2>Mi equipo adicional</h2><p class="muted">Artículos que agregaste para esta práctica.</p>${customItems.map(bushcraftChecklistItem).join('')}</section>` : '';
+  document.querySelector('#equipment-list').innerHTML = (modules + custom) || '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  if (!count && (search || filterPending)) document.querySelector('#equipment-list').innerHTML = '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  bindCarVideos(document.querySelector('#equipment-list'));
+}
+
+function renderUltralightUnifiedChecklist() {
+  const equipmentGroups = groups();
+  let count = 0;
+  const modules = ULTRALIGHT_EXPERIENCE_GROUPS.map((group, index) => {
+    const [category, items = []] = equipmentGroups[index] || [group.title, []];
+    const visible = items.filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es')));
+    if (!visible.length && (search || filterPending)) return '';
+    count += visible.length;
+    const moduleStats = stats(items);
+    const details = group.sections.map(([title, body], sectionIndex) => `<details class="car-learning-details" ${sectionIndex === 0 ? 'open' : ''}><summary><span>${String(sectionIndex + 1).padStart(2, '0')}</span>${title}</summary><div class="car-learning-body">${body}</div></details>`).join('');
+    const assigned = new Set(items.flatMap(item => ultralightVideosForItem(item)).map(video => video[0] || video[1]));
+    const complementary = group.videos.filter(video => !assigned.has(video[0] || video[1]));
+    const complementaryBlock = complementary.length ? `<details class="car-module-videos"><summary><span>Videos complementarios</span><small>Contenido adicional del módulo</small></summary><div class="car-video-grid">${complementary.map(carVideoCard).join('')}</div></details>` : '';
+    return `<section class="panel car-prep-module" id="ultralight-prep-${group.id}"><header class="car-prep-head"><span class="car-prep-number">${group.number}</span><span class="car-learning-icon" aria-hidden="true">${group.icon}</span><div><p class="eyebrow">Módulo ${group.number}</p><h2>${group.title}</h2><p>${group.summary}</p></div><div class="car-module-progress"><strong>${moduleStats.done}/${moduleStats.total}</strong><small>empacados</small><progress value="${moduleStats.done}" max="${moduleStats.total || 1}" aria-label="Progreso de ${esc(group.title)}"></progress></div></header><div class="car-decision"><strong>Decisión práctica</strong><p>${group.decision}</p></div><section class="car-module-checklist" aria-labelledby="ultralight-check-${group.id}"><div class="car-module-title"><h3 id="ultralight-check-${group.id}">Checklist del módulo</h3><small>Abre cada artículo para consultar su guía y su video.</small></div>${visible.length ? visible.map(ultralightChecklistItem).join('') : '<p class="muted">No hay artículos que coincidan con este filtro.</p>'}</section><details class="car-module-learning"><summary><span>Guía general del módulo</span><small>Criterios técnicos complementarios</small></summary><div class="car-learning-sections">${details}</div></details>${complementaryBlock}</section>`;
+  }).join('');
+  const customGroup = equipmentGroups.find(([category]) => category === 'Mi equipo adicional');
+  const customItems = customGroup ? customGroup[1].filter(i => (!filterPending || itemState(i[0]).status === 'pending') && i[1].toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) : [];
+  count += customItems.length;
+  const custom = customItems.length ? `<section class="panel car-custom-module"><h2>Mi equipo adicional</h2><p class="muted">Artículos que agregaste para este sistema.</p>${customItems.map(ultralightChecklistItem).join('')}</section>` : '';
+  document.querySelector('#equipment-list').innerHTML = (modules + custom) || '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  if (!count && (search || filterPending)) document.querySelector('#equipment-list').innerHTML = '<div class="panel empty">No hay artículos que coincidan con este filtro.</div>';
+  bindCarVideos(document.querySelector('#equipment-list'));
+}
+
 renderChecklist = function () {
   if (!document.querySelector('#equipment-list')) return;
   const st = stats();
-  const complete = currentMode === 'coche' && st.total > 0 && st.done === st.total;
-  document.querySelector('#progress').innerHTML = `<div class="summary-strip"><div class="progress-copy"><strong>${st.done} de ${st.total} empacados</strong><div class="muted">${st.na} no aplican</div></div><div class="progress-track"><progress value="${st.done}" max="${st.total || 1}" aria-label="Progreso de equipo"></progress></div></div>${complete ? `<section class="car-ready-message"><img src="assets/interior-camping-coche.jpeg" alt="Campamento familiar junto al vehículo"><div><p class="eyebrow">Campamento preparado</p><h3>¡El equipo de esta salida está listo!</h3><p>Revisaron refugio, descanso, cocina, iluminación y equipo personal. Antes de cargar, confirmen clima, acceso, reserva y reglas vigentes del destino.</p></div></section>` : ''}`;
+  const complete = ['coche', 'senderismo', 'bushcraft', 'ultraligera'].includes(currentMode) && st.total > 0 && st.done === st.total;
+  const readyMessage = currentMode === 'senderismo'
+    ? `<section class="car-ready-message"><img src="assets/interior-mochilero.jpeg" alt="Familia caminando con mochilas de travesía"><div><p class="eyebrow">Mochilas preparadas</p><h3>¡El equipo de la ruta está listo!</h3><p>Antes de partir, confirmen pronóstico, permisos, fuentes de agua, peso total, itinerario compartido y condiciones reales de cada integrante.</p></div></section>`
+    : currentMode === 'bushcraft'
+    ? `<section class="car-ready-message"><img src="assets/interior-bushcraft.jpeg" alt="Familia en un campamento Bushcraft"><div><p class="eyebrow">Práctica preparada</p><h3>¡El equipo Bushcraft está listo!</h3><p>Antes de comenzar, confirmen permiso, clima, límites de la práctica, plan de comunicación y que fuego, herramientas y residuos cumplen las reglas vigentes del lugar.</p></div></section>`
+    : currentMode === 'ultraligera'
+    ? `<section class="car-ready-message"><img src="assets/interior-ultraligera.jpeg" alt="Sistema ligero de campamento en familia"><div><p class="eyebrow">Sistema preparado</p><h3>¡El equipo ultraligero está listo!</h3><p>Antes de partir, confirmen ruta, clima, permisos, fuentes de agua, peso total, límites individuales, itinerario compartido y que cada persona conserva abrigo y equipo crítico accesible.</p></div></section>`
+    : `<section class="car-ready-message"><img src="assets/interior-camping-coche.jpeg" alt="Campamento familiar junto al vehículo"><div><p class="eyebrow">Campamento preparado</p><h3>¡El equipo de esta salida está listo!</h3><p>Revisaron refugio, descanso, cocina, iluminación y equipo personal. Antes de cargar, confirmen clima, acceso, reserva y reglas vigentes del destino.</p></div></section>`;
+  document.querySelector('#progress').innerHTML = `<div class="summary-strip"><div class="progress-copy"><strong>${st.done} de ${st.total} empacados</strong><div class="muted">${st.na} no aplican</div></div><div class="progress-track"><progress value="${st.done}" max="${st.total || 1}" aria-label="Progreso de equipo"></progress></div></div>${complete ? readyMessage : ''}`;
   if (currentMode === 'coche') {
     renderCarUnifiedChecklist();
+  } else if (currentMode === 'senderismo') {
+    renderBackpackingUnifiedChecklist();
+  } else if (currentMode === 'bushcraft') {
+    renderBushcraftUnifiedChecklist();
+  } else if (currentMode === 'ultraligera') {
+    renderUltralightUnifiedChecklist();
   } else {
     let count = 0;
     document.querySelector('#equipment-list').innerHTML = groups().map(([cat, items]) => {
@@ -787,7 +928,7 @@ renderChecklist = function () {
 
 itemDetail = function (id) {
   const i = allItems().find(x => x[0] === id), st = itemState(id);
-  const videos = currentMode === 'coche' ? carVideosForItem(i) : [];
+  const videos = currentMode === 'coche' ? carVideosForItem(i) : currentMode === 'senderismo' ? backpackingVideosForItem(i) : currentMode === 'bushcraft' ? bushcraftVideosForItem(i) : currentMode === 'ultraligera' ? ultralightVideosForItem(i) : [];
   const videoBlock = videos.length ? `<section class="item-detail-videos"><p class="eyebrow">Apréndelo en video</p><h3>${videos.some(video => video[0]) ? 'Mira el tutorial antes de elegir o empacar' : 'Tutorial considerado para este artículo'}</h3><div class="car-video-grid">${videos.map(carVideoCard).join('')}</div></section>` : '';
   modal(`<p class="eyebrow">${i[2]}</p><h2>${esc(i[1])}</h2>${videoBlock}<div class="item-criteria"><section><h3>Para qué sirve</h3><p>${esc(i[4])}</p></section><section><h3>Cómo elegirlo</h3><p>${esc(i[5])}</p></section><section><h3>Cómo comprobarlo antes de salir</h3><p>${esc(i[6])}</p></section></div><div class="grid2"><label class="field">Cantidad<input id="item-qty" type="number" min="1" max="999" value="${qty(i)}"></label><label class="field">Responsable<input id="item-owner" maxlength="80" value="${esc(st.owner || '')}" placeholder="¿Quién lo lleva?"></label></div><label class="field">Notas<textarea id="item-note">${esc(st.note || '')}</textarea></label><button class="primary" id="save-item">Guardar detalles</button>`);
   if (videos.length) bindCarVideos(dialog);
@@ -934,9 +1075,9 @@ const MODE_GUIDES = {
     intro: `<p><strong>El Campamento de Manada enseña a los lobatos a conocer, preparar y cuidar su propio equipo.</strong> La autonomía se desarrolla paso a paso: el lobato arma su mochila, aprende dónde va cada artículo y puede encontrar lo necesario sin que un adulto tenga que buscar por él.</p><p>Esta lista separa el equipo de bolsillo, la mochila de ataque y la mochila de campamento. Antes de salir, practiquen en casa con el equipo real y ajusten la carga para que pueda caminar con las manos libres.</p>`,
     sections: [
       ['Preparar la mochila juntos', `<p>El adulto puede explicar, revisar y ayudar con cierres o peso, pero el lobato debe participar en cada paso: extender sus cosas, agruparlas, guardarlas, cerrar bolsas y ubicar lo importante. Al final, pídele que muestre dónde están el agua, el impermeable, el frontal y la ropa para dormir.</p><p>Antes de empacar hagan un <strong>bazar personal</strong>: revisen que el equipo esté completo, que no lleve artículos inadecuados y que todo tenga nombre. Repítanlo al volver. Practiquen enrollar el sleeping bag y colocarlo dentro de su bolsa; la práctica reduce pérdidas y permite que el lobato cuide su equipo durante el campamento.</p>`],
-      ['Orden, humedad y nombre visible', `<p>Coloca una bolsa de basura limpia como fondo de la mochila de campamento. Después organiza ropa, aseo, documentos y descanso en bolsas resellables o estancas. Esto protege de humedad y evita tener que vaciar toda la mochila para encontrar una sola prenda.</p><p>Marca con nombre completo el calzado, las dos mochilas, cangurera, sleeping bag, aislante, vajilla y prendas. Las etiquetas visibles hacen más fácil recuperar objetos cuando varias personas llevan equipo similar.</p>`],
-      ['Equipo de bolsillo y mochila de ataque', `<p>La cangurera reúne paliacates, piola corta, libreta, agenda, credencial y otros artículos pequeños autorizados. Debe quedar cerrada y ordenada, sin objetos que limiten el movimiento.</p><p>La mochila de ataque lleva lo necesario para la actividad del día: agua reutilizable, snack, protección solar, repelente, impermeable, abrigo, frontal y ficha de salud. Cada artículo debe caber dentro, sin colgarse por fuera ni ocupar las manos.</p>`],
-      ['Mochila de campamento y descanso', `<p>La mochila de campamento reúne el cambio de ropa, abrigo de clima frío, pijama, calcetines secos para dormir, aislante y sleeping bag. El sistema de descanso se prueba en casa para confirmar talla, abrigo y que el lobato pueda guardarlo. El calzado debe estar probado; después de lluvia o actividad intensa, los pies secos y calcetines limpios hacen una diferencia importante.</p><p>El kit de aseo y la vajilla reutilizable viajan marcados y protegidos. Añade una bolsa extra para residuos, ropa húmeda o artículos sucios. Al finalizar cada actividad, el lobato vuelve a guardar sus cosas en el mismo lugar.</p>`],
+      ['Orden, humedad y nombre visible', `<p>Coloca una bolsa de basura limpia como fondo de la mochila de campamento. Después organiza ropa, aseo, documentos y descanso en bolsas resellables o estancas. Esto protege de humedad y evita tener que vaciar toda la mochila para encontrar una sola prenda.</p><p>Marca con el nombre de Manada individual el calzado, las dos mochilas, cangurera, sleeping bag, aislante, vajilla y prendas. Las etiquetas visibles hacen más fácil recuperar objetos cuando varias personas llevan equipo similar.</p>`],
+      ['Equipo de bolsillo y mochila de ataque', `<p>La cangurera reúne paliacates, piola corta, libreta, agenda, credencial y otros artículos pequeños autorizados. Debe quedar cerrada y ordenada, sin objetos que limiten el movimiento.</p><p>La mochila de ataque debe tener capacidad suficiente para guardar todo dentro; una referencia práctica es de 15 a 20 litros. Lleva agua reutilizable, snack, gorra o sombrero, protección solar, repelente, impermeable, abrigo y ficha de salud Scout. Nada debe ir colgado y la carga no debe quedar tan apretada que impida encontrar o sacar un artículo.</p>`],
+      ['Mochila de campamento y descanso', `<p>La mochila de campamento reúne la linterna frontal protegida, el cambio de ropa, abrigo de clima frío, pijama, calcetines secos para dormir, aislante y sleeping bag. El sistema de descanso se prueba en casa para confirmar talla, abrigo y que el lobato pueda guardarlo. El calzado debe estar probado; después de lluvia o actividad intensa, los pies secos y calcetines limpios hacen una diferencia importante.</p><p>El kit de aseo y la vajilla reutilizable viajan marcados y protegidos. Añade una bolsa extra para residuos, ropa húmeda o artículos sucios. Al finalizar cada actividad, el lobato vuelve a guardar sus cosas en el mismo lugar.</p>`],
       ['Rol de familias y responsables', `<p>Las familias confirman ficha de salud, ropa adecuada, alergias y artículos personales. Los responsables del campamento organizan el plan, el equipo adulto, la ubicación, horarios y el conteo de participantes. También revisan el pronóstico para adaptar abrigo, lluvia, sombra y actividades. La lista no sustituye las indicaciones específicas de la jefatura.</p><p>Al regresar, sequen el equipo, aireen y limpien la tienda si se utilizó, revisen lo que faltó y anoten qué artículo fue difícil de usar o guardar. Esa conversación prepara al lobato para una siguiente salida con más seguridad y autonomía.</p>`]
     ]
   }

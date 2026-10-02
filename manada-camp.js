@@ -42,6 +42,7 @@
     'mn-impermeable': 'impermeable', 'mn-sueter': 'sueter', 'mn-frontal': 'frontal',
     'mn-salud': 'salud', 'mn-autorizacion': 'autorizacion',
     'mn-carga': 'carga', 'mn-uniforme': 'uniforme', 'mn-marcado': 'marcado', 'mn-bazar': 'bazar',
+    'mn-empacado-final': 'mochila-campamento',
     'mn-mochila-propia': 'mochila-campamento', 'mn-fondo': 'liner', 'mn-bolsas': 'bolsas',
     'mn-aislante': 'aislante', 'mn-dormir': 'sleeping', 'mn-pijama': 'pijama', 'mn-cobija': 'cobija',
     'mn-ropa': 'ropa', 'mn-calzado-seco': 'calzado', 'mn-frio': 'abrigo', 'mn-aseo': 'aseo',
@@ -67,6 +68,7 @@
     'mn-uniforme': 'Cómo revisar el uniforme antes de salir',
     'mn-marcado': 'Cómo marcar el equipo con el nombre de Manada',
     'mn-bazar': 'Cómo hacer el bazar personal antes y después',
+    'mn-empacado-final': 'Cómo empacar y comprobar la mochila antes de salir',
     'mn-salud': 'Cómo revisar y entregar la ficha de salud Scout',
     'mn-autorizacion': 'Cómo completar la autorización de salida Scout'
   };
@@ -177,7 +179,7 @@
     switchMode('manada');
     const pocket = quickItems('bolsillo'), attack = quickItems('ataque'), camp = campGroups().flatMap(([, items]) => items);
     const pocketStats = itemStats(pocket), attackStats = itemStats(attack), campStats = itemStats(camp);
-    shell(`<section class="manada-home-hero"><div><p class="eyebrow">Zona Scout · Manada</p><h1>Aprendo a preparar mi equipo</h1><p>Listas sencillas para que Lobatos y Lobeznas revisen su propio equipo. La familia acompaña y abre las explicaciones solo cuando necesita más información.</p></div><img src="assets/manada-mochila-campamento.png" alt="Mochila de campamento organizada"></section><section class="manada-tool-grid" aria-label="Herramientas de Manada"><a class="manada-tool-card habit-card" href="#scout/manada/bolsillo"><figure><img src="assets/manada-cangurera.png" alt="Cangurera con equipo de bolsillo"></figure><div><span class="manada-tool-tag">Para cada salida</span><h2>Equipo de bolsillo</h2><p>Revisa la cangurera antes de reuniones, excursiones, actividades y campamentos.</p><strong>${pocketStats.done}/${pocketStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card habit-card" href="#scout/manada/ataque"><figure><img src="assets/manada-mochila-ataque.png" alt="Mochila de ataque pequeña"></figure><div><span class="manada-tool-tag">Para cada salida</span><h2>Mochila de ataque</h2><p>Agua, protección y abrigo dentro de una mochila de 15 a 20 litros que cierre sin quedar apretada.</p><strong>${attackStats.done}/${attackStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card camp-card" href="#scout/manada/salida"><figure><img src="assets/manada-mochila-campamento.png" alt="Mochila de campamento organizada"></figure><div><span class="manada-tool-tag">Para dormir fuera</span><h2>Mochila de campamento</h2><p>Ropa, descanso, aseo y utensilios organizados para que cada niño sepa encontrarlos y guardarlos.</p><strong>${campStats.done}/${campStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card progress-card" href="#scout/aventuras"><figure><img src="assets/insignias-aventuras-naturaleza.png" alt="Insignias de Aventuras en la Naturaleza"></figure><div><span class="manada-tool-tag">Aprendizaje</span><h2>Progresiones de Manada</h2><p>Practica, registra y conversa con los Viejos Lobos sobre cada presa.</p><strong>Abrir Mi Camino de Aventuras <b>→</b></strong></div></a></section><section class="panel manada-home-note"><div><p class="eyebrow">Una rutina para crecer</p><h2>El adulto acompaña; el niño prepara</h2></div><p>La meta no es terminar rápido. Antes de cada salida, el Lobato o Lobezna reconoce cada artículo, lo coloca en la mochila correcta y vuelve a guardarlo al terminar.</p></section>`, 'manada-home-page');
+    shell(`<section class="manada-home-hero"><div><p class="eyebrow">Zona Scout · Manada</p><h1>Aprendo a preparar mi equipo</h1><p>Listas sencillas para que Lobatos y Lobeznas revisen su propio equipo. La familia acompaña y abre las explicaciones solo cuando necesita más información.</p></div><img src="assets/manada-mochila-campamento.png" alt="Mochila de campamento organizada"></section><section class="manada-tool-grid" aria-label="Herramientas de Manada"><a class="manada-tool-card habit-card" href="#scout/manada/bolsillo"><figure><img src="assets/manada-cangurera.png" alt="Cangurera con equipo de bolsillo"></figure><div><span class="manada-tool-tag">Para cada salida</span><h2>Equipo de bolsillo</h2><p>Revisa la cangurera antes de reuniones, excursiones, actividades y campamentos.</p><strong>${pocketStats.done}/${pocketStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card habit-card" href="#scout/manada/ataque"><figure><img src="assets/manada-mochila-ataque.png" alt="Mochila de ataque pequeña"></figure><div><span class="manada-tool-tag">Para cada salida</span><h2>Mochila de ataque</h2><p>Agua, protección y abrigo dentro de una mochila de 15 a 20 litros que cierre sin quedar apretada.</p><strong>${attackStats.done}/${attackStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card camp-card" href="#scout/manada/salida"><figure><img src="assets/manada-mochila-campamento.png" alt="Mochila de campamento organizada"></figure><div><span class="manada-tool-tag">Para dormir fuera</span><h2>Mochila de campamento</h2><p>Ropa, descanso, aseo y utensilios organizados para que cada niño sepa encontrarlos y guardarlos.</p><strong>${campStats.done}/${campStats.total} listos <b>→</b></strong></div></a><a class="manada-tool-card progress-card" href="#scout/aventuras"><figure><img src="assets/insignias-aventuras-naturaleza.png" alt="Insignias de Aventuras en la Naturaleza"></figure><div><span class="manada-tool-tag">Aprendizaje</span><h2>Progresiones de Manada</h2><p>Practica, registra y conversa con los Viejos Lobos sobre cada presa.</p><strong>Abrir las progresiones de Manada <b>→</b></strong></div></a></section><section class="panel manada-home-note"><div><p class="eyebrow">Una rutina para crecer</p><h2>El adulto acompaña; el niño prepara</h2></div><p>La meta no es terminar rápido. Antes de cada salida, el Lobato o Lobezna reconoce cada artículo, lo coloca en la mochila correcta y vuelve a guardarlo al terminar.</p></section>`, 'manada-home-page');
   };
 
   window.manadaQuickPage = function (kind) {
@@ -193,35 +195,35 @@
 
   function campGroups() {
     return [
+      'Documentos de salida Scout',
       'Mochila y organización',
       'Sistema de descanso',
       'Ropa y calzado',
       'Aseo personal',
       'Iluminación, comida y orden',
-      'Revisión antes de salir',
-      'Documentos de salida Scout'
+      'Revisión antes de salir'
     ].map(name => [name, groupByName(name)]);
   }
 
   function campGroupVideo(name) {
+    if (name === 'Documentos de salida Scout') return 'Documentos que preparan los padres antes del campamento';
     if (name === 'Mochila y organización') return 'Cómo elegir, ajustar y organizar la mochila de campamento';
     if (name === 'Sistema de descanso') return 'Cómo preparar el aislante, sleeping y ropa para dormir';
     if (name === 'Ropa y calzado') return 'Cómo organizar los cambios de ropa y el calzado extra';
     if (name === 'Aseo personal') return 'Cómo preparar un kit de aseo para campamento';
     if (name === 'Iluminación, comida y orden') return 'Cómo guardar la frontal, la vajilla y la bolsa extra';
-    if (name === 'Revisión antes de salir') return 'Cómo hacer el bazar y comprobar mi equipo';
-    if (name === 'Documentos de salida Scout') return 'Documentos que preparan los padres antes del campamento';
+    if (name === 'Revisión antes de salir') return 'Cómo hacer el bazar, empacar y comprobar mi equipo';
     return 'Cómo preparar esta categoría de la mochila';
   }
 
   function campGroupEyebrow(name) {
-    if (name === 'Mochila y organización') return '01 · La mochila';
-    if (name === 'Sistema de descanso') return '02 · Para dormir';
-    if (name === 'Ropa y calzado') return '03 · Para cambiarse';
-    if (name === 'Aseo personal') return '04 · Higiene';
-    if (name === 'Iluminación, comida y orden') return '05 · Uso personal';
-    if (name === 'Revisión antes de salir') return '06 · Revisión final';
-    return '07 · Entrega a los Scouters';
+    if (name === 'Documentos de salida Scout') return '01 · Antes de participar';
+    if (name === 'Mochila y organización') return '02 · La mochila';
+    if (name === 'Sistema de descanso') return '03 · Para dormir';
+    if (name === 'Ropa y calzado') return '04 · Para cambiarse';
+    if (name === 'Aseo personal') return '05 · Higiene';
+    if (name === 'Iluminación, comida y orden') return '06 · Uso personal';
+    return '07 · Revisión final';
   }
 
   function campPackingNotice() {

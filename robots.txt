@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://acampando-en-familia-guia-dl.djlobato.chatgpt.site/sitemap.xml
+Sitemap: https://www.lobatosacampando.com/sitemap.xml

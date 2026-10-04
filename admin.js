@@ -2,7 +2,7 @@
    La contraseña se valida mediante hash y la sesión vive solo en la pestaña.
    Los cambios se guardan en este navegador y pueden exportarse como JSON. */
 (function () {
-  const VERSION = '1.2';
+  const VERSION = '1.7';
   const PASSWORD_HASH = '3a529ebf2172938cc9c62d5aeed0dd92fcc3c7f15bad9746c5c5d718d3ef1b7c';
   const STORAGE_KEY = 'lobatos-admin-content-v1';
   const SESSION_KEY = 'lobatos-admin-session-v1';
@@ -53,6 +53,30 @@
     'tropa-ataque': ['Zona Scout · Tropa', 'Checklist técnico para ruta o actividad del día.', [P('mochila','Mochila de excursión','Ajuste y capacidad.'),P('proteccion','Protección y capas','Sol, lluvia y abrigo.'),P('agua','Agua y alimento','Consumo y reserva.'),P('orientacion','Orientación y emergencia','Navegación y respuesta.'),P('revision','Control final','Comprobación autónoma.')]],
     'tropa-campamento': ['Zona Scout · Tropa', 'Equipo personal, de patrulla y control final.', [P('documentos','Documentos de salida Scout','Fichas y autorizaciones.'),P('personal','Equipo personal','Descanso, uniforme, capas y calzado.'),P('construcciones','Campamento y construcciones','Tiendas, huellas y lonas.'),P('cocina','Cocina de patrulla','Cocción, agua y conservación.'),P('seguridad','Seguridad, higiene y organización','Botiquín, limpieza y residuos.'),P('empacado','Empacado y control final','Mochilas, bazar y participantes.')]]
   };
+  const PUBLIC_SECTION_COPY = {
+    inicio: ['Elige tu forma de acampar', 'Te ayudamos a mejorar tu experiencia de camping con guías prácticas, videos y listas para preparar cada aventura en familia o en la vida Scout.'],
+    coche: ['Camping con coche', 'Descansa, cocina y convive con tu campamento cerca del vehículo. Prepara lo que tu familia necesita para disfrutar la estancia.'],
+    senderismo: ['Mochilero o Backpacking', 'El backpacking, o viajar como mochilero, recorre rutas de larga distancia llevando equipo, refugio y alimento en una mochila, priorizando movilidad, autonomía y ligereza.'],
+    bushcraft: ['Bushcraft', 'El bushcraft es el arte de prosperar en la naturaleza con autosuficiencia, usando habilidades tradicionales de fuego, refugio y trabajo de madera.'],
+    ultraligera: ['Acampada ultraligera', 'Diseña un sistema ligero, completo y probado para caminar con más libertad, sin recortar seguridad, descanso, agua ni alimentación.'],
+    tecnicas: ['Técnicas de campismo', 'Aprende a cuidar, reparar y elegir el refugio y el sistema de descanso a partir de los videos que ya publicamos.'],
+    reviews: ['Review de equipo', 'Compara el equipo que ya hemos mostrado en el canal y descubre qué video responde a cada decisión de compra o mantenimiento.'],
+    scout: ['Zona Scout', 'Puerta de entrada a las herramientas y progresiones de Manada y Tropa.'],
+    manada: ['Aprendo a preparar mi equipo', 'Listas sencillas para que Lobatos y Lobeznas revisen su propio equipo. La familia acompaña y abre las explicaciones solo cuando necesita más información.'],
+    'manada-progresiones': ['Mi Camino de Aventuras', 'Un registro familiar para acompañar el aprendizaje de Lobatos y Lobeznas. El carnet guía cada paso; la Manada y sus Viejos Lobos acompañan y validan el avance.'],
+    'manada-bolsillo': ['Equipo de bolsillo', 'Una revisión rápida para comprobar que la cangurera está completa antes de excursiones, reuniones y campamentos.'],
+    'manada-ataque': ['Mochila de ataque', 'Lo necesario para una actividad, excursión o recorrido corto, dentro de una mochila que cierre sin quedar apretada y que el Lobato pueda usar sin ayuda.'],
+    'manada-campamento': ['Prepara tu mochila de campamento', 'El Lobato o Lobezna consigue, reconoce y guarda su equipo. La familia acompaña, revisa y abre la información adicional cuando la necesita.'],
+    tropa: ['Equipo, autonomía y progresiones', 'Elige la herramienta que necesitas para la próxima actividad. Cada lista tiene una función distinta para evitar duplicados: lo que te acompaña siempre, lo que llevas durante la ruta y lo que utilizas al establecer el campamento.'],
+    'tropa-progresiones': ['Mi ruta de territorios', 'Una bitácora personal para elegir exploraciones, practicar con tu Patrulla y reunir lo que quieres compartir con tus Scouters.'],
+    'tropa-bolsillo': ['Equipo de bolsillo', 'Una lista breve para comprobar el material pequeño que acompaña al Scout en reuniones, excursiones y campamentos.'],
+    'tropa-ataque': ['Mochila de ataque', 'Lo necesario para la ruta o actividad del día, preparado según duración, clima, esfuerzo y programa.'],
+    'tropa-campamento': ['Prepárate para el Campamento Scout', 'Cada Scout revisa su equipo personal. La Patrulla reparte el material compartido, asigna responsables y comprueba que todo tenga una función antes de salir.']
+  };
+  function publicCopy(section, field) {
+    const copy = PUBLIC_SECTION_COPY[section.id] || [section.title, section.purpose];
+    return copy[field === 'title' ? 0 : 1];
+  }
   SECTIONS.forEach(item => { const detail = SECTION_DETAILS[item.id]; item.group = detail[0]; item.purpose = detail[1]; item.parts = detail[2]; });
   const AREAS = [
     { id: 'campismo', title: 'Formas de acampar', description: 'Portada, cuatro modalidades, técnicas y revisión de equipo.', icon: '⌂', sections: ['inicio', 'coche', 'senderismo', 'bushcraft', 'ultraligera', 'tecnicas', 'reviews'] },
@@ -208,13 +232,42 @@
     });
     return [...unique.values()];
   }
+  function legacyVideoMaps() {
+    return {
+      coche: typeof CAR_ITEM_VIDEOS === 'undefined' ? {} : CAR_ITEM_VIDEOS,
+      senderismo: typeof BACKPACKING_ITEM_VIDEOS === 'undefined' ? {} : BACKPACKING_ITEM_VIDEOS,
+      bushcraft: typeof BUSHCRAFT_ITEM_VIDEOS === 'undefined' ? {} : BUSHCRAFT_ITEM_VIDEOS,
+      ultraligera: typeof ULTRALIGHT_ITEM_VIDEOS === 'undefined' ? {} : ULTRALIGHT_ITEM_VIDEOS
+    };
+  }
+  function legacyVideos() {
+    const unique = new Map();
+    Object.entries(legacyVideoMaps()).forEach(([sectionId, map]) => Object.values(map).flat().forEach(video => {
+      const [youtubeId, title, label] = video || [];
+      if (!youtubeId) return;
+      const id = `youtube-${youtubeId}`;
+      if (!unique.has(id)) unique.set(id, { id, youtubeId, title: title || 'Video publicado', topic: 'Contenido existente', placement: sectionId, placements: [sectionId], status: /pr[oó]ximamente/i.test(label || '') ? 'soon' : 'published', custom: false });
+    }));
+    return [...unique.values()];
+  }
   function videos() {
-    const combined = new Map(baseVideos().map(video => [video.id, video]));
+    const combined = new Map([...baseVideos(), ...legacyVideos()].map(video => [video.id, video]));
     state.videos.forEach(video => combined.set(video.id, { ...(combined.get(video.id) || {}), ...video }));
     return [...combined.values()].filter(video => video.deleted !== true);
   }
   function assignmentKey(kind, sectionId, itemId = '') { return `${kind}:${sectionId}${itemId ? `:${itemId}` : ''}`; }
-  function assignedIds(kind, sectionId, itemId = '') { return state.videoAssignments[assignmentKey(kind, sectionId, itemId)] || []; }
+  function hasExplicitAssignment(kind, sectionId, itemId = '') { return Object.prototype.hasOwnProperty.call(state.videoAssignments, assignmentKey(kind, sectionId, itemId)); }
+  function legacyItemVideoIds(sectionId, itemId) {
+    const existing = new Set(videos().map(video => video.id));
+    const mapped = (legacyVideoMaps()[sectionId]?.[itemId] || []).map(video => video?.[0] ? `youtube-${video[0]}` : '').filter(id => id && existing.has(id));
+    const direct = state.videos.filter(video => video.sectionId === sectionId && video.itemId === itemId && video.youtubeId && video.deleted !== true).map(video => video.id);
+    return [...new Set([...mapped, ...direct])];
+  }
+  function assignedIds(kind, sectionId, itemId = '') {
+    const key = assignmentKey(kind, sectionId, itemId);
+    if (Object.prototype.hasOwnProperty.call(state.videoAssignments, key)) return state.videoAssignments[key];
+    return kind === 'item' ? legacyItemVideoIds(sectionId, itemId) : [];
+  }
   function assignedVideos(kind, sectionId, itemId = '') {
     const ids = new Set(assignedIds(kind, sectionId, itemId));
     return videos().filter(video => ids.has(video.id));
@@ -222,7 +275,7 @@
   function assignedVideoPreview(kind, sectionId, itemId = '') {
     const list = assignedVideos(kind, sectionId, itemId);
     if (!list.length) return '<p class="admin-video-assignment-empty">No hay videos seleccionados de la biblioteca.</p>';
-    return `<div class="admin-assigned-videos">${list.map(video => `<article>${video.youtubeId ? `<img src="https://i.ytimg.com/vi/${encodeURIComponent(video.youtubeId)}/mqdefault.jpg" alt="">` : '<span>▶</span>'}<div><strong>${escapeHtml(video.title)}</strong><small>${escapeHtml(video.status === 'published' ? 'Publicado' : video.status === 'soon' ? 'Próximamente' : video.status === 'hidden' ? 'Oculto' : 'Borrador')}</small></div></article>`).join('')}</div>`;
+    return `<div class="admin-assigned-videos">${list.map(video => `<article>${video.youtubeId ? `<img src="https://i.ytimg.com/vi/${encodeURIComponent(video.youtubeId)}/mqdefault.jpg" alt="">` : '<span>▶</span>'}<div><strong>${escapeHtml(video.title)}</strong><small>${escapeHtml(video.status === 'published' ? 'Publicado' : video.status === 'soon' ? 'Próximamente' : video.status === 'hidden' ? 'Oculto' : 'Borrador')}</small></div><button type="button" class="admin-assigned-remove" data-video-unassign-id="${escapeHtml(video.id)}" data-video-unassign-kind="${escapeHtml(kind)}" data-video-unassign-section="${escapeHtml(sectionId)}" data-video-unassign-item="${escapeHtml(itemId)}">Quitar</button></article>`).join('')}</div>`;
   }
   function statusOptions(selected) {
     return Object.entries(STATUS).map(([value, [label]]) => `<option value="${value}" ${selected === value ? 'selected' : ''}>${label}</option>`).join('');
@@ -232,6 +285,21 @@
   }
   function videoStatusOptions(selected) {
     return [['published', 'Publicado'], ['soon', 'Próximamente'], ['draft', 'Borrador'], ['hidden', 'Oculto']].map(([value, label]) => `<option value="${value}" ${selected === value ? 'selected' : ''}>${label}</option>`).join('');
+  }
+  function youtubeIdFrom(value = '') {
+    const clean = value.trim();
+    if (!clean) return '';
+    if (/^[A-Za-z0-9_-]{11}$/.test(clean)) return clean;
+    try {
+      const url = new URL(/^https?:\/\//i.test(clean) ? clean : `https://${clean}`);
+      if (url.hostname === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+      if (url.hostname.endsWith('youtube.com')) {
+        if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+        const parts = url.pathname.split('/').filter(Boolean);
+        if (['shorts', 'embed', 'live'].includes(parts[0])) return parts[1] || '';
+      }
+    } catch (_) {}
+    return '';
   }
   function partVideo(sectionId, partId) { return state.videos.find(video => video.sectionId === sectionId && video.partId === partId); }
   function itemVideo(sectionId, itemId) { return state.videos.find(video => video.sectionId === sectionId && video.itemId === itemId); }
@@ -272,7 +340,7 @@
   function sectionMapCard(section) {
     const config = sectionState(section);
     const custom = state.sectionContent[section.id] || {};
-    return `<article class="admin-site-card" data-state="${config.status}"><div class="admin-site-card-head"><span>${escapeHtml(section.group)}</span><em>${escapeHtml(STATUS[config.status]?.[0] || config.status)}</em></div><h3>${escapeHtml(custom.title || section.title)}</h3><code>${escapeHtml(section.route)}</code><p>${escapeHtml(section.purpose)}</p><div class="admin-site-meta"><span><b>${section.parts.length}</b> apartados</span><span><b>${sectionVideos(section).length}</b> videos relacionados</span></div><div class="admin-site-actions"><button class="primary" type="button" data-section-edit="${section.id}">Editar sección</button><a class="secondary" href="${section.route}">Ver en el sitio ↗</a></div></article>`;
+    return `<article class="admin-site-card" data-state="${config.status}"><div class="admin-site-card-head"><span>${escapeHtml(section.group)}</span><em>${escapeHtml(STATUS[config.status]?.[0] || config.status)}</em></div><h3>${escapeHtml(custom.title || publicCopy(section, 'title'))}</h3><code>${escapeHtml(section.route)}</code><p>${escapeHtml(custom.description || publicCopy(section, 'description'))}</p><div class="admin-site-meta"><span><b>${section.parts.length}</b> apartados</span><span><b>${sectionVideos(section).length}</b> videos relacionados</span></div><div class="admin-site-actions"><button class="primary" type="button" data-section-edit="${section.id}">Editar sección</button><a class="secondary" href="${section.route}">Ver en el sitio ↗</a></div></article>`;
   }
   function areaCard(area) {
     const sections = area.sections.map(id => SECTIONS.find(section => section.id === id)).filter(Boolean);
@@ -290,7 +358,7 @@
     const config = sectionState(section);
     const custom = state.sectionContent[section.id] || {};
     const area = areaById(selectedAreaId) || AREAS.find(item => item.sections.includes(section.id));
-    return `<section class="admin-page admin-section-editor"><button type="button" class="admin-back-button" data-section-close>← Volver a ${escapeHtml(area?.title || 'las secciones')}</button><header><p class="eyebrow">Tercer nivel · ${escapeHtml(area?.title || section.group)}</p><h1>${escapeHtml(custom.title || section.title)}</h1><p>${escapeHtml(section.purpose)}</p></header><div class="admin-location-card"><div><span>Ubicación en el sitio</span><strong>${escapeHtml(area?.title || section.group)} <b>›</b> ${escapeHtml(section.title)}</strong><code>${escapeHtml(section.route)}</code></div><a class="secondary" href="${section.route}">Abrir vista pública ↗</a></div><details class="admin-section-config"><summary>Editar nombre, introducción y estado de esta sección</summary><form class="admin-section-settings" id="admin-section-settings"><div><p class="eyebrow">Identidad de la página</p><label>Título principal<input data-section-title value="${escapeHtml(custom.title || '')}" placeholder="${escapeHtml(section.title)}"></label><label>Introducción adicional<textarea data-section-description rows="4" placeholder="${escapeHtml(section.purpose)}">${escapeHtml(custom.description || '')}</textarea></label></div><div><p class="eyebrow">Publicación y acceso</p><label>Estado<select data-section-status>${statusOptions(config.status)}</select></label><label>Mensaje para el público<input data-section-message maxlength="180" value="${escapeHtml(config.message || '')}" placeholder="Ej. Estamos preparando esta guía"></label></div><div class="admin-form-actions"><button class="primary" type="submit">Guardar datos de la sección</button></div></form></details><section class="admin-section-video-box"><div><p class="eyebrow">Videos generales de esta sección</p><h2>Biblioteca vinculada</h2><p>Selecciona uno o varios videos para mostrarlos como apoyo general de esta sección.</p></div><button type="button" class="primary" data-video-picker-section="${section.id}">Seleccionar videos</button>${assignedVideoPreview('section', section.id)}</section><div class="admin-parts-heading"><div><p class="eyebrow">Módulos de la sección</p><h2>¿Qué parte quieres editar?</h2><p>Entra al módulo para ver todos los elementos que contiene.</p></div><span>${section.parts.length} módulos</span></div><div class="admin-module-grid">${section.parts.map((part, index) => { const items = itemsForPart(section, part, index); const customPart = state.partContent[section.id]?.[part.id] || {}; return `<button type="button" class="admin-module-card" data-part-open="${part.id}"><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${escapeHtml(customPart.title || part.title)}</strong><small>${escapeHtml(part.purpose)}</small><em>${items.length} ${items.length === 1 ? 'elemento' : 'elementos'}</em></div><b aria-hidden="true">→</b></button>`; }).join('')}</div></section>`;
+    return `<section class="admin-page admin-section-editor"><button type="button" class="admin-back-button" data-section-close>← Volver a ${escapeHtml(area?.title || 'las secciones')}</button><header><p class="eyebrow">Tercer nivel · ${escapeHtml(area?.title || section.group)}</p><h1>${escapeHtml(custom.title || publicCopy(section, 'title'))}</h1><p>${escapeHtml(custom.description || publicCopy(section, 'description'))}</p></header><div class="admin-location-card"><div><span>Ubicación en el sitio</span><strong>${escapeHtml(area?.title || section.group)} <b>›</b> ${escapeHtml(section.title)}</strong><code>${escapeHtml(section.route)}</code></div><a class="secondary" href="${section.route}">Abrir vista pública ↗</a></div><details class="admin-section-config"><summary>Editar título, texto principal y estado de esta sección</summary><form class="admin-section-settings" id="admin-section-settings"><div><p class="eyebrow">Contenido público de la página</p><label>Título principal<input data-section-title value="${escapeHtml(custom.title || '')}" placeholder="${escapeHtml(publicCopy(section, 'title'))}"></label><label>Texto principal de la sección<textarea data-section-description rows="4" placeholder="${escapeHtml(publicCopy(section, 'description'))}">${escapeHtml(custom.description || '')}</textarea></label><small>Este texto sustituye al texto público actual; no agrega un párrafo adicional.</small></div><div><p class="eyebrow">Publicación y acceso</p><label>Estado<select data-section-status>${statusOptions(config.status)}</select></label><label>Mensaje para el público<input data-section-message maxlength="180" value="${escapeHtml(config.message || '')}" placeholder="Ej. Estamos preparando esta guía"></label></div><div class="admin-form-actions"><button class="primary" type="submit">Guardar datos de la sección</button></div></form></details><section class="admin-section-video-box"><div><p class="eyebrow">Videos generales de esta sección</p><h2>Biblioteca vinculada</h2><p>Selecciona uno o varios videos para mostrarlos como apoyo general de esta sección.</p></div><button type="button" class="primary" data-video-picker-section="${section.id}">Seleccionar videos</button>${assignedVideoPreview('section', section.id)}</section><div class="admin-parts-heading"><div><p class="eyebrow">Módulos de la sección</p><h2>¿Qué parte quieres editar?</h2><p>Entra al módulo para ver todos los elementos que contiene.</p></div><span>${section.parts.length} módulos</span></div><div class="admin-module-grid">${section.parts.map((part, index) => { const items = itemsForPart(section, part, index); const customPart = state.partContent[section.id]?.[part.id] || {}; return `<button type="button" class="admin-module-card" data-part-open="${part.id}"><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${escapeHtml(customPart.title || part.title)}</strong><small>${escapeHtml(part.purpose)}</small><em>${items.length} ${items.length === 1 ? 'elemento' : 'elementos'}</em></div><b aria-hidden="true">→</b></button>`; }).join('')}</div></section>`;
   }
   function modulePanel(section, part) {
     const partIndex = section.parts.findIndex(item => item.id === part.id);
@@ -301,24 +369,23 @@
   function itemEditorPanel(section, part, item) {
     const view = displayItem(section.id, item);
     const custom = itemCustom(section.id, item[0]);
-    const video = itemVideo(section.id, item[0]) || {};
-    return `<section class="admin-page admin-item-editor-page"><button type="button" class="admin-back-button" data-item-close>← Volver a ${escapeHtml(part.title)}</button><header><p class="eyebrow">Elemento · ${escapeHtml(section.title)} › ${escapeHtml(part.title)}</p><h1>${escapeHtml(view.title)}</h1><p>Edita únicamente este elemento. Los campos vacíos conservan la información original del sitio.</p></header><form class="admin-item-editor" id="admin-item-editor"><section><p class="eyebrow">Contenido técnico</p><label>Nombre del elemento<input data-item-title value="${escapeHtml(custom.title || '')}" placeholder="${escapeHtml(item[1])}"></label><label>Clasificación o requisito<input data-item-requirement value="${escapeHtml(custom.requirement || '')}" placeholder="${escapeHtml(item[2] || '')}"></label><label>¿Para qué sirve?<textarea data-item-purpose rows="4" placeholder="${escapeHtml(item[4] || '')}">${escapeHtml(custom.purpose || '')}</textarea></label><label>¿Cómo elegirlo o prepararlo?<textarea data-item-preparation rows="6" placeholder="${escapeHtml(item[5] || '')}">${escapeHtml(custom.preparation || '')}</textarea></label><label>¿Qué comprobar antes de marcarlo?<textarea data-item-check rows="5" placeholder="${escapeHtml(item[6] || '')}">${escapeHtml(custom.check || '')}</textarea></label></section><section><p class="eyebrow">Imagen y publicación</p><label>Ruta de imagen o icono<input data-item-image value="${escapeHtml(custom.image || '')}" placeholder="assets/…"></label><small>Usa una ruta dentro de la carpeta del sitio, por ejemplo <code>assets/tropa-item-icons/sc-saco-dormir.png</code>.</small><label class="admin-switch"><input type="checkbox" data-item-visible ${view.visible ? 'checked' : ''}> Mostrar este elemento en el sitio</label><div class="admin-item-library-box"><div><strong>Videos de la biblioteca</strong><small>Selecciona uno o varios videos ya registrados para este elemento.</small></div><button type="button" class="primary" data-video-picker-item="${escapeHtml(item[0])}">Seleccionar videos</button>${assignedVideoPreview('item', section.id, item[0])}</div><p class="eyebrow admin-video-field-title">Registrar un video directamente</p><label>Título del video<input data-item-video-title value="${escapeHtml(video.title || '')}" placeholder="Cómo preparar ${escapeHtml(item[1])}"></label><label>ID de YouTube<input data-item-video-youtube value="${escapeHtml(video.youtubeId || '')}" placeholder="Ej. CIrwbFW72fk"></label><label>Estado<select data-item-video-status>${videoStatusOptions(video.status || 'soon')}</select></label><small>Si el video aún no existe, deja el ID vacío y conserva “Próximamente”.</small></section><div class="admin-part-actions"><button class="primary" type="submit">Guardar elemento y video</button><button class="secondary" type="button" data-item-reset>Restaurar este elemento</button></div></form></section>`;
+    return `<section class="admin-page admin-item-editor-page"><button type="button" class="admin-back-button" data-item-close>← Volver a ${escapeHtml(part.title)}</button><header><p class="eyebrow">Elemento · ${escapeHtml(section.title)} › ${escapeHtml(part.title)}</p><h1>${escapeHtml(view.title)}</h1><p>Edita únicamente este elemento. Los campos vacíos conservan la información original del sitio.</p></header><form class="admin-item-editor" id="admin-item-editor"><section><p class="eyebrow">Contenido técnico</p><label>Nombre del elemento<input data-item-title value="${escapeHtml(custom.title || '')}" placeholder="${escapeHtml(item[1])}"></label><label>Clasificación o requisito<input data-item-requirement value="${escapeHtml(custom.requirement || '')}" placeholder="${escapeHtml(item[2] || '')}"></label><label>¿Para qué sirve?<textarea data-item-purpose rows="4" placeholder="${escapeHtml(item[4] || '')}">${escapeHtml(custom.purpose || '')}</textarea></label><label>¿Cómo elegirlo o prepararlo?<textarea data-item-preparation rows="6" placeholder="${escapeHtml(item[5] || '')}">${escapeHtml(custom.preparation || '')}</textarea></label><label>¿Qué comprobar antes de marcarlo?<textarea data-item-check rows="5" placeholder="${escapeHtml(item[6] || '')}">${escapeHtml(custom.check || '')}</textarea></label></section><section><p class="eyebrow">Imagen y publicación</p><label>Ruta de imagen o icono<input data-item-image value="${escapeHtml(custom.image || '')}" placeholder="assets/…"></label><small>Usa una ruta dentro de la carpeta del sitio, por ejemplo <code>assets/tropa-item-icons/sc-saco-dormir.png</code>.</small><label class="admin-switch"><input type="checkbox" data-item-visible ${view.visible ? 'checked' : ''}> Mostrar este elemento en el sitio</label><div class="admin-item-library-box"><div><strong>Videos de la biblioteca</strong><small>Los videos activos aparecen aquí. Puedes quitarlos o abrir la biblioteca para cambiar la selección.</small></div><button type="button" class="primary" data-video-picker-item="${escapeHtml(item[0])}">Seleccionar videos</button>${assignedVideoPreview('item', section.id, item[0])}</div></section><div class="admin-part-actions"><button class="primary" type="submit">Guardar elemento</button><button class="secondary" type="button" data-item-reset>Restaurar este elemento</button></div></form></section>`;
   }
   function videoRow(video) {
     const thumb = video.youtubeId ? `https://i.ytimg.com/vi/${encodeURIComponent(video.youtubeId)}/mqdefault.jpg` : '';
-    return `<article class="admin-video-row" data-admin-video="${escapeHtml(video.id)}">${thumb ? `<img src="${thumb}" alt="">` : '<span class="admin-video-placeholder">▶</span>'}<div class="admin-video-fields"><label>Título<input data-video-title maxlength="150" value="${escapeHtml(video.title || '')}"></label><div><label>ID de YouTube<input data-video-youtube maxlength="30" value="${escapeHtml(video.youtubeId || '')}" placeholder="Ej. CIrwbFW72fk"></label><label>Tema<input data-video-topic maxlength="80" value="${escapeHtml(video.topic || '')}"></label></div><div><label>Ubicación<select data-video-placement>${placementOptions(video.placement)}</select></label><label>Estado<select data-video-status>${videoStatusOptions(video.status || 'published')}</select></label></div></div><div class="admin-video-actions"><button type="button" class="secondary" data-video-save>Guardar</button><button type="button" class="admin-danger" data-video-delete>Eliminar</button></div></article>`;
+    return `<article class="admin-video-row" data-admin-video="${escapeHtml(video.id)}">${thumb ? `<img src="${thumb}" alt="">` : '<span class="admin-video-placeholder">▶</span>'}<div class="admin-video-fields"><label>Título<input data-video-title maxlength="150" value="${escapeHtml(video.title || '')}"></label><div><label>Enlace de YouTube o ID<input data-video-youtube value="${escapeHtml(video.youtubeId || '')}" placeholder="https://www.youtube.com/watch?v=…"></label><label>Tema<input data-video-topic maxlength="80" value="${escapeHtml(video.topic || '')}"></label></div><div><label>Ubicación<select data-video-placement>${placementOptions(video.placement)}</select></label><label>Estado<select data-video-status>${videoStatusOptions(video.status || 'published')}</select></label></div></div><div class="admin-video-actions"><button type="button" class="secondary" data-video-save>Guardar</button><button type="button" class="admin-danger" data-video-delete>Eliminar</button></div></article>`;
   }
   function videosPanel() {
     const query = videoQuery.trim().toLocaleLowerCase('es');
     const list = videos().filter(video => !query || `${video.title} ${video.topic} ${video.youtubeId} ${video.placement}`.toLocaleLowerCase('es').includes(query));
-    return `<section class="admin-page"><header><p class="eyebrow">Biblioteca audiovisual completa</p><h1>Videos y ubicaciones</h1><p>Consulta todos los videos disponibles, corrige sus datos o da de alta un video nuevo para poder seleccionarlo desde cualquier sección o elemento.</p></header><section class="admin-video-toolbar"><input type="search" data-video-search value="${escapeHtml(videoQuery)}" placeholder="Buscar video, tema o sección…"><button type="button" class="primary" data-video-new>+ Dar de alta un video nuevo</button></section><div class="admin-video-list">${list.length ? list.map(videoRow).join('') : '<p class="admin-empty">No encontramos videos con esa búsqueda.</p>'}</div></section>`;
+    return `<section class="admin-page"><header><p class="eyebrow">Biblioteca audiovisual completa</p><h1>Videos y ubicaciones</h1><p>Registra aquí los videos y después selecciónalos desde cualquier sección o elemento.</p></header><form class="admin-video-register" id="admin-video-register"><div><p class="eyebrow">Registrar un video</p><h2>Agregar a la biblioteca</h2><p>Puedes pegar el enlace normal de YouTube o solamente su ID.</p></div><label>Título del video<input data-new-video-title maxlength="150" required placeholder="Ej. Cómo preparar la mochila"></label><label>Enlace de YouTube o ID<input data-new-video-youtube placeholder="https://www.youtube.com/watch?v=…"></label><label>Estado<select data-new-video-status>${videoStatusOptions('soon')}</select></label><small>Si el video aún no existe, deja el enlace vacío y conserva “Próximamente”.</small><button type="submit" class="primary">Registrar video</button></form><section class="admin-video-toolbar"><input type="search" data-video-search value="${escapeHtml(videoQuery)}" placeholder="Buscar video, tema o sección…"></section><div class="admin-video-list">${list.length ? list.map(videoRow).join('') : '<p class="admin-empty">No encontramos videos con esa búsqueda.</p>'}</div></section>`;
   }
   function videoPickerPanel() {
     if (!videoPickerTarget) return '';
     const { kind, sectionId, itemId = '', title } = videoPickerTarget;
     const selected = new Set(assignedIds(kind, sectionId, itemId));
     const catalog = videos();
-    return `<div class="admin-picker-backdrop" role="presentation"><section class="admin-video-picker" role="dialog" aria-modal="true" aria-labelledby="admin-video-picker-title"><header><div><p class="eyebrow">Biblioteca de videos</p><h2 id="admin-video-picker-title">Seleccionar para ${escapeHtml(title)}</h2><p>Marca todos los videos que quieras mostrar. Puedes vincular más de uno.</p></div><button type="button" class="admin-picker-close" data-video-picker-cancel aria-label="Cerrar">×</button></header><div class="admin-picker-grid">${catalog.length ? catalog.map(video => `<label class="admin-picker-card"><input type="checkbox" data-video-picker-check="${escapeHtml(video.id)}" ${selected.has(video.id) ? 'checked' : ''}><span class="admin-picker-thumb">${video.youtubeId ? `<img src="https://i.ytimg.com/vi/${encodeURIComponent(video.youtubeId)}/mqdefault.jpg" alt="">` : '<b>▶</b>'}<em>${escapeHtml(video.status === 'published' ? 'Publicado' : video.status === 'soon' ? 'Próximamente' : video.status === 'hidden' ? 'Oculto' : 'Borrador')}</em></span><span class="admin-picker-copy"><strong>${escapeHtml(video.title || 'Video sin título')}</strong><small>${escapeHtml(video.topic || 'Sin tema')}</small></span></label>`).join('') : '<p class="admin-empty">La biblioteca está vacía. Da de alta tu primer video.</p>'}</div><footer><button type="button" class="secondary" data-video-picker-new>+ Dar de alta un video nuevo</button><span></span><button type="button" class="secondary" data-video-picker-cancel>Cancelar</button><button type="button" class="primary" data-video-picker-apply>Agregar seleccionados</button></footer></section></div>`;
+    return `<div class="admin-picker-backdrop" role="presentation"><section class="admin-video-picker" role="dialog" aria-modal="true" aria-labelledby="admin-video-picker-title"><header><div><p class="eyebrow">Biblioteca de videos</p><h2 id="admin-video-picker-title">Seleccionar para ${escapeHtml(title)}</h2><p>Marca todos los videos que quieras mostrar. Puedes vincular más de uno.</p></div><button type="button" class="admin-picker-close" data-video-picker-cancel aria-label="Cerrar">×</button></header><div class="admin-picker-grid">${catalog.length ? catalog.map(video => `<label class="admin-picker-card"><input type="checkbox" data-video-picker-check="${escapeHtml(video.id)}" ${selected.has(video.id) ? 'checked' : ''}><span class="admin-picker-thumb">${video.youtubeId ? `<img src="https://i.ytimg.com/vi/${encodeURIComponent(video.youtubeId)}/mqdefault.jpg" alt="">` : '<b>▶</b>'}<em>${escapeHtml(video.status === 'published' ? 'Publicado' : video.status === 'soon' ? 'Próximamente' : video.status === 'hidden' ? 'Oculto' : 'Borrador')}</em></span><span class="admin-picker-copy"><strong>${escapeHtml(video.title || 'Video sin título')}</strong><small>${escapeHtml(video.topic || 'Sin tema')}</small></span></label>`).join('') : '<p class="admin-empty">La biblioteca está vacía. Registra tu primer video.</p>'}</div><footer><button type="button" class="secondary" data-video-picker-new>+ Registrar un video</button><span></span><button type="button" class="secondary" data-video-picker-cancel>Cancelar</button><button type="button" class="primary" data-video-picker-apply>Agregar seleccionados</button></footer></section></div>`;
   }
   function contentPanel() {
     return `<section class="admin-page"><header><p class="eyebrow">Edición editorial</p><h1>Contenidos principales</h1><p>Estos campos modifican los textos de la portada. Si dejas un campo vacío, se conserva el texto original.</p></header><form class="admin-content-form" id="admin-content-form">${CONTENT_FIELDS.map(([key, label, fallback]) => `<label>${escapeHtml(label)}${key.endsWith('.description') ? `<textarea data-content-key="${key}" rows="3" placeholder="${escapeHtml(fallback)}">${escapeHtml(state.content[key] || '')}</textarea>` : `<input data-content-key="${key}" value="${escapeHtml(state.content[key] || '')}" placeholder="${escapeHtml(fallback)}">`}</label>`).join('')}<div class="admin-form-actions"><button class="primary" type="submit">Guardar contenidos</button><button class="secondary" type="button" data-content-reset>Restaurar textos originales</button></div></form></section>`;
@@ -379,15 +446,19 @@
       const { kind, sectionId, itemId = '' } = videoPickerTarget;
       const selected = [...document.querySelectorAll('[data-video-picker-check]:checked')].map(input => input.dataset.videoPickerCheck);
       const key = assignmentKey(kind, sectionId, itemId);
-      if (selected.length) state.videoAssignments[key] = selected; else delete state.videoAssignments[key];
+      state.videoAssignments[key] = selected;
       save();
       videoPickerTarget = null;
       renderAdmin();
       notifyAdmin(selected.length ? `${selected.length} video${selected.length === 1 ? '' : 's'} vinculado${selected.length === 1 ? '' : 's'}.` : 'Se retiraron los videos vinculados.');
     });
+    document.querySelectorAll('[data-video-unassign-id]').forEach(button => button.onclick = () => {
+      const { videoUnassignId: id, videoUnassignKind: kind, videoUnassignSection: sectionId, videoUnassignItem: itemId = '' } = button.dataset;
+      state.videoAssignments[assignmentKey(kind, sectionId, itemId)] = assignedIds(kind, sectionId, itemId).filter(videoId => videoId !== id);
+      save(); renderAdmin(); notifyAdmin('El video se quitó de este elemento. Sigue disponible en la biblioteca.');
+    });
     document.querySelector('[data-video-picker-new]')?.addEventListener('click', () => {
-      const item = { id: `custom-${Date.now()}`, youtubeId: '', title: 'Nuevo video sin registrar', topic: 'Tutorial', placement: 'coche', status: 'draft', custom: true };
-      state.videos.unshift(item); save(); videoPickerTarget = null; currentTab = 'videos'; videoQuery = ''; renderAdmin();
+      videoPickerTarget = null; currentTab = 'videos'; videoQuery = ''; renderAdmin();
     });
     const sectionForm = document.querySelector('#admin-section-settings');
     if (sectionForm) sectionForm.onsubmit = event => {
@@ -430,11 +501,7 @@
       if (!state.itemContent[section.id]) state.itemContent[section.id] = {};
       const hasContent = Object.entries(custom).some(([key, entry]) => key === 'visible' ? entry === false : Boolean(entry));
       if (hasContent) state.itemContent[section.id][item[0]] = custom; else delete state.itemContent[section.id][item[0]];
-      const id = `item-${section.id}-${item[0]}`;
-      const video = { id, youtubeId: value('[data-item-video-youtube]'), title: value('[data-item-video-title]') || `Cómo preparar ${item[1]}`, topic: item[1], placement: section.route.slice(1), status: itemForm.querySelector('[data-item-video-status]').value, sectionId: section.id, partId: part.id, itemId: item[0], custom: true };
-      const index = state.videos.findIndex(entry => entry.id === id);
-      if (index >= 0) state.videos[index] = video; else state.videos.unshift(video);
-      save(); notifyAdmin('Elemento y video guardados.'); renderAdmin();
+      save(); notifyAdmin('Elemento guardado.'); renderAdmin();
     };
     document.querySelector('[data-item-reset]')?.addEventListener('click', () => {
       if (!window.confirm('¿Restaurar el contenido y el video de este elemento?')) return;
@@ -445,16 +512,27 @@
     });
     const search = document.querySelector('[data-video-search]');
     if (search) search.oninput = event => { videoQuery = event.target.value; window.clearTimeout(search._timer); search._timer = window.setTimeout(renderAdmin, 180); };
-    const add = document.querySelector('[data-video-new]');
-    if (add) add.onclick = () => {
-      const item = { id: `custom-${Date.now()}`, youtubeId: '', title: 'Nuevo video sin registrar', topic: 'Tutorial', placement: 'coche', status: 'draft', custom: true };
-      state.videos.unshift(item); save(); videoQuery = ''; renderAdmin();
+    const registerVideo = document.querySelector('#admin-video-register');
+    if (registerVideo) registerVideo.onsubmit = event => {
+      event.preventDefault();
+      const title = registerVideo.querySelector('[data-new-video-title]').value.trim();
+      const rawYoutube = registerVideo.querySelector('[data-new-video-youtube]').value.trim();
+      const youtubeId = youtubeIdFrom(rawYoutube);
+      const status = registerVideo.querySelector('[data-new-video-status]').value;
+      if (rawYoutube && !youtubeId) { notifyAdmin('El enlace o ID de YouTube no es válido.'); return; }
+      if (!youtubeId && status === 'published') { notifyAdmin('Un video publicado necesita un enlace de YouTube.'); return; }
+      const item = { id: `custom-${Date.now()}`, youtubeId, title, topic: 'Tutorial', placement: 'coche', status, custom: true };
+      state.videos.unshift(item); save(); videoQuery = ''; renderAdmin(); notifyAdmin('Video registrado en la biblioteca.');
     };
     document.querySelectorAll('[data-admin-video]').forEach(row => {
       const id = row.dataset.adminVideo;
       row.querySelector('[data-video-save]').onclick = () => {
         const original = videos().find(video => video.id === id) || { id };
-        const updated = { ...original, title: row.querySelector('[data-video-title]').value.trim(), youtubeId: row.querySelector('[data-video-youtube]').value.trim(), topic: row.querySelector('[data-video-topic]').value.trim(), placement: row.querySelector('[data-video-placement]').value, status: row.querySelector('[data-video-status]').value };
+        const rawYoutube = row.querySelector('[data-video-youtube]').value.trim();
+        const youtubeId = youtubeIdFrom(rawYoutube);
+        if (rawYoutube && !youtubeId) { notifyAdmin('El enlace o ID de YouTube no es válido.'); return; }
+        const updated = { ...original, title: row.querySelector('[data-video-title]').value.trim(), youtubeId, topic: row.querySelector('[data-video-topic]').value.trim(), placement: row.querySelector('[data-video-placement]').value, status: row.querySelector('[data-video-status]').value };
+        if (!youtubeId && updated.status === 'published') { notifyAdmin('Un video publicado necesita un enlace de YouTube.'); return; }
         const index = state.videos.findIndex(video => video.id === id);
         if (index >= 0) state.videos[index] = updated; else state.videos.push(updated);
         save(); notifyAdmin('Video guardado.'); renderAdmin();
@@ -558,11 +636,10 @@
     const custom = state.sectionContent[section.id] || {};
     const heading = document.querySelector('main h1');
     if (heading && custom.title && heading.textContent !== custom.title) heading.textContent = custom.title;
-    let intro = document.querySelector('.admin-section-copy');
-    if (custom.description) {
-      if (!intro && heading) { intro = document.createElement('p'); intro.className = 'admin-section-copy'; heading.insertAdjacentElement('afterend', intro); }
-      if (intro && intro.textContent !== custom.description) intro.textContent = custom.description;
-    } else intro?.remove();
+    if (custom.description && section.id !== 'scout') {
+      const intro = heading?.nextElementSibling;
+      if (intro?.matches('p') && intro.textContent !== custom.description) intro.textContent = custom.description;
+    }
     section.parts.forEach(part => {
       const override = state.partContent[section.id]?.[part.id]; if (!override) return;
       const partHeading = findPartHeading(part.title); if (!partHeading) return;
@@ -692,6 +769,11 @@
   }, true);
   new MutationObserver(decorateSoon).observe(document.querySelector('#app'), { childList: true, subtree: true });
 
-  window.LOBATOS_ADMIN = { VERSION, text, renderAdmin, renderLocked, canNavigate, decorate, getState: () => state };
+  function publicItemVideoTuples(sectionId, itemId, fallback = []) {
+    if (!hasExplicitAssignment('item', sectionId, itemId)) return fallback;
+    return assignedVideos('item', sectionId, itemId).filter(video => ['published', 'soon'].includes(video.status)).map(video => [video.youtubeId || null, video.title, video.status === 'published' ? 'Video publicado' : 'Próximamente']);
+  }
+  function sectionText(sectionId, field, fallback = '') { return state.sectionContent[sectionId]?.[field] || fallback; }
+  window.LOBATOS_ADMIN = { VERSION, text, sectionText, renderAdmin, renderLocked, canNavigate, decorate, itemVideoTuples: publicItemVideoTuples, getState: () => state };
   window.setTimeout(loadPublishedContent, 0);
 }());

@@ -1,4 +1,4 @@
-const CACHE = 'camping-v102';
+const CACHE = 'camping-v107';
 
 // Solo se precarga la interfaz esencial. Las fotografías, los carnets PDF y
 // las insignias se guardan cuando se consultan para que la primera visita sea

@@ -1,7 +1,7 @@
 {
   "name": "Lobatos Acampando",
   "short_name": "Lobatos",
-  "description": "Guías técnicas y checklists interactivos de campismo familiar y preparación Scout.",
+  "description": "Guías prácticas, videos y listas para mejorar tu experiencia de camping en familia o en la vida Scout.",
   "lang": "es-MX",
   "start_url": "./#inicio",
   "scope": "./",

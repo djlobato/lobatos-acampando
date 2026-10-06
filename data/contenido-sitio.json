@@ -1,12 +1,147 @@
 {
   "schema": 1,
-  "version": "1.7",
-  "updatedAt": null,
-  "sections": {},
+  "version": "1.8",
+  "updatedAt": "2026-10-06T21:04:26.710Z",
+  "sections": {
+    "inicio": {
+      "status": "published",
+      "message": ""
+    },
+    "coche": {
+      "status": "published",
+      "message": ""
+    },
+    "senderismo": {
+      "status": "published",
+      "message": ""
+    },
+    "bushcraft": {
+      "status": "published",
+      "message": ""
+    },
+    "ultraligera": {
+      "status": "published",
+      "message": ""
+    },
+    "tecnicas": {
+      "status": "published",
+      "message": ""
+    },
+    "reviews": {
+      "status": "published",
+      "message": ""
+    },
+    "scout": {
+      "status": "published",
+      "message": ""
+    },
+    "manada": {
+      "status": "published",
+      "message": ""
+    },
+    "manada-progresiones": {
+      "status": "published",
+      "message": ""
+    },
+    "manada-bolsillo": {
+      "status": "published",
+      "message": ""
+    },
+    "manada-ataque": {
+      "status": "published",
+      "message": ""
+    },
+    "manada-campamento": {
+      "status": "published",
+      "message": ""
+    },
+    "tropa": {
+      "status": "published",
+      "message": ""
+    },
+    "tropa-progresiones": {
+      "status": "published",
+      "message": ""
+    },
+    "tropa-bolsillo": {
+      "status": "published",
+      "message": ""
+    },
+    "tropa-ataque": {
+      "status": "published",
+      "message": ""
+    },
+    "tropa-campamento": {
+      "status": "published",
+      "message": ""
+    }
+  },
   "content": {},
   "sectionContent": {},
-  "partContent": {},
-  "itemContent": {},
-  "videoAssignments": {},
-  "videos": []
+  "partContent": {
+    "coche": {}
+  },
+  "itemContent": {
+    "coche": {
+      "saco": {
+        "title": "Saco de dormir o sleeping",
+        "requirement": "",
+        "purpose": "",
+        "preparation": "",
+        "check": "",
+        "image": "",
+        "visible": true
+      }
+    }
+  },
+  "videoAssignments": {
+    "item:inicio:part-inicio-modalidades": [
+      "youtube-BSY4E3g4YHQ",
+      "youtube-MzRiI0ytFqM",
+      "youtube-v3b2SwFLEJM",
+      "youtube-EWvfVxb9JTI",
+      "youtube-UEEO2BJDIyM"
+    ],
+    "item:coche:mapa": [],
+    "item:coche:energia": [],
+    "item:coche:llegada-inmediata": [],
+    "item:coche:tienda": [
+      "youtube-v3b2SwFLEJM",
+      "youtube-MzRiI0ytFqM",
+      "youtube-rPBMD8Nfabs",
+      "youtube-EWvfVxb9JTI"
+    ],
+    "item:coche:estacas": [],
+    "item:coche:colchon": [
+      "custom-1791320226815"
+    ],
+    "item:coche:comida": [],
+    "item:coche:ollas": [],
+    "item:coche:fuego-reglas": [
+      "youtube-M6-9N9WIc94"
+    ],
+    "item:coche:fuego-encendido": [
+      "youtube-UEEO2BJDIyM",
+      "youtube-rffe2D_1Nbs"
+    ],
+    "item:coche:fuego-control": [],
+    "item:coche:fuego-area": [],
+    "item:coche:bolsa-ropa": [
+      "youtube-NT6muu9--74"
+    ],
+    "item:coche:capas": [
+      "youtube-H0h5B-UxwN8"
+    ]
+  },
+  "videos": [
+    {
+      "id": "custom-1791320226815",
+      "youtubeId": "yx37Zqd7LhI",
+      "title": "Aislante termico",
+      "topic": "Tutorial",
+      "placement": "coche",
+      "status": "published",
+      "custom": true
+    }
+  ]
 }
